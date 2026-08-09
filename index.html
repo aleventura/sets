@@ -27,6 +27,16 @@
     font-variant-numeric:tabular-nums;white-space:nowrap}
   .head-row .sub.err{color:var(--no)}
 
+  .filters{display:flex;gap:7px;overflow-x:auto;padding:0 0 10px;scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;padding:7px 12px;background:var(--btn);border:1px solid var(--border);
+    border-radius:16px;color:var(--fg);font-size:13px;font-weight:600;cursor:pointer;
+    white-space:nowrap;transition:background .15s ease,border-color .15s ease,color .15s ease}
+  .chip:active{background:var(--btn-hover)}
+  .chip.active{background:var(--acc);border-color:var(--acc);color:#fff}
+  .chip .n{opacity:.7;font-weight:600;margin-left:3px}
+  .chip.active .n{opacity:.9}
+
   .list{padding:14px 12px calc(var(--player-h) + 28px);padding-top:var(--header-h,64px)}
 
   .card{display:flex;align-items:center;gap:12px;background:var(--card);
@@ -188,6 +198,12 @@
     <h1>Sets</h1>
     <span class="sub" id="sub"></span>
   </div>
+  <div class="filters" id="filters">
+    <button class="chip active" data-filter="all">Todos<span class="n" data-n="all"></span></button>
+    <button class="chip" data-filter="new">Nuevos<span class="n" data-n="new"></span></button>
+    <button class="chip" data-filter="progress">En proceso<span class="n" data-n="progress"></span></button>
+    <button class="chip" data-filter="done">Escuchados<span class="n" data-n="done"></span></button>
+  </div>
 </header>
 
 <div class="list" id="list">
@@ -262,10 +278,12 @@ const LS_POS  = 'sc_sets_pos_v1';   // { <setUrl>: {pos,dur,done,at} }
 const LS_LAST = 'sc_sets_last_v1';  // último set abierto (url)
 const LS_MARKS = 'sc_sets_marks_v1'; // { <setUrl>: [ {t, note} ] }  marcas manuales
 const LS_TID   = 'sc_sets_trackid_v1'; // { <setUrl>: trackidUrl }   link de trackid por set
+const LS_FILTER = 'sc_sets_filter_v1'; // filtro activo: all|new|progress|done
+const PROGRESS_MIN_MS = 3000;          // umbral para considerar un set "en proceso"
 // Tracklists incrustados. Se buscan como archivo local (mismo folder) y, si no,
 // en la URL de producción. Formato: { <setUrl>: {source, tracks:[{t,artist,title}]} }
 const TRACKLISTS_URL = 'tracklists.json?t=' + Date.now();
-const TRACKLISTS_URL_FALLBACK = 'https://aleventura.github.io/sc/tracklists.json?t=' + Date.now();
+const TRACKLISTS_URL_FALLBACK = 'https://aleventura.github.io/sets/tracklists.json?t=' + Date.now();
 const SAVE_EVERY_MS = 2500;         // cada cuánto persistir posición mientras suena
 const DONE_RATIO = 0.97;            // % a partir del cual un set se marca "escuchado"
 
@@ -277,6 +295,7 @@ let pos = JSON.parse(localStorage.getItem(LS_POS) || '{}');
 let marks = JSON.parse(localStorage.getItem(LS_MARKS) || '{}');   // marcas manuales por set
 let tidUrls = JSON.parse(localStorage.getItem(LS_TID) || '{}');   // link de trackid por set
 let TRACKLISTS = {};                 // tracklists incrustados (de tracklists.json)
+let filter = localStorage.getItem(LS_FILTER) || 'all';  // all|new|progress|done
 let currentIndex = -1;               // set seleccionado en la UI (o -1)
 let loadedIndex = -1;                // set realmente cargado en el widget (o -1)
 let playerState = 'stopped';         // 'playing' | 'paused' | 'stopped'
@@ -336,16 +355,35 @@ function artHTML(u, cls){
 // ============================================================
 // RENDER DE LA LISTA
 // ============================================================
+// Estado de escucha de un set: 'new' | 'progress' | 'done'
+function setStatus(url){
+  const p = getPos(url);
+  if (p.done) return 'done';
+  if (p.pos > PROGRESS_MIN_MS) return 'progress';
+  return 'new';
+}
+function passesFilter(s){
+  return filter === 'all' || setStatus(s.url) === filter;
+}
+
 function render(){
   const list = document.getElementById('list');
   if (!SETS.length){
     list.innerHTML = '<div class="empty">No se encontraron sets en la playlist.</div>';
+    updateSub();
     return;
   }
-  list.innerHTML = SETS.map((s, i) => cardHTML(s, i)).join('');
-  list.querySelectorAll('[data-play]').forEach(el => {
-    el.addEventListener('click', () => playSet(parseInt(el.dataset.play,10)));
-  });
+  // Filtrar preservando el índice global (playSet/updateCard usan el índice de SETS)
+  const html = SETS.map((s, i) => passesFilter(s) ? cardHTML(s, i) : '').join('');
+  if (!html){
+    const label = {new:'nuevos', progress:'en proceso', done:'escuchados'}[filter] || '';
+    list.innerHTML = '<div class="empty">No hay sets ' + label + '.</div>';
+  } else {
+    list.innerHTML = html;
+    list.querySelectorAll('[data-play]').forEach(el => {
+      el.addEventListener('click', () => playSet(parseInt(el.dataset.play,10)));
+    });
+  }
   updateSub();
 }
 
@@ -417,10 +455,17 @@ function updateCard(i){
 }
 
 function updateSub(){
-  const done = SETS.filter(s => getPos(s.url).done).length;
+  const c = {all: SETS.length, new:0, progress:0, done:0};
+  SETS.forEach(s => { c[setStatus(s.url)]++; });
   const el = document.getElementById('sub');
   el.classList.remove('err');
-  el.textContent = SETS.length ? (SETS.length + ' sets · ' + done + ' escuchados') : '';
+  el.textContent = SETS.length ? (SETS.length + ' sets · ' + c.done + ' escuchados') : '';
+  document.querySelectorAll('.chip .n').forEach(n => {
+    const k = n.dataset.n;
+    n.textContent = c[k] != null ? '·' + c[k] : '';
+  });
+  document.querySelectorAll('#filters .chip').forEach(ch =>
+    ch.classList.toggle('active', ch.dataset.filter === filter));
 }
 
 // ============================================================
@@ -541,9 +586,10 @@ function toggleDoneCurrent(){
   const s = SETS[currentIndex];
   const p = getPos(s.url);
   markDone(s.url, !p.done);
-  updateCard(currentIndex);
+  if (filter !== 'all') render(); else updateCard(currentIndex);
   updateSub();
   updateFullMarkBtn();
+  highlightCards();
 }
 
 // Saltar a un tiempo exacto del set seleccionado (marcas / tracklist).
@@ -678,6 +724,7 @@ function bindWidget(){
   widget.bind(E.PLAY, function(){
     playerState = 'playing';
     widget.getDuration(function(d){ if (d) curDurMs = d; });
+    if (filter !== 'all') render();   // un set nuevo pasa a "en proceso": refrescar el filtro
     syncPlayIcons();
     highlightCards();
   });
@@ -704,7 +751,7 @@ function bindWidget(){
     playerState = 'paused';
     widget.pause();               // corta el auto-avance de la playlist
     syncPlayIcons();
-    updateCard(loadedIndex);
+    if (filter !== 'all') render(); else updateCard(loadedIndex);
     updateFullMarkBtn();
     updateSub();
   });
@@ -839,6 +886,18 @@ document.getElementById('tlBody').addEventListener('click', e => {
 });
 document.getElementById('tlBody').addEventListener('keydown', e => {
   if (e.key === 'Enter' && e.target.id === 'tidInput'){ e.preventDefault(); saveTid(); }
+});
+
+// Filtro por estado de escucha
+document.getElementById('filters').addEventListener('click', e => {
+  const chip = e.target.closest('.chip');
+  if (!chip) return;
+  filter = chip.dataset.filter;
+  localStorage.setItem(LS_FILTER, filter);
+  document.querySelectorAll('#filters .chip').forEach(c =>
+    c.classList.toggle('active', c.dataset.filter === filter));
+  render();
+  highlightCards();
 });
 
 // Guardar posición si la página se oculta o cierra
