@@ -133,6 +133,7 @@
   .seek{flex:1;padding:14px 6px;background:var(--btn);border:1px solid var(--acc);
     border-radius:12px;color:var(--acc);font-weight:700;font-size:15px;cursor:pointer}
   .seek:active{background:var(--btn-hover)}
+  .seek.back{color:var(--acc2);border-color:var(--acc2)}
   .pl-foot{display:flex;justify-content:center;gap:24px;margin-top:2px}
   .pl-foot button{background:none;border:0;color:var(--dim);font-size:13px;cursor:pointer;
     padding:8px 10px;display:flex;align-items:center;gap:6px}
@@ -171,7 +172,18 @@
   .tk-t:active{opacity:.7}
   .tk-name{flex:1 1 auto;min-width:0}
   .tk-name .art{color:var(--fg);font-weight:600;background:none;width:auto;height:auto;display:inline}
-  .tk-num{flex:0 0 auto;color:var(--dim);font-size:11px;min-width:20px;text-align:right}
+  .tk-plays{color:var(--dim);font-size:11px;margin-left:8px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .tk-edit{flex:0 0 auto;background:none;border:0;color:var(--dim);cursor:pointer;font-size:14px;padding:2px 4px;line-height:1}
+  .tk-edit:active{color:var(--acc2)}
+  .tk-empty .tk-name{color:var(--dim);font-style:italic}
+  .tk-user .tk-name{color:var(--fg)}
+  .tk-note{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 8px 62px}
+  .tk-note input{flex:1 1 120px;min-width:0;background:var(--btn);border:1px solid var(--border);
+    border-radius:8px;color:var(--fg);font-size:13px;padding:8px 9px;outline:none}
+  .tk-note input:focus{border-color:var(--acc2)}
+  .tk-note button{flex:0 0 auto;background:var(--acc2);border:0;color:#fff;font-weight:700;
+    border-radius:8px;padding:8px 12px;cursor:pointer;font-size:12px}
+  .tk-note button.ghost{background:var(--btn);color:var(--fg);border:1px solid var(--border);font-weight:600}
   .tid-form{display:flex;gap:8px;margin-top:6px}
   .tid-form input{flex:1 1 auto;min-width:0;background:var(--btn);border:1px solid var(--border);
     border-radius:8px;color:var(--fg);font-size:13px;padding:9px 10px;outline:none}
@@ -179,6 +191,22 @@
   .tid-form button{flex:0 0 auto;background:var(--acc2);border:0;color:#fff;font-weight:700;
     border-radius:8px;padding:9px 14px;cursor:pointer;font-size:13px}
   .tid-open{display:inline-block;margin-top:8px;color:var(--acc2);font-size:13px}
+
+  /* Pegar tracklist (trackid.net u otra fuente) */
+  .tl-paste{margin-top:10px}
+  .tl-paste textarea{width:100%;box-sizing:border-box;min-height:90px;resize:vertical;
+    background:var(--btn);border:1px solid var(--border);border-radius:8px;color:var(--fg);
+    font-size:13px;line-height:1.4;padding:9px 10px;outline:none;font-family:inherit}
+  .tl-paste textarea:focus{border-color:var(--acc2)}
+  .tl-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center}
+  .tl-actions button{flex:0 0 auto;background:var(--acc2);border:0;color:#fff;font-weight:700;
+    border-radius:8px;padding:9px 14px;cursor:pointer;font-size:13px}
+  .tl-actions button.ghost{background:var(--btn);color:var(--fg);border:1px solid var(--border);font-weight:600}
+  .tl-err{color:var(--no);font-size:12px;margin-top:6px;min-height:0}
+  .tl-hint{color:var(--dim);font-size:11px;margin-top:6px;line-height:1.4}
+  .tl-foot{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;padding-top:8px;border-top:1px solid #1e1e24}
+  .tl-foot button{background:none;border:0;color:var(--acc2);font-size:12px;cursor:pointer;padding:2px 0}
+  .tl-foot button.danger{color:var(--no)}
 
   /* Contadores en las cards */
   .cbadges{display:flex;gap:8px;margin-top:6px;font-size:11px;color:var(--dim);
@@ -235,6 +263,7 @@
         <div class="pl-times"><span id="curTime">0:00</span><span id="durTime">0:00</span></div>
       </div>
       <div class="seek-row">
+        <button class="seek back" data-seek="-15">−15 s</button>
         <button class="seek" data-seek="60">+1 min</button>
         <button class="seek" data-seek="180">+3 min</button>
         <button class="seek" data-seek="1200">+20 min</button>
@@ -278,6 +307,8 @@ const LS_POS  = 'sc_sets_pos_v1';   // { <setUrl>: {pos,dur,done,at} }
 const LS_LAST = 'sc_sets_last_v1';  // último set abierto (url)
 const LS_MARKS = 'sc_sets_marks_v1'; // { <setUrl>: [ {t, note} ] }  marcas manuales
 const LS_TID   = 'sc_sets_trackid_v1'; // { <setUrl>: trackidUrl }   link de trackid por set
+const LS_LOCAL_TL = 'sc_sets_tl_local_v1'; // { <setUrl>: {source,tracks:[{t,artist,title,empty,plays}],at} } pegados en el dispositivo
+const LS_TLNOTES  = 'sc_sets_tlnotes_v1';  // { <setUrl>: { <tMs>: {artist,title} } } notas manuales de track
 const LS_FILTER = 'sc_sets_filter_v1'; // filtro activo: all|new|progress|done
 const PROGRESS_MIN_MS = 3000;          // umbral para considerar un set "en proceso"
 // Tracklists incrustados. Se buscan como archivo local (mismo folder) y, si no,
@@ -294,6 +325,9 @@ let SETS = [];                       // {url,title,artist,dur,art}
 let pos = JSON.parse(localStorage.getItem(LS_POS) || '{}');
 let marks = JSON.parse(localStorage.getItem(LS_MARKS) || '{}');   // marcas manuales por set
 let tidUrls = JSON.parse(localStorage.getItem(LS_TID) || '{}');   // link de trackid por set
+let LOCAL_TL = JSON.parse(localStorage.getItem(LS_LOCAL_TL) || '{}'); // tracklists pegadas en este dispositivo
+let TLNOTES  = JSON.parse(localStorage.getItem(LS_TLNOTES) || '{}');  // notas manuales de track por set
+let tlEditRow = -1;                  // índice de fila del tracklist en edición (o -1)
 let TRACKLISTS = {};                 // tracklists incrustados (de tracklists.json)
 let filter = localStorage.getItem(LS_FILTER) || 'all';  // all|new|progress|done
 let currentIndex = -1;               // set seleccionado en la UI (o -1)
@@ -663,8 +697,221 @@ function renderMarks(){
 // TRACKLIST INCRUSTADO (de tracklists.json) + link de trackid por set
 // ============================================================
 function getTracklist(url){
+  const l = LOCAL_TL[url];                                   // lo pegado en el dispositivo manda
+  if (l && Array.isArray(l.tracks) && l.tracks.length) return l;
   const e = TRACKLISTS[url];
   return (e && Array.isArray(e.tracks)) ? e : null;
+}
+function hasLocalTL(url){ const l = LOCAL_TL[url]; return !!(l && Array.isArray(l.tracks) && l.tracks.length); }
+
+// ---- Parser de tracklist pegada (tolerante a formatos) ----
+function tlTimeToMs(s){
+  const p = s.split(':').map(Number);
+  const sec = p.length === 3 ? p[0]*3600 + p[1]*60 + p[2] : p[0]*60 + p[1];
+  return sec * 1000;
+}
+function tlIsTime(s){ return /^\d{1,2}:\d{2}(?::\d{2})?$/.test(s); }
+function tlExtractTime(line){
+  const m = line.match(/\b(\d{1,2}:\d{2}(?::\d{2})?)\b/);
+  if (!m) return { t:null, rest:line };
+  const rest = (line.slice(0, m.index) + line.slice(m.index + m[0].length))
+    .replace(/^[\s\-–—.\)\]\[|]+|[\s\-–—.\(\[\]|]+$/g, '').trim();
+  return { t: tlTimeToMs(m[1]), rest };
+}
+function tlCleanName(s){ return s.replace(/^\s*\d{1,3}\s*[\.\)]\s+/, '').trim(); }
+function tlSplitAT(name){
+  const parts = name.split(/\s+[-–—]\s+/);
+  if (parts.length >= 2) return { artist: parts[0].trim(), title: parts.slice(1).join(' - ').trim() };
+  return { artist: '', title: name };
+}
+// ---- CSV (export de trackid.net) ----
+function tlPickDelim(text){
+  const first = (text.split(/\r?\n/).find(l => l.trim()) || '');
+  const counts = { ',':0, ';':0, '\t':0 };
+  for (const ch of first){ if (ch in counts) counts[ch]++; }
+  let best = null, n = 0;
+  for (const d in counts){ if (counts[d] > n){ n = counts[d]; best = d; } }
+  return n > 0 ? best : null;
+}
+function tlParseCSVRows(text, delim){
+  const rows = []; let row = [], cur = '', q = false;
+  for (let i = 0; i < text.length; i++){
+    const c = text[i];
+    if (q){
+      if (c === '"'){ if (text[i+1] === '"'){ cur += '"'; i++; } else q = false; }
+      else cur += c;
+    } else {
+      if (c === '"') q = true;
+      else if (c === delim){ row.push(cur); cur = ''; }
+      else if (c === '\n'){ row.push(cur); rows.push(row); row = []; cur = ''; }
+      else if (c === '\r'){ /* ignora */ }
+      else cur += c;
+    }
+  }
+  if (cur.length || row.length){ row.push(cur); rows.push(row); }
+  return rows.filter(r => r.some(x => x && x.trim()));
+}
+// Devuelve [{t,artist,title,plays?,empty?}] si el texto es un CSV con encabezado reconocible; si no, null.
+function parseTracklistCSV(text){
+  const delim = tlPickDelim(text);
+  if (!delim) return null;
+  const rows = tlParseCSVRows(text, delim);
+  if (rows.length < 2) return null;
+  const header = rows[0].map(h => (h || '').trim().toLowerCase());
+  const find = re => header.findIndex(h => re.test(h));
+  const ci = {
+    t:      find(/\b(time|timestamp|start|cue|position|when|offset)\b/),
+    artist: find(/artist/),
+    title:  find(/\b(title|track|song)\b/),
+    plays:  find(/\b(play|plays|count|spins?|times|occurr)\b/)
+  };
+  if (ci.artist < 0 && ci.title < 0 && ci.t < 0) return null;   // no parece CSV de tracklist
+  const cell = (row, k) => (ci[k] >= 0 && ci[k] < row.length) ? String(row[ci[k]]).trim() : '';
+  const out = [];
+  for (let r = 1; r < rows.length; r++){
+    const row = rows[r];
+    let t = null;
+    const tRaw = cell(row, 't');
+    if (tRaw){
+      const m = tRaw.match(/\b\d{1,2}:\d{2}(?::\d{2})?\b/);
+      if (m) t = tlTimeToMs(m[0]);
+      else if (/^\d+(\.\d+)?$/.test(tRaw)) t = Math.round(parseFloat(tRaw) * 1000); // segundos
+    }
+    let artist = cell(row, 'artist');
+    let title  = cell(row, 'title');
+    if (!artist && title && /\s+[-–—]\s+/.test(title)){ const at = tlSplitAT(title); artist = at.artist; title = at.title; }
+    const playsRaw = cell(row, 'plays');
+    const plays = /^\d+$/.test(playsRaw) ? parseInt(playsRaw, 10) : undefined;
+    const blank = !artist && (!title || /^(id|unknown|unreleased|\?+|n\/a|-{1,})$/i.test(title));
+    if (blank){ if (t != null) out.push({ t, empty: true }); }
+    else out.push(Object.assign({ t, artist, title }, plays != null ? { plays } : {}));
+  }
+  return out.length ? out : null;
+}
+
+// Convierte texto pegado en [{t,artist,title,...}]. Intenta CSV de trackid.net; si no, texto libre.
+function parseTracklistText(text){
+  const csv = parseTracklistCSV(text);
+  const out = csv || parseTracklistLines(text);
+  out.sort((a, b) => {
+    if (a.t == null && b.t == null) return 0;
+    if (a.t == null) return 1;
+    if (b.t == null) return -1;
+    return a.t - b.t;
+  });
+  return out;
+}
+
+// Texto libre: empareja tiempo y nombre estén en la misma línea o en líneas separadas.
+function parseTracklistLines(text){
+  const raw = (text || '').split(/\r?\n/).map(l => l.replace(/ /g, ' ').trim()).filter(Boolean);
+  // Un token por línea: {t, name}. Si la línea trae tiempo y nombre, quedan amarrados.
+  const toks = [];
+  for (const line of raw){
+    if (/^(tracklist|track\s*list|fuente|source|share|compartir|copy|copiar|edit|editar|playlist)\s*:?\s*$/i.test(line)) continue;
+    const { t, rest } = tlExtractTime(line);
+    const name = tlCleanName(rest);
+    const hasName = name && /[a-z0-9]/i.test(name) && !tlIsTime(name);
+    if (t == null && !hasName) continue;
+    toks.push({ t: t, name: hasName ? name : null });
+  }
+  // Detectar la dirección dominante de emparejamiento entre nombre-suelto y tiempo-suelto,
+  // para no robar el tiempo equivocado y para reconocer huecos "sin identificar".
+  const isLoneTime = j => j >= 0 && j < toks.length && toks[j].name == null && toks[j].t != null;
+  const isLoneName = j => j >= 0 && j < toks.length && toks[j].name != null && toks[j].t == null;
+  let R = 0, L = 0;
+  for (let i = 0; i < toks.length; i++){
+    if (!isLoneName(i)) continue;
+    if (isLoneTime(i+1)) R++;
+    if (isLoneTime(i-1)) L++;
+  }
+  const dir = L > R ? -1 : 1;   // -1: el tiempo va antes del nombre; +1: después (por defecto)
+
+  const usedTime = new Array(toks.length).fill(false);
+  const out = [];
+  for (let i = 0; i < toks.length; i++){
+    const tk = toks[i];
+    if (tk.name != null){
+      let t = tk.t;
+      if (t == null){                                // nombre suelto: toma el tiempo vecino en la dirección dominante
+        if (isLoneTime(i+dir) && !usedTime[i+dir]){ t = toks[i+dir].t; usedTime[i+dir] = true; }
+        else if (isLoneTime(i-dir) && !usedTime[i-dir]){ t = toks[i-dir].t; usedTime[i-dir] = true; }
+      }
+      const at = tlSplitAT(tk.name);
+      out.push({ t, artist: at.artist, title: at.title });
+    }
+  }
+  // Los tiempos sueltos que nadie tomó son huecos que Track ID no identificó.
+  for (let i = 0; i < toks.length; i++){
+    if (toks[i].name == null && toks[i].t != null && !usedTime[i]){
+      out.push({ t: toks[i].t, artist: '', title: '', empty: true });
+    }
+  }
+  // Ordenar por tiempo (deja al final los sin tiempo).
+  out.sort((a, b) => {
+    if (a.t == null && b.t == null) return 0;
+    if (a.t == null) return 1;
+    if (b.t == null) return -1;
+    return a.t - b.t;
+  });
+  return out;
+}
+function saveLocalTL(){ localStorage.setItem(LS_LOCAL_TL, JSON.stringify(LOCAL_TL)); }
+
+// ---- Notas manuales de track (nombre/artista para huecos o correcciones) ----
+function saveTLNotes(){ localStorage.setItem(LS_TLNOTES, JSON.stringify(TLNOTES)); }
+function trackKey(tr, i){ return (tr.t != null && tr.t !== '') ? ('t' + tr.t) : ('i' + i); }
+function getTrackNote(url, key){ const m = TLNOTES[url]; return (m && m[key]) ? m[key] : null; }
+function setTrackNote(url, key, artist, title){
+  if (!TLNOTES[url]) TLNOTES[url] = {};
+  artist = (artist||'').trim(); title = (title||'').trim();
+  if (!artist && !title) delete TLNOTES[url][key];
+  else TLNOTES[url][key] = { artist, title };
+  if (TLNOTES[url] && !Object.keys(TLNOTES[url]).length) delete TLNOTES[url];
+  saveTLNotes();
+}
+function addPastedTracklist(){
+  if (currentIndex < 0) return;
+  const s = SETS[currentIndex];
+  const ta = document.getElementById('tlPaste');
+  const err = document.getElementById('tlErr');
+  if (!ta) return;
+  const tracks = parseTracklistText(ta.value);
+  if (!tracks.length){
+    if (err) err.textContent = 'No pude leer tracks. Pega líneas tipo "0:00 Artista - Título".';
+    return;
+  }
+  LOCAL_TL[s.url] = { source: tidUrls[s.url] || '', tracks, at: new Date().toISOString() };
+  saveLocalTL();
+  updateCard(currentIndex);
+  renderTracklist();
+}
+function deleteLocalTL(){
+  if (currentIndex < 0) return;
+  const s = SETS[currentIndex];
+  delete LOCAL_TL[s.url];
+  saveLocalTL();
+  updateCard(currentIndex);
+  renderTracklist();
+}
+// Aplica las notas manuales sobre una lista de tracks (para render y export)
+function applyNotes(url, tracks){
+  return tracks.map((tr, i) => {
+    const ov = getTrackNote(url, trackKey(tr, i));
+    if (!ov) return tr;
+    return { t: tr.t, artist: ov.artist, title: ov.title, plays: tr.plays, noted: true };
+  });
+}
+// Descarga un tracklists.json con lo incrustado + lo pegado + notas (para actualizar el repo)
+function exportTracklists(){
+  const merged = Object.assign({}, TRACKLISTS);
+  Object.keys(LOCAL_TL).forEach(u => { if (hasLocalTL(u)) merged[u] = { source: LOCAL_TL[u].source || '', tracks: applyNotes(u, LOCAL_TL[u].tracks) }; });
+  const blob = new Blob([JSON.stringify(merged, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'tracklists.json';
+  document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
 }
 
 function renderTracklist(){
@@ -674,35 +921,82 @@ function renderTracklist(){
   const s = SETS[currentIndex];
   const tl = getTracklist(s.url);
 
+  const saved = tidUrls[s.url] || '';
+
+  // Caja para pegar tracks (link de trackid como atajo para abrir/copiar + textarea + parser)
+  function pasteBox(hidden){
+    const openLink = saved
+      ? '<a class="tid-open" href="' + esc(saved) + '" target="_blank" rel="noopener">Abrir en trackid.net ↗</a>'
+      : '';
+    return '<div class="tl-paste" id="tlPasteWrap"' + (hidden ? ' style="display:none"' : '') + '>' +
+      '<div class="tid-form">' +
+        '<input id="tidInput" type="url" inputmode="url" placeholder="Link de trackid.net (opcional)" value="' + esc(saved) + '">' +
+        '<button id="tidSave">Guardar link</button>' +
+      '</div>' + openLink +
+      '<textarea id="tlPaste" placeholder="Pega aquí la tracklist (ej.: 0:00 Artista - Título, una por línea)"></textarea>' +
+      '<div class="tl-actions">' +
+        '<button id="tlAdd">Agregar tracks</button>' +
+        '<button id="tlClear" class="ghost">Limpiar</button>' +
+      '</div>' +
+      '<div class="tl-err" id="tlErr"></div>' +
+      '<div class="tl-hint">Abre el link, copia la tracklist en trackid.net, pégala aquí y toca “Agregar tracks”. Se guarda en este dispositivo.</div>' +
+    '</div>';
+  }
+
   if (tl && tl.tracks.length){
     count.textContent = tl.tracks.length + ' tracks';
     const src = tl.source ? '<div class="tl-src">Fuente: <a href="' + esc(tl.source) +
       '" target="_blank" rel="noopener">' + esc(tl.source) + '</a></div>' : '';
-    body.innerHTML = src + tl.tracks.map(function(tr, i){
+    const rows = tl.tracks.map(function(tr, i){
+      const key = trackKey(tr, i);
+      const ov = getTrackNote(s.url, key);
       const time = (tr.t != null && tr.t !== '') ? hhmmss(tr.t) : '—';
       const canJump = (tr.t != null && tr.t !== '');
-      const name = [tr.artist, tr.title].filter(Boolean).map(esc).join(' — ') || 'ID — ID';
-      return '<div class="tk">' +
+      let cls = 'tk', label;
+      if (ov){                                   // el usuario le puso nombre (a un hueco o corrigiendo)
+        cls += ' tk-user';
+        label = [ov.artist, ov.title].filter(Boolean).map(esc).join(' — ');
+      } else if (tr.empty){                      // Track ID no lo identificó
+        cls += ' tk-empty';
+        label = 'sin identificar';
+      } else {
+        label = [tr.artist, tr.title].filter(Boolean).map(esc).join(' — ') || 'ID';
+      }
+      const pv = (typeof tr.plays === 'number' && isFinite(tr.plays)) ? tr.plays
+               : (/^\d+$/.test(String(tr.plays == null ? '' : tr.plays)) ? parseInt(tr.plays, 10) : null);
+      const plays = (pv != null)
+        ? '<span class="tk-plays" title="reproducciones">▷ ' + esc(pv.toLocaleString('es-CL')) + '</span>' : '';
+      const editing = (tlEditRow === i);
+      const editor = editing
+        ? '<div class="tk-note">' +
+            '<input id="tnA" placeholder="Artista" value="' + esc(ov ? ov.artist : tr.artist || '') + '">' +
+            '<input id="tnT" placeholder="Título" value="' + esc(ov ? ov.title : tr.title || '') + '">' +
+            '<button data-notesave="' + i + '">Guardar</button>' +
+            (ov ? '<button class="ghost" data-notedel="' + i + '">Quitar</button>' : '') +
+          '</div>'
+        : '';
+      return '<div class="' + cls + '">' +
         '<button class="tk-t" ' + (canJump ? 'data-jump="' + tr.t + '"' : 'disabled') + '>' + esc(time) + '</button>' +
-        '<div class="tk-name">' + name + '</div>' +
-        '<div class="tk-num">' + (i+1) + '</div>' +
-      '</div>';
+        '<div class="tk-name">' + label + plays + '</div>' +
+        '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nota">✎</button>' +
+      '</div>' + editor;
     }).join('');
+    const local = hasLocalTL(s.url);
+    const foot = '<div class="tl-foot">' +
+      '<button id="tlEdit">' + (local ? 'Reemplazar tracks' : 'Pegar tracks') + '</button>' +
+      (local ? '<button id="tlDel" class="danger">Borrar tracks</button>' : '') +
+      '<button id="tlExport">Exportar JSON</button>' +
+    '</div>';
+    body.innerHTML = src + rows + foot + pasteBox(true);
     return;
   }
 
-  // Sin tracklist incrustado: permitir guardar/abrir el link de trackid
+  // Sin tracklist: mostrar la caja de pegado directamente
   count.textContent = '';
-  const saved = tidUrls[s.url] || '';
-  const openLink = saved
-    ? '<a class="tid-open" href="' + esc(saved) + '" target="_blank" rel="noopener">Abrir en trackid.net ↗</a>'
-    : '';
   body.innerHTML =
-    '<div class="sect-empty">Aún no hay tracklist incrustado para este set. Pega el link de trackid.net y guárdalo; luego lo incrusto con timestamps.</div>' +
-    '<div class="tid-form">' +
-      '<input id="tidInput" type="url" inputmode="url" placeholder="https://trackid.net/audiostreams/…" value="' + esc(saved) + '">' +
-      '<button id="tidSave">Guardar</button>' +
-    '</div>' + openLink;
+    '<div class="sect-empty">Aún no hay tracklist para este set. Pega la lista desde trackid.net y aparece al tiro.</div>' +
+    pasteBox(false) +
+    '<div class="tl-foot"><button id="tlExport">Exportar JSON</button></div>';
 }
 
 function saveTid(){
@@ -783,6 +1077,7 @@ function liveUI(){
 // ============================================================
 function showPlayerFor(i){
   const s = SETS[i];
+  tlEditRow = -1;                      // cerrar editor de nota al cambiar de set
   const player = document.getElementById('player');
   document.getElementById('miniTitle').textContent = s.title;
   document.getElementById('miniArtist').textContent = s.artist;
@@ -882,7 +1177,29 @@ document.getElementById('marksList').addEventListener('click', e => {
 document.getElementById('tlBody').addEventListener('click', e => {
   const j = e.target.closest('[data-jump]');
   if (j && !j.disabled){ jumpTo(parseInt(j.dataset.jump,10)); return; }
-  if (e.target.closest('#tidSave')){ saveTid(); }
+  const er = e.target.closest('[data-editrow]');
+  if (er){ const i = parseInt(er.dataset.editrow,10); tlEditRow = (tlEditRow === i) ? -1 : i; renderTracklist(); return; }
+  const ns = e.target.closest('[data-notesave]');
+  if (ns){
+    const s = SETS[currentIndex]; const tl = getTracklist(s.url);
+    const i = parseInt(ns.dataset.notesave,10); const tr = tl.tracks[i];
+    const a = document.getElementById('tnA'), t = document.getElementById('tnT');
+    setTrackNote(s.url, trackKey(tr, i), a ? a.value : '', t ? t.value : '');
+    tlEditRow = -1; updateCard(currentIndex); renderTracklist(); return;
+  }
+  const nd = e.target.closest('[data-notedel]');
+  if (nd){
+    const s = SETS[currentIndex]; const tl = getTracklist(s.url);
+    const i = parseInt(nd.dataset.notedel,10); const tr = tl.tracks[i];
+    setTrackNote(s.url, trackKey(tr, i), '', '');
+    tlEditRow = -1; updateCard(currentIndex); renderTracklist(); return;
+  }
+  if (e.target.closest('#tidSave')){ saveTid(); return; }
+  if (e.target.closest('#tlAdd')){ addPastedTracklist(); return; }
+  if (e.target.closest('#tlClear')){ const t = document.getElementById('tlPaste'); if (t){ t.value=''; t.focus(); } const err = document.getElementById('tlErr'); if (err) err.textContent=''; return; }
+  if (e.target.closest('#tlDel')){ deleteLocalTL(); return; }
+  if (e.target.closest('#tlExport')){ exportTracklists(); return; }
+  if (e.target.closest('#tlEdit')){ const w = document.getElementById('tlPasteWrap'); if (w){ w.style.display = (w.style.display==='none'?'':'none'); if (w.style.display!=='none'){ const t=document.getElementById('tlPaste'); if (t) t.focus(); } } return; }
 });
 document.getElementById('tlBody').addEventListener('keydown', e => {
   if (e.key === 'Enter' && e.target.id === 'tidInput'){ e.preventDefault(); saveTid(); }
