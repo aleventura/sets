@@ -182,5 +182,161 @@
         "title": "Inside"
       }
     ]
+  },
+  "https://soundcloud.com/magicianonduty/janoma-b2b-ezio-aguiar-journey-series": {
+    "source": "",
+    "tracks": [
+      {
+        "t": 0,
+        "artist": "Cuyama",
+        "title": "Two"
+      },
+      {
+        "t": 278000,
+        "artist": "Sydka",
+        "title": "Feeling"
+      },
+      {
+        "t": 611000,
+        "artist": "SIAAH, DJ Phellix, Laschian Records",
+        "title": "Jaane Barbat"
+      },
+      {
+        "t": 996000,
+        "artist": "Kamilo Sanclemente",
+        "title": "Mistika"
+      },
+      {
+        "t": 1140000,
+        "empty": true
+      },
+      {
+        "t": 1257000,
+        "artist": "Petra, Felipe Van Lagerback",
+        "title": "Red Panther"
+      },
+      {
+        "t": 1581000,
+        "artist": "Kiberu, Darksidevinyl",
+        "title": "Henaia"
+      },
+      {
+        "t": 1839000,
+        "artist": "Sobek",
+        "title": "The Tensioner"
+      },
+      {
+        "t": 2178000,
+        "artist": "mytripismytrip",
+        "title": "Not My Type"
+      },
+      {
+        "t": 2569000,
+        "artist": "Fulltone",
+        "title": "Meine Liebe"
+      },
+      {
+        "t": 2961000,
+        "artist": "D'AL SENIO, Tibetania",
+        "title": "Nada Brahma (Hrag Mikkel Remix)"
+      },
+      {
+        "t": 3258000,
+        "artist": "Feelmark",
+        "title": "Orbital (Jiggler Remix)"
+      },
+      {
+        "t": 3604000,
+        "empty": true
+      },
+      {
+        "t": 3976000,
+        "artist": "mredrollo",
+        "title": "Equanimity (Original Mix)"
+      },
+      {
+        "t": 4380000,
+        "empty": true
+      },
+      {
+        "t": 4804000,
+        "artist": "FNX Omar",
+        "title": "The Place"
+      },
+      {
+        "t": 5083000,
+        "artist": "Krassic",
+        "title": "About the Bass"
+      },
+      {
+        "t": 5388000,
+        "artist": "Goom Gum",
+        "title": "Spiral"
+      },
+      {
+        "t": 5692000,
+        "artist": "Romain Garcia",
+        "title": "Sevilla (Extended Mix)"
+      },
+      {
+        "t": 6140000,
+        "empty": true
+      },
+      {
+        "t": 6524000,
+        "artist": "Sammy Legs",
+        "title": "Mad Psyentist"
+      },
+      {
+        "t": 6898000,
+        "artist": "Rauschhaus, Adrinalin",
+        "title": "Kamala (Extended Mix)"
+      },
+      {
+        "t": 7257000,
+        "artist": "Aman Anand, Frankie Vertigo",
+        "title": "No Requests (Gai Barone Extended Remix)"
+      },
+      {
+        "t": 7602000,
+        "artist": "D-Nox & Aaron Suiss",
+        "title": "Firefly"
+      },
+      {
+        "t": 8024000,
+        "artist": "Sammy Legs, Malley",
+        "title": "Telescope"
+      },
+      {
+        "t": 8408000,
+        "artist": "Tantum",
+        "title": "Acetone"
+      },
+      {
+        "t": 8737000,
+        "artist": "Felix E, Michael Ritter",
+        "title": "Plastikrosen feat. Solveig Eger (Patrice Bäumel Remix)"
+      },
+      {
+        "t": 9027000,
+        "artist": "Lonya, Mattia Pompeo",
+        "title": "Avalanche (Jiggler Remix)"
+      },
+      {
+        "t": 9295000,
+        "artist": "Hannes Bieger",
+        "title": "Didyme"
+      },
+      {
+        "t": 9684000,
+        "artist": "Agawe, Qualista",
+        "title": "Farewell"
+      },
+      {
+        "t": 10064000,
+        "artist": "Alex O'Rion, Ezequiel Arias",
+        "title": "Solis"
+      }
+    ]
   }
 }
