@@ -1349,18 +1349,38 @@ function boot(){
     widgetReady = true;
     widget.getSounds(function(sounds){
       loaded = true; clearTimeout(guard);
-      SETS = (sounds || []).map(s => ({
-        url: s.permalink_url,
-        title: s.title || 'Set sin título',
-        artist: (s.user && s.user.username) || '',
-        dur: s.duration || 0,
-        art: s.artwork_url || (s.user && s.user.avatar_url) || null
-      })).filter(s => s.url);
-      bindWidget();
-      render();
-      syncHeaderHeight();
-      restoreLast();
-      loadTracklists();
+      // El widget de SoundCloud solo entrega metadata completa de los primeros ~5 sonidos
+      // de la playlist; del resto devuelve stubs (id pero sin permalink_url). Los
+      // "despertamos" recorriéndolos con skip() en silencio para que los sets recién
+      // agregados a la playlist también aparezcan en la lista.
+      const buildSets = function(list){
+        SETS = (list || []).map(s => ({
+          url: s.permalink_url,
+          title: s.title || 'Set sin título',
+          artist: (s.user && s.user.username) || '',
+          dur: s.duration || 0,
+          art: s.artwork_url || (s.user && s.user.avatar_url) || null
+        })).filter(s => s.url);
+        bindWidget();
+        render();
+        syncHeaderHeight();
+        restoreLast();
+        loadTracklists();
+      };
+      const missing = [];
+      (sounds || []).forEach((s, i) => { if (!(s && s.permalink_url)) missing.push(i); });
+      if (!missing.length){ buildSets(sounds); return; }
+      widget.setVolume(0);
+      let k = 0;
+      (function step(){
+        if (k >= missing.length){
+          widget.skip(0); widget.pause(); widget.setVolume(100);
+          widget.getSounds(buildSets);
+          return;
+        }
+        widget.skip(missing[k]); widget.pause(); k++;
+        setTimeout(step, 500);
+      })();
     });
   });
   widget.bind(SC.Widget.Events.ERROR, function(){
