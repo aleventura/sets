@@ -10,7 +10,7 @@
 <style>
   :root{
     --bg:#0e0e10; --fg:#e9e9ec; --dim:#8a8a92; --card:#17171b;
-    --border:#26262c; --acc:#f26f21; --acc2:#4ea1ff; --ok:#3ecf8e; --no:#e05a5a;
+    --border:#26262c; --acc:#f26f21; --acc2:#4ea1ff; --ok:#3ecf8e; --no:#e05a5a; --mark:#f2c14e;
     --btn:#22222a; --btn-hover:#2c2c36;
     --player-h:64px;
   }
@@ -224,6 +224,30 @@
   .pl-frame{position:absolute;bottom:0;left:0;width:1px;height:1px;overflow:hidden;
     opacity:.01;pointer-events:none}
   .pl-frame iframe{width:300px;height:120px;border:0}
+
+  /* ---- Timeline unificado (v1.7): rangos inicio–fin, bloques sin id, marcas inline ---- */
+  .tk{cursor:pointer}
+  .tk:active{background:#131317}
+  .tk-t{min-width:auto;white-space:nowrap}
+  .tk-t .end{color:var(--dim);font-weight:600}
+  .tk-dur{color:var(--dim);font-size:11px;margin-left:6px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .gapline{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #1e1e24;
+    font-size:12px;color:var(--dim);cursor:pointer}
+  .gapline:last-child{border-bottom:0}
+  .gapline:active{background:#131317}
+  .gapline .g-t{flex:0 0 auto;color:#7a7a82;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .gapline .g-lbl{flex:1 1 auto;min-width:0;font-style:italic;display:flex;align-items:center;gap:7px}
+  .gapline .dot{width:6px;height:6px;border-radius:50%;background:#4a4a52;flex:0 0 auto}
+  .gapline .tk-edit{font-style:normal}
+  .mk-inline{display:flex;align-items:flex-start;gap:9px;padding:7px 0;cursor:pointer;
+    border-bottom:1px solid #1e1e24;font-size:13px;line-height:1.35}
+  .mk-inline:last-child{border-bottom:0}
+  .mk-inline:active{background:#131317}
+  .mk-time{flex:0 0 auto;background:rgba(242,193,78,.12);border:1px solid rgba(242,193,78,.4);
+    color:var(--mark);font-size:11px;font-weight:700;border-radius:6px;padding:3px 7px;
+    font-variant-numeric:tabular-nums;line-height:1.2;white-space:nowrap}
+  .mk-note{flex:1 1 auto;min-width:0;word-break:break-word;padding-top:2px}
+  .mk-pin{color:var(--mark);margin-right:5px}
 </style>
 </head>
 <body>
@@ -286,16 +310,11 @@
         <button id="fullMarkDone">✓ Marcar escuchado</button>
       </div>
 
-      <div class="sect" id="marksSect">
+      <div class="sect" id="tlSect">
         <div class="sect-head">
-          <span>Marcas</span>
+          <span>Tracklist <span id="tlCount"></span></span>
           <button class="add" id="addMark">＋ Marca aquí</button>
         </div>
-        <div id="marksList"></div>
-      </div>
-
-      <div class="sect" id="tlSect">
-        <div class="sect-head"><span>Tracklist</span><span id="tlCount"></span></div>
         <div id="tlBody"></div>
       </div>
     </div>
@@ -310,7 +329,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.6';
+const APP_VERSION = '1.7';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -676,7 +695,7 @@ function addMarkHere(){
   arr.sort(function(a,b){ return a.t - b.t; });
   marks[s.url] = arr;
   saveMarks();
-  renderMarks();
+  renderTracklist();
   updateCard(currentIndex);
 }
 
@@ -687,25 +706,8 @@ function delMark(idx){
   arr.splice(idx, 1);
   if (arr.length) marks[s.url] = arr; else delete marks[s.url];
   saveMarks();
-  renderMarks();
+  renderTracklist();
   updateCard(currentIndex);
-}
-
-function renderMarks(){
-  const box = document.getElementById('marksList');
-  if (!box || currentIndex < 0) { if (box) box.innerHTML = ''; return; }
-  const arr = getMarks(SETS[currentIndex].url);
-  if (!arr.length){
-    box.innerHTML = '<div class="sect-empty">Sin marcas. Toca ＋ para guardar un comentario en el minuto actual.</div>';
-    return;
-  }
-  box.innerHTML = arr.map(function(m, i){
-    return '<div class="mk">' +
-      '<button class="mk-t" data-jump="' + m.t + '">' + esc(hhmmss(m.t)) + '</button>' +
-      '<div class="mk-note">' + esc(m.note) + '</div>' +
-      '<button class="mk-x" data-delmark="' + i + '" aria-label="Borrar">✕</button>' +
-    '</div>';
-  }).join('');
 }
 
 // ============================================================
@@ -935,7 +937,8 @@ function renderTracklist(){
   if (!body || currentIndex < 0){ if (body) body.innerHTML = ''; if (count) count.textContent=''; return; }
   const s = SETS[currentIndex];
   const tl = getTracklist(s.url);
-
+  const dur = getPos(s.url).dur || s.dur || curDurMs || 0;
+  const marksArr = getMarks(s.url);
   const saved = tidUrls[s.url] || '';
 
   // Caja para pegar tracks (link de trackid como atajo para abrir/copiar + textarea + parser)
@@ -958,62 +961,135 @@ function renderTracklist(){
     '</div>';
   }
 
-  if (tl && tl.tracks.length){
-    count.textContent = tl.tracks.length + ' tracks';
-    const src = tl.source ? '<div class="tl-src">Fuente: <a href="' + esc(tl.source) +
-      '" target="_blank" rel="noopener">' + esc(tl.source) + '</a></div>' : '';
-    const rows = tl.tracks.map(function(tr, i){
-      const key = trackKey(tr, i);
-      const ov = getTrackNote(s.url, key);
-      const time = (tr.t != null && tr.t !== '') ? hhmmss(tr.t) : '—';
-      const canJump = (tr.t != null && tr.t !== '');
-      let cls = 'tk', label;
-      if (ov){                                   // el usuario le puso nombre (a un hueco o corrigiendo)
-        cls += ' tk-user';
-        label = [ov.artist, ov.title].filter(Boolean).map(esc).join(' — ');
-      } else if (tr.empty){                      // Track ID no lo identificó
-        cls += ' tk-empty';
-        label = 'sin identificar';
-      } else {
-        label = [tr.artist, tr.title].filter(Boolean).map(esc).join(' — ') || 'ID';
-      }
-      const pv = (typeof tr.plays === 'number' && isFinite(tr.plays)) ? tr.plays
-               : (/^\d+$/.test(String(tr.plays == null ? '' : tr.plays)) ? parseInt(tr.plays, 10) : null);
-      const plays = (pv != null)
-        ? '<span class="tk-plays" title="reproducciones">▷ ' + esc(pv.toLocaleString('es-CL')) + '</span>' : '';
-      const editing = (tlEditRow === i);
-      const editor = editing
-        ? '<div class="tk-note">' +
-            '<input id="tnA" placeholder="Artista" value="' + esc(ov ? ov.artist : tr.artist || '') + '">' +
-            '<input id="tnT" placeholder="Título" value="' + esc(ov ? ov.title : tr.title || '') + '">' +
-            '<button data-notesave="' + i + '">Guardar</button>' +
-            (ov ? '<button class="ghost" data-notedel="' + i + '">Quitar</button>' : '') +
-          '</div>'
-        : '';
-      return '<div class="' + cls + '">' +
-        '<button class="tk-t" ' + (canJump ? 'data-jump="' + tr.t + '"' : 'disabled') + '>' + esc(time) + '</button>' +
-        '<div class="tk-name">' + label + plays + '</div>' +
-        '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nota">✎</button>' +
+  // Helpers de fila
+  function playsHTML(tr){
+    const pv = (typeof tr.plays === 'number' && isFinite(tr.plays)) ? tr.plays
+             : (/^\d+$/.test(String(tr.plays == null ? '' : tr.plays)) ? parseInt(tr.plays, 10) : null);
+    return (pv != null)
+      ? '<span class="tk-plays" title="reproducciones">▷ ' + esc(pv.toLocaleString('es-CL')) + '</span>' : '';
+  }
+  function noteEditor(tr, i, ov){
+    return '<div class="tk-note">' +
+        '<input id="tnA" placeholder="Artista" value="' + esc(ov ? ov.artist : tr.artist || '') + '">' +
+        '<input id="tnT" placeholder="Título" value="' + esc(ov ? ov.title : tr.title || '') + '">' +
+        '<button data-notesave="' + i + '">Guardar</button>' +
+        (ov ? '<button class="ghost" data-notedel="' + i + '">Quitar</button>' : '') +
+      '</div>';
+  }
+  function rangeLabel(t, end){
+    const start = hhmmss(t);
+    return end != null ? start + '<span class="end"> –' + hhmmss(end) + '</span>' : start;
+  }
+
+  const hasTL = !!(tl && tl.tracks.length);
+  const nT = hasTL ? tl.tracks.length : 0;
+
+  count.textContent = (nT ? nT + ' tracks' : '') +
+    (nT && marksArr.length ? ' · ' : '') +
+    (marksArr.length ? marksArr.length + (marksArr.length === 1 ? ' marca' : ' marcas') : '');
+
+  // ---- Construir la línea de tiempo unificada ----
+  // Tracks con tiempo llevan inicio–fin (fin = inicio del siguiente; el último, la duración del set).
+  const timed = [], untimed = [];
+  if (hasTL){
+    tl.tracks.forEach((tr, i) => {
+      if (tr.t != null && tr.t !== '') timed.push({ tr, i, t: tr.t });
+      else untimed.push({ tr, i });
+    });
+    timed.sort((a, b) => a.t - b.t);
+    timed.forEach((it, k) => {
+      it.end = (k + 1 < timed.length) ? timed[k + 1].t : (dur && dur > it.t ? dur : null);
+    });
+  }
+
+  const items = [];
+  const INTRO_MIN = 45000;   // intro sin identificar si el primer track parte pasado :45
+  if (timed.length && timed[0].t >= INTRO_MIN){
+    items.push({ kind: 'intro', t: 0, end: timed[0].t });
+  }
+  timed.forEach(it => items.push({ kind: 'track', t: it.t, end: it.end, tr: it.tr, i: it.i }));
+  marksArr.forEach((m, mi) => items.push({ kind: 'mark', t: m.t, note: m.note, mi: mi }));
+  // Ordenar por tiempo; a igual tiempo, el track/bloque va antes que la marca.
+  items.sort((a, b) => (a.t - b.t) || ((a.kind === 'mark' ? 1 : 0) - (b.kind === 'mark' ? 1 : 0)));
+
+  function trackRow(it){
+    const tr = it.tr, i = it.i, key = trackKey(tr, i);
+    const ov = getTrackNote(s.url, key);
+    const editor = (tlEditRow === i) ? noteEditor(tr, i, ov) : '';
+    // Bloque sin identificar (Track ID no lo reconoció y no tiene nota): fila atenuada, con ✎ para nombrarlo.
+    if (!ov && tr.empty){
+      return '<div class="gapline" data-jump="' + tr.t + '">' +
+        '<span class="g-t">' + rangeLabel(tr.t, it.end) + '</span>' +
+        '<span class="g-lbl"><span class="dot"></span>sin identificar' +
+          (it.end != null ? ' · ' + hhmmss(it.end - tr.t) : '') + '</span>' +
+        '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nombrar">✎</button>' +
       '</div>' + editor;
-    }).join('');
-    const local = hasLocalTL(s.url);
-    const foot = '<div class="tl-foot">' +
-      '<button id="tlEdit">' + (local ? 'Reemplazar tracks' : 'Pegar tracks') + '</button>' +
-      (local ? '<button id="tlDel" class="danger">Borrar tracks</button>' : '') +
-      '<button id="tlExport">Exportar JSON</button>' +
+    }
+    let cls = 'tk', label;
+    if (ov){ cls += ' tk-user'; label = [ov.artist, ov.title].filter(Boolean).map(esc).join(' — '); }
+    else { label = [tr.artist, tr.title].filter(Boolean).map(esc).join(' — ') || 'ID'; }
+    const dl = (it.end != null) ? '<span class="tk-dur">' + hhmmss(it.end - tr.t) + '</span>' : '';
+    return '<div class="' + cls + '" data-jump="' + tr.t + '">' +
+      '<span class="tk-t">' + rangeLabel(tr.t, it.end) + '</span>' +
+      '<span class="tk-name">' + label + dl + playsHTML(tr) + '</span>' +
+      '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nota">✎</button>' +
+    '</div>' + editor;
+  }
+  function introRow(it){
+    return '<div class="gapline" data-jump="0">' +
+      '<span class="g-t">' + rangeLabel(0, it.end) + '</span>' +
+      '<span class="g-lbl"><span class="dot"></span>sin identificar · intro</span>' +
     '</div>';
-    body.innerHTML = src + rows + foot + pasteBox(true);
+  }
+  function markRow(it){
+    return '<div class="mk-inline" data-jump="' + it.t + '">' +
+      '<span class="mk-time">' + esc(hhmmss(it.t)) + '</span>' +
+      '<span class="mk-note"><span class="mk-pin">📍</span>' + esc(it.note) + '</span>' +
+      '<button class="mk-x" data-delmark="' + it.mi + '" aria-label="Borrar marca">✕</button>' +
+    '</div>';
+  }
+  function untimedRow(u){
+    const tr = u.tr, i = u.i, key = trackKey(tr, i), ov = getTrackNote(s.url, key);
+    const editor = (tlEditRow === i) ? noteEditor(tr, i, ov) : '';
+    let cls = 'tk', label;
+    if (ov){ cls += ' tk-user'; label = [ov.artist, ov.title].filter(Boolean).map(esc).join(' — '); }
+    else if (tr.empty){ cls += ' tk-empty'; label = 'sin identificar'; }
+    else { label = [tr.artist, tr.title].filter(Boolean).map(esc).join(' — ') || 'ID'; }
+    return '<div class="' + cls + '">' +
+      '<span class="tk-t">—</span>' +
+      '<span class="tk-name">' + label + playsHTML(tr) + '</span>' +
+      '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nota">✎</button>' +
+    '</div>' + editor;
+  }
+
+  // Nada aún: mensaje + caja de pegado
+  if (!items.length && !untimed.length){
+    body.innerHTML =
+      '<div class="sect-empty">Aún no hay tracklist ni marcas para este set. Toca ＋ Marca aquí para guardar un comentario en el minuto actual, o pega la lista desde trackid.net.</div>' +
+      pasteBox(false) +
+      '<div class="tl-foot"><button id="tlExport">Exportar JSON</button></div>';
     return;
   }
 
-  // Sin tracklist: mostrar la caja de pegado directamente
-  count.textContent = '';
-  body.innerHTML =
-    '<div class="sect-empty">Aún no hay tracklist para este set. Pega la lista desde trackid.net y aparece al tiro.</div>' +
-    pasteBox(false) +
-    '<div class="tl-foot"><button id="tlExport">Exportar JSON</button></div>';
-}
+  const src = (hasTL && tl.source)
+    ? '<div class="tl-src">Fuente: <a href="' + esc(tl.source) + '" target="_blank" rel="noopener">' + esc(tl.source) + '</a></div>'
+    : '';
+  let html = src;
+  items.forEach(it => {
+    if (it.kind === 'intro') html += introRow(it);
+    else if (it.kind === 'track') html += trackRow(it);
+    else if (it.kind === 'mark') html += markRow(it);
+  });
+  untimed.forEach(u => { html += untimedRow(u); });
 
+  const local = hasLocalTL(s.url);
+  const foot = '<div class="tl-foot">' +
+    '<button id="tlEdit">' + (local ? 'Reemplazar tracks' : 'Pegar tracks') + '</button>' +
+    (local ? '<button id="tlDel" class="danger">Borrar tracks</button>' : '') +
+    '<button id="tlExport">Exportar JSON</button>' +
+  '</div>';
+  body.innerHTML = html + foot + pasteBox(true);
+}
 function saveTid(){
   if (currentIndex < 0) return;
   const s = SETS[currentIndex];
@@ -1104,7 +1180,6 @@ function showPlayerFor(i){
   renderTimes(curPosMs);
   syncPlayIcons();
   updateFullMarkBtn();
-  renderMarks();
   renderTracklist();
 }
 
@@ -1186,19 +1261,11 @@ document.querySelectorAll('.seek[data-seek]').forEach(el => {
   el.addEventListener('click', () => seekBy(parseInt(el.dataset.seek,10)));
 });
 
-// Marcas manuales
+// Botón de marca (ahora en el encabezado del Tracklist)
 document.getElementById('addMark').addEventListener('click', addMarkHere);
-document.getElementById('marksList').addEventListener('click', e => {
-  const j = e.target.closest('[data-jump]');
-  if (j){ jumpTo(parseInt(j.dataset.jump,10)); return; }
-  const d = e.target.closest('[data-delmark]');
-  if (d){ delMark(parseInt(d.dataset.delmark,10)); }
-});
 
 // Tracklist: saltar a un track o guardar el link de trackid
 document.getElementById('tlBody').addEventListener('click', e => {
-  const j = e.target.closest('[data-jump]');
-  if (j && !j.disabled){ jumpTo(parseInt(j.dataset.jump,10)); return; }
   const er = e.target.closest('[data-editrow]');
   if (er){ const i = parseInt(er.dataset.editrow,10); tlEditRow = (tlEditRow === i) ? -1 : i; renderTracklist(); return; }
   const ns = e.target.closest('[data-notesave]');
@@ -1216,12 +1283,17 @@ document.getElementById('tlBody').addEventListener('click', e => {
     setTrackNote(s.url, trackKey(tr, i), '', '');
     tlEditRow = -1; updateCard(currentIndex); renderTracklist(); return;
   }
+  const dm = e.target.closest('[data-delmark]');
+  if (dm){ delMark(parseInt(dm.dataset.delmark,10)); return; }
   if (e.target.closest('#tidSave')){ saveTid(); return; }
   if (e.target.closest('#tlAdd')){ addPastedTracklist(); return; }
   if (e.target.closest('#tlClear')){ const t = document.getElementById('tlPaste'); if (t){ t.value=''; t.focus(); } const err = document.getElementById('tlErr'); if (err) err.textContent=''; return; }
   if (e.target.closest('#tlDel')){ deleteLocalTL(); return; }
   if (e.target.closest('#tlExport')){ exportTracklists(); return; }
   if (e.target.closest('#tlEdit')){ const w = document.getElementById('tlPasteWrap'); if (w){ w.style.display = (w.style.display==='none'?'':'none'); if (w.style.display!=='none'){ const t=document.getElementById('tlPaste'); if (t) t.focus(); } } return; }
+  // Tocar cualquier parte de una fila con tiempo (track, bloque o marca) carga/salta a ese punto
+  const j = e.target.closest('[data-jump]');
+  if (j && j.dataset.jump !== ''){ jumpTo(parseInt(j.dataset.jump,10)); return; }
 });
 document.getElementById('tlBody').addEventListener('keydown', e => {
   if (e.key === 'Enter' && e.target.id === 'tidInput'){ e.preventDefault(); saveTid(); }
