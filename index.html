@@ -116,7 +116,8 @@
     max-width:520px;width:100%;margin:0 auto;overflow:hidden;padding:6px 2px 0;min-height:0}
   .pl-fixed{flex:0 0 auto;display:flex;flex-direction:column;gap:14px}
   .pl-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
-    padding:2px 0 calc(20px + env(safe-area-inset-bottom))}
+    padding:4px 0 calc(20px + env(safe-area-inset-bottom))}
+  .tl-head{border-top:1px solid var(--border);padding-top:12px;margin-bottom:0}
   .pl-big-art{width:100%;max-width:180px;aspect-ratio:1;margin:2px auto 0;border-radius:16px;
     background:linear-gradient(135deg,#2a2a34,#1a1a20);overflow:hidden;
     box-shadow:0 12px 40px rgba(0,0,0,.5)}
@@ -303,25 +304,18 @@
         <button class="seek" data-seek="180">+3 min</button>
         <button class="seek" data-seek="1200">+20 min</button>
       </div>
-      <div class="pl-row">
-        <button class="pl-nav" id="fullPrev" aria-label="Set anterior"></button>
-        <button class="pl-nav main" id="fullPlay" aria-label="Reproducir"></button>
-        <button class="pl-nav" id="fullNext" aria-label="Set siguiente"></button>
-      </div>
       <div class="pl-foot">
         <button id="fullRestart">↺ Reiniciar set</button>
         <button id="fullMarkDone">✓ Marcar escuchado</button>
       </div>
+      <div class="sect-head tl-head">
+        <span>Tracklist <span id="tlCount"></span></span>
+        <button class="add" id="addMark">＋ Marca aquí</button>
+      </div>
       </div><!-- /pl-fixed -->
 
       <div class="pl-scroll">
-      <div class="sect" id="tlSect">
-        <div class="sect-head">
-          <span>Tracklist <span id="tlCount"></span></span>
-          <button class="add" id="addMark">＋ Marca aquí</button>
-        </div>
         <div id="tlBody"></div>
-      </div>
       </div><!-- /pl-scroll -->
     </div>
   </div>
@@ -335,7 +329,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.9';
+const APP_VERSION = '1.10';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -1200,7 +1194,6 @@ function renderTimes(p){
 function syncPlayIcons(){
   const icon = playerState === 'playing' ? IC_PAUSE : IC_PLAY;
   document.getElementById('miniPlay').innerHTML = icon;
-  document.getElementById('fullPlay').innerHTML = icon;
   const cb = document.querySelector('.card.playing .cplay');
   if (cb) cb.innerHTML = icon;
 }
@@ -1245,15 +1238,9 @@ function setMediaSession(s){
 // ============================================================
 // Íconos SVG estáticos + versión
 document.getElementById('ver').textContent = 'v' + APP_VERSION;
-document.getElementById('fullPrev').innerHTML = IC_PREV;
-document.getElementById('fullNext').innerHTML = IC_NEXT;
 document.getElementById('miniPlay').innerHTML = IC_PLAY;
-document.getElementById('fullPlay').innerHTML = IC_PLAY;
 
 document.getElementById('miniPlay').addEventListener('click', onPlayPause);
-document.getElementById('fullPlay').addEventListener('click', onPlayPause);
-document.getElementById('fullNext').addEventListener('click', nextSet);
-document.getElementById('fullPrev').addEventListener('click', prevSet);
 document.getElementById('fullRestart').addEventListener('click', restartSet);
 document.getElementById('fullMarkDone').addEventListener('click', toggleDoneCurrent);
 document.getElementById('plExpand').addEventListener('click', () => {
