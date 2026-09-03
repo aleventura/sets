@@ -291,7 +291,6 @@
     </div>
     <div class="pl-full-body">
       <div class="pl-fixed">
-      <div class="pl-big-art" id="bigArt"></div>
       <div class="pl-full-title" id="fullTitle"></div>
       <div class="pl-full-artist" id="fullArtist"></div>
       <div class="pl-bar-wrap">
@@ -336,7 +335,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.8';
+const APP_VERSION = '1.9';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -1182,7 +1181,6 @@ function showPlayerFor(i){
   document.getElementById('fullTitle').textContent = s.title;
   document.getElementById('fullArtist').textContent = s.artist;
   document.getElementById('miniArt').innerHTML = artHTML(s.art);
-  document.getElementById('bigArt').innerHTML = artHTML(s.art);
   player.classList.add('visible');
   renderTimes(curPosMs);
   syncPlayIcons();
