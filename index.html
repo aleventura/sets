@@ -258,8 +258,11 @@
   .mk-inline{padding-left:24px;position:relative}
   .mk-inline::before{content:"";position:absolute;left:9px;top:9px;bottom:9px;width:2px;
     background:rgba(242,193,78,.4);border-radius:1px}
-  /* Chips de atributos bajo el nombre del track */
-  .tk-tags{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:5px}
+  /* Atributos en la columna del tiempo (debajo del rango), para no crecer la fila */
+  .tk{align-items:flex-start}
+  .tk-left{flex:0 1 auto;min-width:0;max-width:56%;display:flex;flex-direction:column;gap:4px}
+  .tk-left .tk-t{white-space:nowrap}
+  .tk-tags{display:flex;flex-wrap:wrap;gap:5px 6px;align-items:center;margin-top:0}
   .tk-stars{color:var(--mark);font-size:12px;letter-spacing:1px;line-height:1}
   .tk-chip{background:var(--btn);border:1px solid var(--border);border-radius:6px;padding:1px 7px;
     font-size:11px;color:var(--fg);white-space:nowrap}
@@ -382,7 +385,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.11';
+const APP_VERSION = '1.12';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -1093,8 +1096,8 @@ function renderTracklist(){
     else { label = [tr.artist, tr.title].filter(Boolean).map(esc).join(' — ') || 'ID'; }
     const dl = (it.end != null) ? '<span class="tk-dur">' + hhmmss(it.end - tr.t) + '</span>' : '';
     return '<div class="' + cls + '" data-jump="' + tr.t + '">' +
-      '<span class="tk-t">' + rangeLabel(tr.t, it.end) + '</span>' +
-      '<span class="tk-name">' + label + dl + playsHTML(tr) + attrHTML(s.url, key) + '</span>' +
+      '<div class="tk-left"><span class="tk-t">' + rangeLabel(tr.t, it.end) + '</span>' + attrHTML(s.url, key) + '</div>' +
+      '<span class="tk-name">' + label + dl + playsHTML(tr) + '</span>' +
       tagBtn(i, s.url, key) +
       '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nota">✎</button>' +
     '</div>' + editor;
@@ -1120,8 +1123,8 @@ function renderTracklist(){
     else if (tr.empty){ cls += ' tk-empty'; label = 'sin identificar'; }
     else { label = [tr.artist, tr.title].filter(Boolean).map(esc).join(' — ') || 'ID'; }
     return '<div class="' + cls + '">' +
-      '<span class="tk-t">—</span>' +
-      '<span class="tk-name">' + label + playsHTML(tr) + attrHTML(s.url, key) + '</span>' +
+      '<div class="tk-left"><span class="tk-t">—</span>' + attrHTML(s.url, key) + '</div>' +
+      '<span class="tk-name">' + label + playsHTML(tr) + '</span>' +
       tagBtn(i, s.url, key) +
       '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nota">✎</button>' +
     '</div>' + editor;
