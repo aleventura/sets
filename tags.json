@@ -1,0 +1,19 @@
+{
+  "categories": [
+    {
+      "id": "gen",
+      "label": "Genero",
+      "values": ["22*Pist","23*Pist","33*Pist","34*Pist","44*Pist","45*Pist","53*Pist","52*Pist","22*Viaj","33*Viaj","44*Viaj","45*Viaj","53*Viaj","52*Viaj","51*Viaj","44*Sail","53*Sail","52*Sail","51*Sail"]
+    },
+    {
+      "id": "niv",
+      "label": "Nivel",
+      "values": ["Afro","Bailable","Dance","Deep","Down","Funky","Hap","Indie","Melod","Music","Org","Peak","Tech"]
+    },
+    {
+      "id": "atr",
+      "label": "Atributo",
+      "values": ["pop","voc","sub","peak","after-peak"]
+    }
+  ]
+}
