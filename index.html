@@ -145,10 +145,17 @@
     border-radius:12px;color:var(--acc);font-weight:700;font-size:15px;cursor:pointer}
   .seek:active{background:var(--btn-hover)}
   .seek.back{color:var(--acc2);border-color:var(--acc2)}
-  .pl-foot{display:flex;justify-content:center;gap:24px;margin-top:2px}
-  .pl-foot button{background:none;border:0;color:var(--dim);font-size:13px;cursor:pointer;
-    padding:8px 10px;display:flex;align-items:center;gap:6px}
-  .pl-foot button:active{color:var(--fg)}
+  .pl-foot{display:flex;justify-content:center;gap:34px;margin-top:2px}
+  .pl-foot .fbtn{background:none;border:0;cursor:pointer;padding:2px;display:flex;
+    flex-direction:column;align-items:center;gap:5px}
+  .pl-foot .fbtn .ic{width:48px;height:48px;border-radius:50%;background:var(--btn);
+    border:1px solid var(--border);display:flex;align-items:center;justify-content:center;
+    font-size:22px;color:var(--fg);transition:transform .1s ease,background .12s ease}
+  .pl-foot .fbtn:active .ic{transform:scale(.92);background:var(--btn-hover)}
+  .pl-foot .fbtn .cap{font-size:11px;color:var(--dim)}
+  .pl-foot .fbtn.mark .ic{color:var(--acc);border-color:var(--acc)}
+  .pl-foot .fbtn.done .ic{background:var(--ok);border-color:var(--ok);color:#0e0e10}
+  .pl-foot .fbtn.done .cap{color:var(--ok)}
 
   /* ---- Secciones de Marcas y Tracklist ---- */
   .sect{border-top:1px solid var(--border);padding-top:12px;margin-top:2px}
@@ -350,12 +357,12 @@
         <button class="seek" data-seek="1200">+20 min</button>
       </div>
       <div class="pl-foot">
-        <button id="fullRestart">↺ Reiniciar set</button>
-        <button id="fullMarkDone">✓ Marcar escuchado</button>
+        <button class="fbtn mark" id="addMark" aria-label="Marca aquí"><span class="ic">＋</span><span class="cap">Marca</span></button>
+        <button class="fbtn" id="fullRestart" aria-label="Reiniciar set"><span class="ic">↺</span><span class="cap">Reiniciar</span></button>
+        <button class="fbtn" id="fullMarkDone" aria-label="Marcar escuchado"><span class="ic">✓</span><span class="cap">Escuchado</span></button>
       </div>
       <div class="sect-head tl-head">
         <span>Tracklist <span id="tlCount"></span></span>
-        <button class="add" id="addMark">＋ Marca aquí</button>
       </div>
       </div><!-- /pl-fixed -->
 
@@ -385,7 +392,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.12';
+const APP_VERSION = '1.13';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -1283,9 +1290,11 @@ function highlightCards(){
 
 function updateFullMarkBtn(){
   const btn = document.getElementById('fullMarkDone');
-  if (currentIndex < 0){ btn.textContent = '✓ Marcar escuchado'; return; }
-  const done = getPos(SETS[currentIndex].url).done;
-  btn.textContent = done ? '✓ Escuchado (quitar)' : '✓ Marcar escuchado';
+  if (!btn) return;
+  const done = currentIndex >= 0 && getPos(SETS[currentIndex].url).done;
+  btn.classList.toggle('done', done);
+  const cap = btn.querySelector('.cap');
+  if (cap) cap.textContent = done ? 'Quitar' : 'Escuchado';
 }
 
 function setMediaSession(s){
