@@ -28,6 +28,10 @@
   .head-row .sub.err{color:var(--no)}
   .head-row .ver{font-size:10px;color:var(--dim);opacity:.6;white-space:nowrap;
     font-variant-numeric:tabular-nums;letter-spacing:.3px}
+  .pl-row{padding:0 0 10px}
+  .pl-select{width:100%;padding:8px 10px;background:var(--btn);color:var(--fg);
+    border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;
+    -webkit-appearance:none;appearance:none}
 
   .filters{display:flex;gap:7px;overflow-x:auto;padding:0 0 10px;scrollbar-width:none}
   .filters::-webkit-scrollbar{display:none}
@@ -314,6 +318,7 @@
     <span class="sub" id="sub"></span>
     <span class="ver" id="ver"></span>
   </div>
+  <div class="pl-row"><select id="selPlaylist" class="pl-select" aria-label="Playlist"></select></div>
   <div class="filters" id="filters">
     <button class="chip active" data-filter="all">Todos<span class="n" data-n="all"></span></button>
     <button class="chip" data-filter="new">Nuevos<span class="n" data-n="new"></span></button>
@@ -392,13 +397,33 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.13';
+const APP_VERSION = '1.14';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
 const IC_PREV  = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="6" width="2.4" height="12" rx="1"/><path d="M20 6v12L9.5 12z"/></svg>';
 const IC_NEXT  = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="16.6" y="6" width="2.4" height="12" rx="1"/><path d="M4 6v12l10.5-6z"/></svg>';
-const PLAYLIST_URL = 'https://soundcloud.com/alejandro_ventura/sets/app_list';
+// Playlists públicas navegables (editar aquí para agregar/quitar una)
+const PLAYLISTS = [
+  { name: 'app_list',            url: 'https://soundcloud.com/alejandro_ventura/sets/app_list' },
+  { name: 'DJ · Mia Lafontaine', url: 'https://soundcloud.com/alejandro_ventura/sets/dj-mia-lafontaine' },
+  { name: 'DJ · KALEA',          url: 'https://soundcloud.com/alejandro_ventura/sets/dj-kalea' },
+  { name: 'DJ · ANSTASCIA',      url: 'https://soundcloud.com/alejandro_ventura/sets/dj-anstascia' },
+  { name: 'DJ · Romain Garcia',  url: 'https://soundcloud.com/alejandro_ventura/sets/dj-romain-garcia' },
+  { name: 'DJ · Rampue',         url: 'https://soundcloud.com/alejandro_ventura/sets/dj-rampue' },
+  { name: 'DJ · Mess',           url: 'https://soundcloud.com/alejandro_ventura/sets/dj-mess' },
+  { name: 'DJ · GALLiVANTER',    url: 'https://soundcloud.com/alejandro_ventura/sets/dj-gallivanter' },
+  { name: 'DJ · Goldcap',        url: 'https://soundcloud.com/alejandro_ventura/sets/dj-goldcap' },
+  { name: 'DJ · Diass',          url: 'https://soundcloud.com/alejandro_ventura/sets/dj-diass' },
+  { name: 'Festival · Babylon',  url: 'https://soundcloud.com/alejandro_ventura/sets/festival-babylon' },
+  { name: 'Festival · GOAT',     url: 'https://soundcloud.com/alejandro_ventura/sets/festival-goat' },
+  { name: 'Track · Supernova',   url: 'https://soundcloud.com/alejandro_ventura/sets/track-supernova' },
+];
+const LS_PL = 'sc_sets_playlist_v1';   // última playlist elegida
+let PLAYLIST_URL = (function(){
+  try { const sv = localStorage.getItem(LS_PL); if (sv && PLAYLISTS.some(p => p.url === sv)) return sv; } catch(e){}
+  return PLAYLISTS[0].url;
+})();
 const LS_POS  = 'sc_sets_pos_v1';   // { <setUrl>: {pos,dur,done,at} }
 const LS_LAST = 'sc_sets_last_v1';  // último set abierto (url)
 const LS_MARKS = 'sc_sets_marks_v1'; // { <setUrl>: [ {t, note} ] }  marcas manuales
@@ -1530,8 +1555,12 @@ function widgetUrl(url){
     '&show_comments=false&show_user=false&show_teaser=false&buying=false&sharing=false';
 }
 
-function boot(){
-  if (!window.SC || !window.SC.Widget){ setTimeout(boot, 200); return; }
+function loadPlaylist(){
+  try { if (widget) widget.pause(); } catch(e){}
+  SETS = []; currentIndex = -1; loadedIndex = -1; playerState = 'stopped';
+  widgetReady = false; curPosMs = 0; curDurMs = 0;
+  const plEl = document.getElementById('player'); if (plEl) plEl.classList.remove('open');
+  const listEl = document.getElementById('list'); if (listEl) listEl.innerHTML = '<div class="empty">Cargando…</div>';
   const iframe = document.getElementById('scw');
   iframe.src = widgetUrl(PLAYLIST_URL);
   widget = SC.Widget(iframe);
@@ -1581,6 +1610,21 @@ function boot(){
   widget.bind(SC.Widget.Events.ERROR, function(){
     fail('SoundCloud devolvió un error al abrir la playlist.');
   });
+}
+
+function boot(){
+  if (!window.SC || !window.SC.Widget){ setTimeout(boot, 200); return; }
+  const sel = document.getElementById('selPlaylist');
+  if (sel){
+    sel.innerHTML = PLAYLISTS.map(p => '<option value="' + esc(p.url) + '">' + esc(p.name) + '</option>').join('');
+    sel.value = PLAYLIST_URL;
+    sel.addEventListener('change', function(){
+      PLAYLIST_URL = sel.value;
+      try { localStorage.setItem(LS_PL, PLAYLIST_URL); } catch(e){}
+      loadPlaylist();
+    });
+  }
+  loadPlaylist();
 }
 
 // Carga opcional de tracklists incrustados (no bloquea la app si no existe)
