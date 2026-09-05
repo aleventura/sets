@@ -397,7 +397,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.14';
+const APP_VERSION = '1.15';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -415,10 +415,17 @@ const PLAYLISTS = [
   { name: 'DJ · GALLiVANTER',    url: 'https://soundcloud.com/alejandro_ventura/sets/dj-gallivanter' },
   { name: 'DJ · Goldcap',        url: 'https://soundcloud.com/alejandro_ventura/sets/dj-goldcap' },
   { name: 'DJ · Diass',          url: 'https://soundcloud.com/alejandro_ventura/sets/dj-diass' },
+  { name: 'DJ · Isabeau Fort',   url: 'https://soundcloud.com/alejandro_ventura/sets/dj-isabeau-fort' },
+  { name: 'DJ · SHARE',          url: 'https://soundcloud.com/alejandro_ventura/sets/dj-share' },
+  { name: 'DJ · Doctor Dru',     url: 'https://soundcloud.com/alejandro_ventura/sets/dj-doctor-dru' },
+  { name: 'DJ · Mimi Love',      url: 'https://soundcloud.com/alejandro_ventura/sets/mimi-love' },
   { name: 'Festival · Babylon',  url: 'https://soundcloud.com/alejandro_ventura/sets/festival-babylon' },
   { name: 'Festival · GOAT',     url: 'https://soundcloud.com/alejandro_ventura/sets/festival-goat' },
+  { name: 'Festival · Garbicz',  url: 'https://soundcloud.com/alejandro_ventura/sets/2026-garbicz' },
   { name: 'Track · Supernova',   url: 'https://soundcloud.com/alejandro_ventura/sets/track-supernova' },
-];
+  { name: 'Best sets Alec',      url: 'https://soundcloud.com/alejandro_ventura/sets/copy-of-best-sets-alec' },
+  { name: 'Revisar 2026',        url: 'https://soundcloud.com/alejandro_ventura/sets/revisar-2026' },
+]
 const LS_PL = 'sc_sets_playlist_v1';   // última playlist elegida
 let PLAYLIST_URL = (function(){
   try { const sv = localStorage.getItem(LS_PL); if (sv && PLAYLISTS.some(p => p.url === sv)) return sv; } catch(e){}
