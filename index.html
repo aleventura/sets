@@ -1561,8 +1561,11 @@ function loadPlaylist(){
   widgetReady = false; curPosMs = 0; curDurMs = 0;
   const plEl = document.getElementById('player'); if (plEl) plEl.classList.remove('open');
   const listEl = document.getElementById('list'); if (listEl) listEl.innerHTML = '<div class="empty">Cargando…</div>';
-  const iframe = document.getElementById('scw');
-  iframe.src = widgetUrl(PLAYLIST_URL);
+  // recrear el iframe para forzar un READY fresco del widget en cada cambio de playlist
+  const oldFr = document.getElementById('scw');
+  const iframe = document.createElement('iframe');
+  iframe.id = 'scw'; iframe.setAttribute('allow', 'autoplay'); iframe.src = widgetUrl(PLAYLIST_URL);
+  oldFr.parentNode.replaceChild(iframe, oldFr);
   widget = SC.Widget(iframe);
 
   let loaded = false;
