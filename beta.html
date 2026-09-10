@@ -398,7 +398,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.15-beta';
+const APP_VERSION = '1.15-beta2';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -686,22 +686,26 @@ function playSet(i){
   if (!widget){ return; }
   // Cargar el set como track individual (sin auto-avance de playlist).
   widget.load(s.url, {
-    auto_play: false, show_artwork:false, show_comments:false, visual:false,
+    auto_play: true, show_artwork:false, show_comments:false, visual:false,
     buying:false, sharing:false, download:false, show_playcount:false,
     show_user:false, hide_related:true, show_teaser:false,
     callback: function(){
-      widget.getDuration(function(d){
-        if (d){ curDurMs = d; savePos(s.url, curPosMs, d); }
-        renderTimes(curPosMs);
-      });
+      // BETA: auto_play:true arranca en cuanto el sonido queda cargado. Antes se llamaba
+      // widget.play() SINCRONO justo despues de load() (asincrono) -> el play caia al vacio
+      // porque el sonido aun no estaba listo, y obligaba a tocar 2-3 veces. El load() se
+      // dispara dentro del gesto del toque, asi que iOS honra el autoplay. El seek de
+      // reanudacion se aplica aqui, ya con el sonido listo.
       if (pendingSeekMs && pendingSeekMs > 1000){
         widget.seekTo(pendingSeekMs);
       }
       pendingSeekMs = null;
+      widget.getDuration(function(d){
+        if (d){ curDurMs = d; savePos(s.url, curPosMs, d); }
+        renderTimes(curPosMs);
+      });
     }
   });
-  // play() sincrónico dentro del gesto: preserva el permiso de autoplay de iOS.
-  widget.play();
+  // (BETA) sin widget.play() sincrono: lo maneja auto_play:true dentro del mismo gesto.
 }
 
 function togglePlay(){
