@@ -331,6 +331,27 @@
   .gapline{border-bottom:0;padding:6px 8px;margin-bottom:6px;border:1px dashed #2a2a33;border-radius:10px}
   .gapline.now{background:#2a1c12;border-color:rgba(242,111,33,.5)}
   .gap-mks{margin:-2px 0 8px 0;padding-left:8px}
+  /* 1.26: sin encabezado "Tracklist N tracks", más contraste, contenido del track +20% */
+  .tl-head{display:none}
+  .pl-scroll{margin-top:8px}
+  .pl-full{background:#060607}
+  .tk{background:#24242c;border-color:#3a3a46}
+  .tk:last-child{border-bottom-color:#3a3a46}
+  .tk:active{background:#2c2c36}
+  .tk.heard{background:#173126;border-color:#2a5a48}
+  .tk.now{background:#4a2a16;border-color:rgba(242,111,33,.85)}
+  .gapline{border-color:#3a3a46}
+  .tk-heard-btn .hc{border-color:#5a5a66;color:#7a7a86}
+  .tk>.tk-t,.tk>.tk-name,.tk>.tk-act,.tk>.tk-tags,.tk>.tk-mks,
+  .gapline>.g-t,.gapline>.g-lbl,.gapline>.tk-edit,.gap-mks{zoom:1.2}
+  /* 1.26: botones del player más chicos y cabecera (⌄ + versión) compacta */
+  .pl-foot{gap:28px;margin-top:0}
+  .pl-foot .fbtn{gap:3px}
+  .pl-foot .fbtn .ic{width:36px;height:36px;font-size:17px}
+  .pl-foot .fbtn.pp .ic svg{width:16px;height:16px}
+  .pl-foot .fbtn .cap{font-size:10px}
+  .pl-full-head{padding:2px 0 0}
+  .pl-collapse{font-size:24px;padding:0 50px;line-height:1}
 
   /* Modal de tags (bottom-sheet) */
   .tagmodal{position:fixed;inset:0;z-index:60;display:none}
@@ -448,7 +469,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.25';
+const APP_VERSION = '1.26';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
