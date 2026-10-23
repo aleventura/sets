@@ -247,6 +247,8 @@
   .tk:active{background:#131317}
   .tk-t{min-width:auto;white-space:nowrap}
   .tk-t .end{color:var(--dim);font-weight:600}
+  .tk-t .end,.g-t .end{display:block;font-size:11px;margin-top:2px}
+  .tk .tk-left{flex:0 0 auto}
   .tk-dur{color:var(--dim);font-size:11px;margin-left:6px;font-variant-numeric:tabular-nums;white-space:nowrap}
   .gapline{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #1e1e24;
     font-size:12px;color:var(--dim);cursor:pointer}
@@ -417,7 +419,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.21';
+const APP_VERSION = '1.22';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -1118,7 +1120,7 @@ function renderTracklist(){
   }
   function rangeLabel(t, end){
     const start = hhmmss(t);
-    return end != null ? start + '<span class="end"> (' + Math.max(1, Math.round((end - t) / 60000)) + ' min)</span>' : start;
+    return end != null ? start + '<span class="end">(' + Math.max(1, Math.round((end - t) / 60000)) + ' min)</span>' : start;
   }
 
   const hasTL = !!(tl && tl.tracks.length);
