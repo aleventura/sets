@@ -102,6 +102,10 @@
   .cside{gap:6px}
   .cside-row{gap:6px}
   .cmini{width:36px;height:36px;font-size:18px}
+  /* 1.31: tracks de más de 10 min en rojo; fila de saltos con 5 botones */
+  .tk-t .end.long,.g-t .end.long{color:#ff5a5a}
+  .seek-row{gap:6px}
+  .seek-row .seek{padding-left:0;padding-right:0;font-size:14px;min-width:0}
 
   .empty{padding:48px 20px;text-align:center;color:var(--dim);line-height:1.6}
   .spinner{display:inline-block;width:20px;height:20px;border:2px solid var(--border);
@@ -457,6 +461,7 @@
         <div class="pl-times"><span id="curTime">0:00</span><span id="durTime">0:00</span></div>
       </div>
       <div class="seek-row">
+        <button class="seek back" data-seek="-60">−1 min</button>
         <button class="seek back" data-seek="-15">−15 s</button>
         <button class="seek" data-seek="60">+1 min</button>
         <button class="seek" data-seek="180">+3 min</button>
@@ -496,7 +501,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.30';
+const APP_VERSION = '1.31';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -597,6 +602,7 @@ function savePos(url, p, d, done){
     at: new Date().toISOString()
   };
   localStorage.setItem(LS_POS, JSON.stringify(pos));
+  syncDirty('pos');
 }
 
 function markDone(url, done){
@@ -915,7 +921,7 @@ function jumpTo(ms){
 // MARCAS MANUALES (comentario en un tiempo del set)
 // ============================================================
 function getMarks(url){ return marks[url] || []; }
-function saveMarks(){ localStorage.setItem(LS_MARKS, JSON.stringify(marks)); }
+function saveMarks(){ localStorage.setItem(LS_MARKS, JSON.stringify(marks)); syncDirty('marks'); }
 
 function addMarkHere(){ addMarkAt(curPosMs || 0); }
 function addMarkAt(tMs){
@@ -1107,11 +1113,11 @@ function parseTracklistLines(text){
   });
   return out;
 }
-function saveLocalTL(){ localStorage.setItem(LS_LOCAL_TL, JSON.stringify(LOCAL_TL)); }
+function saveLocalTL(){ localStorage.setItem(LS_LOCAL_TL, JSON.stringify(LOCAL_TL)); syncDirty('tl'); }
 
 // ---- Notas manuales de track (nombre/artista para huecos o correcciones) ----
-function saveTLNotes(){ localStorage.setItem(LS_TLNOTES, JSON.stringify(TLNOTES)); }
-function saveHeard(){ try { localStorage.setItem(LS_HEARD, JSON.stringify(HEARD)); } catch(e){} }
+function saveTLNotes(){ localStorage.setItem(LS_TLNOTES, JSON.stringify(TLNOTES)); syncDirty('notes'); }
+function saveHeard(){ try { localStorage.setItem(LS_HEARD, JSON.stringify(HEARD)); } catch(e){} syncDirty('heard'); }
 function isHeard(url, key){ return !!(HEARD[url] && HEARD[url][key]); }
 function toggleHeard(url, key){
   const m = HEARD[url] || (HEARD[url] = {});
@@ -1223,7 +1229,7 @@ function renderTracklist(){
   }
   function rangeLabel(t, end){
     const start = hhmmss(t);
-    return end != null ? start + '<span class="end">(' + Math.max(1, Math.round((end - t) / 60000)) + ' min)</span>' : start;
+    return end != null ? start + '<span class="end' + ((end - t) > 600000 ? ' long' : '') + '">(' + Math.max(1, Math.round((end - t) / 60000)) + ' min)</span>' : start;
   }
 
   const hasTL = !!(tl && tl.tracks.length);
@@ -1375,7 +1381,7 @@ function saveTid(){
   if (!input) return;
   const v = (input.value || '').trim();
   if (v) tidUrls[s.url] = v; else delete tidUrls[s.url];
-  localStorage.setItem(LS_TID, JSON.stringify(tidUrls));
+  localStorage.setItem(LS_TID, JSON.stringify(tidUrls)); syncDirty('tid');
   renderTracklist();
 }
 
@@ -1538,7 +1544,7 @@ function setMediaSession(s){
 // ============================================================
 // ATRIBUTOS POR TRACK (estrellas + tags) — por ocurrencia (set + track)
 // ============================================================
-function saveTrackAttrs(){ localStorage.setItem(LS_TRACKATTRS, JSON.stringify(TRACKATTRS)); }
+function saveTrackAttrs(){ localStorage.setItem(LS_TRACKATTRS, JSON.stringify(TRACKATTRS)); syncDirty('attrs'); }
 function getAttrRec(url, key){ const m = TRACKATTRS[url]; return (m && m[key]) ? m[key] : null; }
 function attrHasAny(r){ return !!(r && (r.stars || r.gen || r.niv || r.atr)); }
 function setAttrField(url, key, field, value, meta){
@@ -1743,7 +1749,7 @@ document.getElementById('filters').addEventListener('click', e => {
 
 // Guardar posición si la página se oculta o cierra
 window.addEventListener('pagehide', flushSave);
-document.addEventListener('visibilitychange', () => { if (document.hidden) flushSave(); });
+// (1.31) visibilitychange: ver bloque SYNC (flushSave + envío)
 window.addEventListener('resize', syncHeaderHeight);
 
 function syncHeaderHeight(){
@@ -1870,6 +1876,142 @@ function restoreLast(){
   showPlayerFor(i);
   highlightCards();
 }
+
+// ============================================================
+// SYNC con Google Sheet (1.30) — todo lo marcado se respalda y se comparte entre dispositivos
+// ============================================================
+const SYNC_URL = 'https://script.google.com/macros/s/AKfycbyoaU-lx4crRC5C1lPXAiawnMPNPzj0Es3JVyuti3uiUL9CEv6_uXWZWL7a_gSkz9cA/exec';
+const LS_SYNC = 'sc_sets_sync_v1';   // {dirtyAt, lastSync, merged}
+let SYNCM = {}; try { SYNCM = JSON.parse(localStorage.getItem(LS_SYNC) || '{}') || {}; } catch(e){ SYNCM = {}; }
+let syncTimer = null, syncDue = 0, syncBusy = false, syncApplying = false;
+function saveSyncMeta(){ try { localStorage.setItem(LS_SYNC, JSON.stringify(SYNCM)); } catch(e){} }
+function syncOn(){ return /^https:\/\/script\.google\.com\//.test(SYNC_URL); }
+function syncStatus(t){
+  const el = document.getElementById('ver');
+  if (el) el.textContent = 'v' + APP_VERSION + (t ? ' · ' + t : '');
+}
+function syncSnapshot(){
+  return { attrs: TRACKATTRS, marks: marks, pos: pos, heard: HEARD, notes: TLNOTES,
+           tid: tidUrls, tl: LOCAL_TL, last: localStorage.getItem(LS_LAST) || '' };
+}
+// Llamada desde cada save*: marca cambios pendientes y agenda el envío
+// (la posición mientras suena se agrupa cada 30 s; el resto sale a los 2 s).
+function syncDirty(kind){
+  if (syncApplying) return;
+  SYNCM.dirtyAt = Date.now(); saveSyncMeta();
+  if (!syncOn()) return;
+  const due = Date.now() + (kind === 'pos' ? 30000 : 2000);
+  if (syncTimer && syncDue <= due) return;
+  clearTimeout(syncTimer); syncDue = due;
+  syncTimer = setTimeout(() => { syncTimer = null; syncPush(); }, due - Date.now());
+}
+function syncBody(state){
+  return 'data=' + encodeURIComponent(JSON.stringify(state));
+}
+function syncPush(){
+  if (!syncOn()) return Promise.resolve();
+  if (syncBusy){ syncDirty('x'); return Promise.resolve(); }
+  syncBusy = true; syncStatus('☁ …');
+  const stamp = Date.now();
+  const state = Object.assign(syncSnapshot(), { updatedAt: stamp });
+  return fetch(SYNC_URL, { method: 'POST', headers: {'Content-Type': 'text/plain;charset=utf-8'}, body: syncBody(state) })
+    .then(r => r.json())
+    .then(j => {
+      if (!j || !j.ok) throw new Error((j && j.error) || 'error');
+      SYNCM.lastSync = stamp;
+      if (!SYNCM.dirtyAt || SYNCM.dirtyAt <= stamp) SYNCM.dirtyAt = 0;
+      SYNCM.merged = true; saveSyncMeta(); syncStatus('☁ ✓');
+    })
+    .catch(() => { syncStatus('☁ ✕'); })
+    .finally(() => { syncBusy = false; });
+}
+// Al salir de la app: envío rápido sin esperar respuesta
+function syncBeacon(){
+  if (!syncOn() || !SYNCM.dirtyAt || !navigator.sendBeacon) return;
+  const stamp = Date.now();
+  const ok = navigator.sendBeacon(SYNC_URL, new Blob([syncBody(Object.assign(syncSnapshot(), { updatedAt: stamp }))], { type: 'text/plain;charset=utf-8' }));
+  if (ok){ SYNCM.lastSync = stamp; SYNCM.dirtyAt = 0; saveSyncMeta(); }
+}
+// ---- merge (unión) para la 1ª sincronización de cada dispositivo o si hubo cambios en ambos lados
+function newer(a, b){ return String((a && a.at) || '') >= String((b && b.at) || '') ? a : b; }
+function mergeMapOfMaps(L, R, pick){
+  const out = {};
+  new Set([...Object.keys(L||{}), ...Object.keys(R||{})]).forEach(u => {
+    const a = (L||{})[u] || {}, b = (R||{})[u] || {}, m = {};
+    new Set([...Object.keys(a), ...Object.keys(b)]).forEach(k => {
+      m[k] = (k in a && k in b) ? pick(a[k], b[k]) : (k in a ? a[k] : b[k]);
+    });
+    if (Object.keys(m).length) out[u] = m;
+  });
+  return out;
+}
+function syncMerge(L, R){
+  const marksOut = {};
+  new Set([...Object.keys(L.marks||{}), ...Object.keys(R.marks||{})]).forEach(u => {
+    const seen = {}, arr = [];
+    [...((L.marks||{})[u] || []), ...((R.marks||{})[u] || [])].forEach(m => {
+      const k = m.t + '|' + m.note; if (!seen[k]){ seen[k] = 1; arr.push(m); }
+    });
+    arr.sort((a, b) => a.t - b.t); if (arr.length) marksOut[u] = arr;
+  });
+  const posOut = {};
+  new Set([...Object.keys(L.pos||{}), ...Object.keys(R.pos||{})]).forEach(u => {
+    const a = (L.pos||{})[u], b = (R.pos||{})[u];
+    posOut[u] = (a && b) ? newer(a, b) : (a || b);
+  });
+  return {
+    attrs: mergeMapOfMaps(L.attrs, R.attrs, newer),
+    marks: marksOut, pos: posOut,
+    heard: mergeMapOfMaps(L.heard, R.heard, (a, b) => Math.min(a, b) || a || b),
+    notes: mergeMapOfMaps(L.notes, R.notes, (a) => a),
+    tid: Object.assign({}, R.tid || {}, L.tid || {}),
+    tl: Object.assign({}, R.tl || {}, L.tl || {}),
+    last: L.last || R.last || ''
+  };
+}
+function syncApply(st){
+  syncApplying = true;
+  try {
+    TRACKATTRS = st.attrs || {}; marks = st.marks || {}; pos = st.pos || {};
+    HEARD = st.heard || {}; TLNOTES = st.notes || {}; tidUrls = st.tid || {}; LOCAL_TL = st.tl || {};
+    localStorage.setItem(LS_TRACKATTRS, JSON.stringify(TRACKATTRS));
+    localStorage.setItem(LS_MARKS, JSON.stringify(marks));
+    localStorage.setItem(LS_POS, JSON.stringify(pos));
+    localStorage.setItem(LS_HEARD, JSON.stringify(HEARD));
+    localStorage.setItem(LS_TLNOTES, JSON.stringify(TLNOTES));
+    localStorage.setItem(LS_TID, JSON.stringify(tidUrls));
+    localStorage.setItem(LS_LOCAL_TL, JSON.stringify(LOCAL_TL));
+    if (st.last && !localStorage.getItem(LS_LAST)) localStorage.setItem(LS_LAST, st.last);
+  } catch(e){}
+  syncApplying = false;
+  try { if (SETS.length) render(); if (currentIndex >= 0) renderTracklist(); updateFullMarkBtn(); highlightCards(); } catch(e){}
+}
+function syncPull(){
+  if (!syncOn() || syncBusy) return Promise.resolve();
+  syncBusy = true; syncStatus('☁ …');
+  return fetch(SYNC_URL + '?t=' + Date.now())
+    .then(r => r.json())
+    .then(R => {
+      syncBusy = false;
+      const remoteAt = Number(R && R.updatedAt) || 0;
+      const empty = !remoteAt;
+      const localDirty = !!SYNCM.dirtyAt && SYNCM.dirtyAt > (SYNCM.lastSync || 0);
+      if (empty){ return syncPush(); }                                   // Sheet vacío: subo lo local
+      if (!SYNCM.merged || (remoteAt > (SYNCM.lastSync || 0) && localDirty)){
+        syncApply(syncMerge(syncSnapshot(), R)); return syncPush();       // 1ª vez o cambios en ambos lados: unión
+      }
+      if (remoteAt > (SYNCM.lastSync || 0)){                              // otro dispositivo cambió algo: lo traigo
+        syncApply(R); SYNCM.lastSync = remoteAt; saveSyncMeta(); syncStatus('☁ ✓'); return;
+      }
+      if (localDirty) return syncPush();                                  // solo yo cambié: lo subo
+      syncStatus('☁ ✓');
+    })
+    .catch(() => { syncBusy = false; syncStatus('☁ ✕'); });
+}
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden){ flushSave(); syncBeacon(); } else { syncPull(); }
+});
+if (syncOn()) syncPull();
 
 boot();
 </script>
