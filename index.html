@@ -291,6 +291,11 @@
   .tk.heard{background:rgba(62,207,142,.10);box-shadow:inset 3px 0 0 var(--ok)}
   .tk.heard .tk-name,.tk.heard .tk-name .art{color:var(--ok)}
   .tk.heard .tk-t{color:var(--ok)}
+  /* 1.18: track sonando ahora (naranjo) */
+  .tk.now,.gapline.now{background:rgba(242,111,33,.18);box-shadow:inset 3px 0 0 var(--acc);border-radius:6px}
+  .tk.now .tk-name,.tk.now .tk-name .art{color:#fff;font-weight:700}
+  .tk.now .tk-t{color:var(--acc)}
+  .tk.now .tk-name::before,.gapline.now .g-lbl::before{content:'▶ ';color:var(--acc);font-size:11px}
 
   /* Modal de tags (bottom-sheet) */
   .tagmodal{position:fixed;inset:0;z-index:60;display:none}
@@ -407,7 +412,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.17';
+const APP_VERSION = '1.18';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -1227,6 +1232,7 @@ function renderTracklist(){
     '<button id="tlExportTags">Exportar tags</button>' +
   '</div>';
   body.innerHTML = html + foot + pasteBox(true);
+  highlightNow(curPosMs);
 }
 function saveTid(){
   if (currentIndex < 0) return;
@@ -1320,7 +1326,19 @@ function showPlayerFor(i){
   renderTracklist();
 }
 
+function highlightNow(p){
+  const body = document.getElementById('tlBody');
+  if (!body) return;
+  const rows = body.querySelectorAll('.tk[data-jump], .gapline[data-jump]');
+  let cur = null;
+  if (currentIndex >= 0 && currentIndex === loadedIndex){
+    rows.forEach(r => { const t = +r.dataset.jump; if (isFinite(t) && t <= p + 500) cur = r; });
+  }
+  rows.forEach(r => { if (r !== cur && r.classList.contains('now')) r.classList.remove('now'); });
+  if (cur && !cur.classList.contains('now')) cur.classList.add('now');
+}
 function renderTimes(p){
+  highlightNow(p);
   const dur = curDurMs || 0;
   const pct = dur ? Math.min(100, (p/dur)*100) : 0;
   document.getElementById('curTime').textContent = hhmmss(p);
