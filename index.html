@@ -86,6 +86,9 @@
   .card.done{opacity:1;background:#173126;border-color:#2a5a48}
   .card.playing{background:#4a2a16;border-color:rgba(242,111,33,.85)}
   .card .art{background:linear-gradient(135deg,#34343e,#2a2a32)}
+  /* 1.29: ＋ de marca → 📍; lápiz más grande, proporcional a 🏷 y 📍 */
+  .tk-act .tk-addmk{font-size:15px;padding:0 2px}
+  .tk-act .tk-edit{font-size:18px;padding:0 2px}
 
   .empty{padding:48px 20px;text-align:center;color:var(--dim);line-height:1.6}
   .spinner{display:inline-block;width:20px;height:20px;border:2px solid var(--border);
@@ -480,7 +483,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.28';
+const APP_VERSION = '1.29';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -1287,7 +1290,7 @@ function renderTracklist(){
       '<span class="tk-name">' + label + dl + playsHTML(tr) + '</span>' +
       '<div class="tk-act">' + tagBtn(i, s.url, key) +
       '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nota">✎</button>' +
-      '<button class="tk-addmk" data-addmark="' + tr.t + '" data-addend="' + (it.end != null ? it.end : '') + '" aria-label="Agregar marca">＋</button></div>' +
+      '<button class="tk-addmk" data-addmark="' + tr.t + '" data-addend="' + (it.end != null ? it.end : '') + '" aria-label="Agregar marca">📍</button></div>' +
       attrHTML(s.url, key) + marksHTML('i' + i) +
     '</div>' + editor;
   }
