@@ -160,6 +160,8 @@
   .pl-foot .fbtn.mark .ic{color:var(--acc);border-color:var(--acc)}
   .pl-foot .fbtn.done .ic{background:var(--ok);border-color:var(--ok);color:#0e0e10}
   .pl-foot .fbtn.done .cap{color:var(--ok)}
+  .pl-foot .fbtn.pp .ic{background:var(--acc);border-color:var(--acc);color:#fff}
+  .pl-foot .fbtn.pp .ic svg{width:22px;height:22px;fill:currentColor;display:block}
 
   /* ---- Secciones de Marcas y Tracklist ---- */
   .sect{border-top:1px solid var(--border);padding-top:12px;margin-top:2px}
@@ -380,6 +382,7 @@
         <button class="fbtn mark" id="addMark" aria-label="Marca aquí"><span class="ic">＋</span><span class="cap">Marca</span></button>
         <button class="fbtn" id="fullRestart" aria-label="Reiniciar set"><span class="ic">↺</span><span class="cap">Reiniciar</span></button>
         <button class="fbtn" id="fullMarkDone" aria-label="Marcar escuchado"><span class="ic">✓</span><span class="cap">Escuchado</span></button>
+        <button class="fbtn pp" id="fullPlay" aria-label="Play/Pausa"><span class="ic"></span><span class="cap">Play</span></button>
       </div>
       <div class="sect-head tl-head">
         <span>Tracklist <span id="tlCount"></span></span>
@@ -412,7 +415,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.18';
+const APP_VERSION = '1.19';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -1350,6 +1353,8 @@ function renderTimes(p){
 function syncPlayIcons(){
   const icon = playerState === 'playing' ? IC_PAUSE : IC_PLAY;
   document.getElementById('miniPlay').innerHTML = icon;
+  const fp = document.getElementById('fullPlay');
+  if (fp){ fp.querySelector('.ic').innerHTML = icon; fp.querySelector('.cap').textContent = playerState === 'playing' ? 'Pausa' : 'Play'; }
   const cb = document.querySelector('.card.playing .cplay');
   if (cb) cb.innerHTML = icon;
 }
@@ -1499,6 +1504,8 @@ document.getElementById('ver').textContent = 'v' + APP_VERSION;
 document.getElementById('miniPlay').innerHTML = IC_PLAY;
 
 document.getElementById('miniPlay').addEventListener('click', onPlayPause);
+document.getElementById('fullPlay').querySelector('.ic').innerHTML = IC_PLAY;
+document.getElementById('fullPlay').addEventListener('click', onPlayPause);
 document.getElementById('fullRestart').addEventListener('click', restartSet);
 document.getElementById('fullMarkDone').addEventListener('click', toggleDoneCurrent);
 document.getElementById('plExpand').addEventListener('click', () => {
