@@ -282,6 +282,15 @@
     padding:2px 4px;line-height:1;filter:grayscale(1);opacity:.6}
   .tk-tag.on{filter:none;opacity:1}
   .tk-tag:active{transform:scale(.9)}
+  /* 1.17: track escuchado (verde) */
+  .tk-heard-btn{flex:0 0 auto;background:none;border:1px solid var(--border);border-radius:50%;
+    width:24px;height:24px;color:#55555e;cursor:pointer;font-size:13px;font-weight:700;line-height:1;
+    display:flex;align-items:center;justify-content:center;padding:0;align-self:center}
+  .tk-heard-btn:active{transform:scale(.9)}
+  .tk.heard .tk-heard-btn{background:var(--ok);border-color:var(--ok);color:#0e0e10}
+  .tk.heard{background:rgba(62,207,142,.10);box-shadow:inset 3px 0 0 var(--ok)}
+  .tk.heard .tk-name,.tk.heard .tk-name .art{color:var(--ok)}
+  .tk.heard .tk-t{color:var(--ok)}
 
   /* Modal de tags (bottom-sheet) */
   .tagmodal{position:fixed;inset:0;z-index:60;display:none}
@@ -398,7 +407,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.16';
+const APP_VERSION = '1.17';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -439,6 +448,7 @@ const LS_LAST = 'sc_sets_last_v1';  // último set abierto (url)
 const LS_MARKS = 'sc_sets_marks_v1'; // { <setUrl>: [ {t, note} ] }  marcas manuales
 const LS_TID   = 'sc_sets_trackid_v1'; // { <setUrl>: trackidUrl }   link de trackid por set
 const LS_LOCAL_TL = 'sc_sets_tl_local_v1'; // { <setUrl>: {source,tracks:[{t,artist,title,empty,plays}],at} } pegados en el dispositivo
+const LS_HEARD    = 'sc_sets_heard_v1';    // { <setUrl>: { <trackKey>: <ts> } } tracks marcados escuchados (1.17)
 const LS_TLNOTES  = 'sc_sets_tlnotes_v1';  // { <setUrl>: { <tMs>: {artist,title} } } notas manuales de track
 const LS_TRACKATTRS = 'sc_sets_trackattrs_v1'; // { <setUrl>: { <trackKey>: {stars,gen,niv,atr,artist,title,t,at} } } atributos por track
 const TAGS_URL = 'tags.json?t=' + Date.now();  // vocabulario de tags (editable, sin tocar el código)
@@ -460,6 +470,7 @@ let pos = JSON.parse(localStorage.getItem(LS_POS) || '{}');
 let marks = JSON.parse(localStorage.getItem(LS_MARKS) || '{}');   // marcas manuales por set
 let tidUrls = JSON.parse(localStorage.getItem(LS_TID) || '{}');   // link de trackid por set
 let LOCAL_TL = JSON.parse(localStorage.getItem(LS_LOCAL_TL) || '{}'); // tracklists pegadas en este dispositivo
+let HEARD = {}; try { HEARD = JSON.parse(localStorage.getItem(LS_HEARD) || '{}') || {}; } catch(e){ HEARD = {}; }
 let TLNOTES  = JSON.parse(localStorage.getItem(LS_TLNOTES) || '{}');  // notas manuales de track por set
 let TRACKATTRS = JSON.parse(localStorage.getItem(LS_TRACKATTRS) || '{}'); // atributos por track (estrellas + tags), por ocurrencia set+track
 let TAGVOCAB = { categories: [
@@ -985,6 +996,17 @@ function saveLocalTL(){ localStorage.setItem(LS_LOCAL_TL, JSON.stringify(LOCAL_T
 
 // ---- Notas manuales de track (nombre/artista para huecos o correcciones) ----
 function saveTLNotes(){ localStorage.setItem(LS_TLNOTES, JSON.stringify(TLNOTES)); }
+function saveHeard(){ try { localStorage.setItem(LS_HEARD, JSON.stringify(HEARD)); } catch(e){} }
+function isHeard(url, key){ return !!(HEARD[url] && HEARD[url][key]); }
+function toggleHeard(url, key){
+  const m = HEARD[url] || (HEARD[url] = {});
+  if (m[key]) delete m[key]; else m[key] = Date.now();
+  if (!Object.keys(m).length) delete HEARD[url];
+  saveHeard();
+}
+function heardBtn(url, key){
+  return '<button class="tk-heard-btn" data-heard="' + esc(key) + '" aria-label="Marcar escuchado">✓</button>';
+}
 function trackKey(tr, i){ return (tr.t != null && tr.t !== '') ? ('t' + tr.t) : ('i' + i); }
 function getTrackNote(url, key){ const m = TLNOTES[url]; return (m && m[key]) ? m[key] : null; }
 function setTrackNote(url, key, artist, title){
@@ -1092,7 +1114,8 @@ function renderTracklist(){
   const hasTL = !!(tl && tl.tracks.length);
   const nT = hasTL ? tl.tracks.length : 0;
 
-  count.textContent = (nT ? nT + ' tracks' : '') +
+  const nHeard = hasTL ? tl.tracks.filter((tr, i) => isHeard(s.url, trackKey(tr, i))).length : 0;
+  count.textContent = (nT ? nT + ' tracks' + (nHeard ? ' · ' + nHeard + ' ✓' : '') : '') +
     (nT && marksArr.length ? ' · ' : '') +
     (marksArr.length ? marksArr.length + (marksArr.length === 1 ? ' marca' : ' marcas') : '');
 
@@ -1136,8 +1159,10 @@ function renderTracklist(){
     let cls = 'tk', label;
     if (ov){ cls += ' tk-user'; label = [ov.artist, ov.title].filter(Boolean).map(esc).join(' — '); }
     else { label = [tr.artist, tr.title].filter(Boolean).map(esc).join(' — ') || 'ID'; }
+    if (isHeard(s.url, key)) cls += ' heard';
     const dl = (it.end != null) ? '<span class="tk-dur">' + hhmmss(it.end - tr.t) + '</span>' : '';
     return '<div class="' + cls + '" data-jump="' + tr.t + '">' +
+      heardBtn(s.url, key) +
       '<div class="tk-left"><span class="tk-t">' + rangeLabel(tr.t, it.end) + '</span>' + attrHTML(s.url, key) + '</div>' +
       '<span class="tk-name">' + label + dl + playsHTML(tr) + '</span>' +
       tagBtn(i, s.url, key) +
@@ -1164,7 +1189,9 @@ function renderTracklist(){
     if (ov){ cls += ' tk-user'; label = [ov.artist, ov.title].filter(Boolean).map(esc).join(' — '); }
     else if (tr.empty){ cls += ' tk-empty'; label = 'sin identificar'; }
     else { label = [tr.artist, tr.title].filter(Boolean).map(esc).join(' — ') || 'ID'; }
+    if (isHeard(s.url, key)) cls += ' heard';
     return '<div class="' + cls + '">' +
+      heardBtn(s.url, key) +
       '<div class="tk-left"><span class="tk-t">—</span>' + attrHTML(s.url, key) + '</div>' +
       '<span class="tk-name">' + label + playsHTML(tr) + '</span>' +
       tagBtn(i, s.url, key) +
@@ -1471,6 +1498,8 @@ document.getElementById('addMark').addEventListener('click', addMarkHere);
 
 // Tracklist: saltar a un track o guardar el link de trackid
 document.getElementById('tlBody').addEventListener('click', e => {
+  const hb = e.target.closest('[data-heard]');
+  if (hb){ e.stopPropagation(); toggleHeard(SETS[currentIndex].url, hb.dataset.heard); renderTracklist(); return; }
   const tg = e.target.closest('[data-tagrow]');
   if (tg){ openTagModal(parseInt(tg.dataset.tagrow,10)); return; }
   const er = e.target.closest('[data-editrow]');
