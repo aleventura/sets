@@ -106,6 +106,19 @@
   .tk-t .end.long,.g-t .end.long{color:#ff5a5a}
   .seek-row{gap:6px}
   .seek-row .seek{padding-left:0;padding-right:0;font-size:14px;min-width:0}
+  /* 1.32 (layout C): Play a la izquierda de la barra; saltos como chips debajo */
+  .pl-ctrl{display:flex;align-items:center;gap:12px;margin-top:8px}
+  .pl-ctrl .pl-bar-wrap{flex:1 1 auto;min-width:0;margin:0}
+  .pl-ctrl .fbtn.pp{background:none;border:0;padding:0;cursor:pointer;flex:0 0 auto}
+  .pl-ctrl .fbtn.pp .ic{width:48px;height:48px;border-radius:50%;background:var(--acc);color:#fff;
+    display:flex;align-items:center;justify-content:center}
+  .pl-ctrl .fbtn.pp .ic svg{width:20px;height:20px;fill:currentColor;display:block}
+  .pl-ctrl .fbtn.pp:active .ic{transform:scale(.93)}
+  .pl-ctrl .fbtn.pp .cap{display:none}
+  .seek-row{margin-top:10px}
+  .seek-row .seek{border-radius:999px;padding-top:9px;padding-bottom:9px;font-size:13px}
+  .seek-row .seek.back{border-color:var(--acc2);color:var(--acc2);background:#0e1622}
+  .seek-row .seek:not(.back){background:#1c130d}
 
   .empty{padding:48px 20px;text-align:center;color:var(--dim);line-height:1.6}
   .spinner{display:inline-block;width:20px;height:20px;border:2px solid var(--border);
@@ -456,9 +469,12 @@
       <div class="pl-fixed">
       <div class="pl-full-title" id="fullTitle"></div>
       <div class="pl-full-artist" id="fullArtist"></div>
-      <div class="pl-bar-wrap">
-        <div class="pl-bar"><div class="pl-bar-fill" id="fullFill"></div></div>
-        <div class="pl-times"><span id="curTime">0:00</span><span id="durTime">0:00</span></div>
+      <div class="pl-ctrl">
+        <button class="fbtn pp" id="fullPlay" aria-label="Play/Pausa"><span class="ic"></span><span class="cap">Play</span></button>
+        <div class="pl-bar-wrap">
+          <div class="pl-bar"><div class="pl-bar-fill" id="fullFill"></div></div>
+          <div class="pl-times"><span id="curTime">0:00</span><span id="durTime">0:00</span></div>
+        </div>
       </div>
       <div class="seek-row">
         <button class="seek back" data-seek="-60">−1 min</button>
@@ -466,9 +482,6 @@
         <button class="seek" data-seek="60">+1 min</button>
         <button class="seek" data-seek="180">+3 min</button>
         <button class="seek" data-seek="1200">+20 min</button>
-      </div>
-      <div class="pl-foot">
-        <button class="fbtn pp" id="fullPlay" aria-label="Play/Pausa"><span class="ic"></span><span class="cap">Play</span></button>
       </div>
       <div class="sect-head tl-head">
         <span>Tracklist <span id="tlCount"></span></span>
@@ -501,7 +514,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.31';
+const APP_VERSION = '1.32';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -674,13 +687,30 @@ function render(){
   updateSub();
 }
 
+// Tracks con al menos una marca: estrellas/categorías (🏷) o un 📍 dentro de su rango
+function taggedTracksCount(url, tl){
+  if (!tl || !tl.tracks.length) return 0;
+  const mk = getMarks(url);
+  const timed = tl.tracks.map((tr, i) => ({ tr, i })).filter(o => o.tr.t != null && o.tr.t !== '')
+    .sort((a, b) => a.tr.t - b.tr.t);
+  const tagged = new Set();
+  tl.tracks.forEach((tr, i) => { if (attrHasAny(getAttrRec(url, trackKey(tr, i)))) tagged.add(i); });
+  mk.forEach(m => {
+    let host = -1;
+    timed.forEach(o => { if (o.tr.t <= m.t) host = o.i; });
+    if (host >= 0) tagged.add(host);
+  });
+  return tagged.size;
+}
 function cardBadges(s){
-  const nm = getMarks(s.url).length;
   const tl = getTracklist(s.url);
   const nt = tl ? tl.tracks.length : 0;
-  if (!nm && !nt) return '';
+  const ng = taggedTracksCount(s.url, tl);
+  const nm = nt ? 0 : getMarks(s.url).length;   // sin tracklist: mostrar las 📍 sueltas
+  if (!nt && !nm) return '';
   return '<span class="cbadges">' +
     (nt ? '<span>🎵 ' + nt + '</span>' : '') +
+    (ng ? '<span>🏷 ' + ng + '</span>' : '') +
     (nm ? '<span>📍 ' + nm + '</span>' : '') +
   '</span>';
 }
@@ -1558,6 +1588,7 @@ function setAttrField(url, key, field, value, meta){
   if (!hasData) delete TRACKATTRS[url][key]; else TRACKATTRS[url][key] = rec;
   if (TRACKATTRS[url] && !Object.keys(TRACKATTRS[url]).length) delete TRACKATTRS[url];
   saveTrackAttrs();
+  { const ci = SETS.findIndex(x => x.url === url); if (ci >= 0) updateCard(ci); }   // refresca 🏷 N de la tarjeta
 }
 function starsHTML(n){ n = n || 0; let s = ''; for (let k = 1; k <= 5; k++) s += (k <= n ? '★' : '☆'); return s; }
 function attrHTML(url, key){
