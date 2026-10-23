@@ -89,6 +89,19 @@
   /* 1.29: ＋ de marca → 📍; lápiz más grande, proporcional a 🏷 y 📍 */
   .tk-act .tk-addmk{font-size:15px;padding:0 2px}
   .tk-act .tk-edit{font-size:18px;padding:0 2px}
+  /* 1.30: tarjeta de set compacta — duración + tracks/marcas en una línea; ↺ ✓ más grandes */
+  .card{gap:10px;padding:8px 8px 8px 8px;align-items:center}
+  .card .art{width:66px;height:66px}
+  .ctitle{font-size:15px;line-height:1.25}
+  .cartist{margin-top:1px}
+  .cprog{margin-top:6px}
+  .ctime{font-size:12px;margin-top:3px;gap:6px}
+  .ct-l{display:flex;align-items:center;gap:8px;min-width:0;white-space:nowrap;overflow:hidden}
+  .ct-time{flex:0 0 auto}
+  .cbadges{display:inline-flex;gap:8px;margin:0;font-size:12px}
+  .cside{gap:6px}
+  .cside-row{gap:6px}
+  .cmini{width:36px;height:36px;font-size:18px}
 
   .empty{padding:48px 20px;text-align:center;color:var(--dim);line-height:1.6}
   .spinner{display:inline-block;width:20px;height:20px;border:2px solid var(--border);
@@ -483,7 +496,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.29';
+const APP_VERSION = '1.30';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -660,10 +673,10 @@ function cardBadges(s){
   const tl = getTracklist(s.url);
   const nt = tl ? tl.tracks.length : 0;
   if (!nm && !nt) return '';
-  return '<div class="cbadges">' +
-    (nm ? '<span>📍 ' + nm + (nm===1?' marca':' marcas') + '</span>' : '') +
-    (nt ? '<span>🎵 ' + nt + ' tracks</span>' : '') +
-  '</div>';
+  return '<span class="cbadges">' +
+    (nt ? '<span>🎵 ' + nt + '</span>' : '') +
+    (nm ? '<span>📍 ' + nm + '</span>' : '') +
+  '</span>';
 }
 
 function cardHTML(s, i){
@@ -686,9 +699,8 @@ function cardHTML(s, i){
         <div class="cartist">${esc(s.artist)}</div>
         <div class="cprog">
           <div class="cbar"><div class="cfill" style="width:${pct}%"></div></div>
-          <div class="ctime"><span>${timeLabel}</span><span>${rightLabel}</span></div>
+          <div class="ctime"><span class="ct-l"><span class="ct-time">${timeLabel}</span>${cardBadges(s)}</span><span>${rightLabel}</span></div>
         </div>
-        ${cardBadges(s)}
       </div>
       <div class="cside">
         <button class="cplay ${isCur?'':'ghost'}" data-play="${i}" aria-label="Reproducir">${playing?IC_PAUSE:IC_PLAY}</button>
@@ -715,7 +727,7 @@ function updateCard(i){
   const times = card.querySelector('.ctime');
   if (times){
     const started = p.pos > 3000 && !p.done;
-    times.children[0].innerHTML = p.done
+    (times.querySelector('.ct-time') || times.children[0]).innerHTML = p.done
       ? '<span class="done-tag">✓ escuchado</span>'
       : (started ? esc(hhmmss(p.pos)) + ' / ' + esc(hhmmss(dur)) : esc(hhmmss(dur)));
     times.children[1].textContent = p.done ? '' : (started ? Math.round(pct)+'%' : '');
@@ -726,7 +738,7 @@ function updateCard(i){
   const html = cardBadges(s);
   if (html){
     if (bwrap) bwrap.outerHTML = html;
-    else { const body = card.querySelector('.cbody'); if (body) body.insertAdjacentHTML('beforeend', html); }
+    else { const l = card.querySelector('.ct-l'); if (l) l.insertAdjacentHTML('beforeend', html); }
   } else if (bwrap){ bwrap.remove(); }
 }
 
