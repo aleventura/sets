@@ -295,7 +295,7 @@
     display:flex;align-items:center;justify-content:center}
   .tk-heard-btn:active .hc{transform:scale(.9)}
   .tk.heard .tk-heard-btn .hc{background:var(--ok);border-color:var(--ok);color:#0e0e10}
-  .tk.heard{background:rgba(62,207,142,.10);box-shadow:inset 3px 0 0 var(--ok)}
+  .tk.heard{background:rgba(62,207,142,.10)}
   .tk.heard .tk-name,.tk.heard .tk-name .art{color:var(--ok)}
   .tk.heard .tk-t{color:var(--ok)}
   /* 1.18: track sonando ahora (naranjo) */
@@ -303,6 +303,14 @@
   .tk.now .tk-name,.tk.now .tk-name .art{color:#fff;font-weight:700}
   .tk.now .tk-t{color:var(--acc)}
   .tk.now .tk-name::before,.gapline.now .g-lbl::before{content:'▶ ';color:var(--acc);font-size:11px}
+  /* 1.24: fila en grilla — ✓ | tiempo | nombre (todo el ancho) | 🏷 sobre ✎ ; franja inferior = estrellas/categorías */
+  .tk{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;
+    grid-template-areas:"chk time name act" "chk tags tags act";column-gap:10px;row-gap:6px;align-items:start;padding:7px 4px 7px 0}
+  .tk>.tk-heard-btn{grid-area:chk;width:34px;height:36px;margin:0 -2px 0 0;align-self:center}
+  .tk>.tk-t{grid-area:time}
+  .tk>.tk-name{grid-area:name;min-width:0;overflow-wrap:anywhere}
+  .tk>.tk-act{grid-area:act;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .tk>.tk-tags{grid-area:tags}
 
   /* Modal de tags (bottom-sheet) */
   .tagmodal{position:fixed;inset:0;z-index:60;display:none}
@@ -421,7 +429,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.23';
+const APP_VERSION = '1.24';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -1177,10 +1185,11 @@ function renderTracklist(){
     const dl = '';
     return '<div class="' + cls + '" data-jump="' + tr.t + '">' +
       heardBtn(s.url, key) +
-      '<div class="tk-left"><span class="tk-t">' + rangeLabel(tr.t, it.end) + '</span>' + attrHTML(s.url, key) + '</div>' +
+      '<span class="tk-t">' + rangeLabel(tr.t, it.end) + '</span>' +
       '<span class="tk-name">' + label + dl + playsHTML(tr) + '</span>' +
-      tagBtn(i, s.url, key) +
-      '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nota">✎</button>' +
+      '<div class="tk-act">' + tagBtn(i, s.url, key) +
+      '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nota">✎</button></div>' +
+      attrHTML(s.url, key) +
     '</div>' + editor;
   }
   function introRow(it){
@@ -1206,10 +1215,11 @@ function renderTracklist(){
     if (isHeard(s.url, key)) cls += ' heard';
     return '<div class="' + cls + '">' +
       heardBtn(s.url, key) +
-      '<div class="tk-left"><span class="tk-t">—</span>' + attrHTML(s.url, key) + '</div>' +
+      '<span class="tk-t">—</span>' +
       '<span class="tk-name">' + label + playsHTML(tr) + '</span>' +
-      tagBtn(i, s.url, key) +
-      '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nota">✎</button>' +
+      '<div class="tk-act">' + tagBtn(i, s.url, key) +
+      '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nota">✎</button></div>' +
+      attrHTML(s.url, key) +
     '</div>' + editor;
   }
 
