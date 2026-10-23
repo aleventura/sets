@@ -73,6 +73,13 @@
     display:flex;align-items:center;justify-content:center;transition:transform .1s ease}
   .cplay:active{transform:scale(.93)}
   .cplay.ghost{background:var(--btn);border:1px solid var(--border);color:var(--fg)}
+  .cside{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .cside-row{display:flex;gap:8px}
+  .cmini{width:28px;height:28px;border-radius:50%;background:var(--btn);border:1px solid #3a3a46;
+    color:var(--dim);font-size:14px;font-weight:700;line-height:1;cursor:pointer;padding:0;
+    display:flex;align-items:center;justify-content:center}
+  .cmini:active{transform:scale(.92)}
+  .cmini.on{background:var(--ok);border-color:var(--ok);color:#0e0e10}
 
   .empty{padding:48px 20px;text-align:center;color:var(--dim);line-height:1.6}
   .spinner{display:inline-block;width:20px;height:20px;border:2px solid var(--border);
@@ -434,8 +441,6 @@
         <button class="seek" data-seek="1200">+20 min</button>
       </div>
       <div class="pl-foot">
-        <button class="fbtn" id="fullRestart" aria-label="Reiniciar set"><span class="ic">↺</span><span class="cap">Reiniciar</span></button>
-        <button class="fbtn" id="fullMarkDone" aria-label="Marcar escuchado"><span class="ic">✓</span><span class="cap">Escuchado</span></button>
         <button class="fbtn pp" id="fullPlay" aria-label="Play/Pausa"><span class="ic"></span><span class="cap">Play</span></button>
       </div>
       <div class="sect-head tl-head">
@@ -469,7 +474,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.26';
+const APP_VERSION = '1.27';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -630,7 +635,12 @@ function render(){
     list.innerHTML = html;
     // Toda la tarjeta selecciona el set (no solo el botón de play)
     list.querySelectorAll('[data-card]').forEach(el => {
-      el.addEventListener('click', () => playSet(parseInt(el.dataset.card,10)));
+      el.addEventListener('click', e => {
+        const i = parseInt(el.dataset.card,10);
+        if (e.target.closest('[data-restart]')){ e.stopPropagation(); restartAt(i); return; }
+        if (e.target.closest('[data-done]')){ e.stopPropagation(); toggleDoneAt(i); return; }
+        playSet(i);
+      });
     });
   }
   updateSub();
@@ -671,7 +681,13 @@ function cardHTML(s, i){
         </div>
         ${cardBadges(s)}
       </div>
-      <button class="cplay ${isCur?'':'ghost'}" data-play="${i}" aria-label="Reproducir">${playing?IC_PAUSE:IC_PLAY}</button>
+      <div class="cside">
+        <button class="cplay ${isCur?'':'ghost'}" data-play="${i}" aria-label="Reproducir">${playing?IC_PAUSE:IC_PLAY}</button>
+        <div class="cside-row">
+          <button class="cmini" data-restart="${i}" aria-label="Reiniciar set">↺</button>
+          <button class="cmini cdone ${p.done?'on':''}" data-done="${i}" aria-label="Marcar escuchado">✓</button>
+        </div>
+      </div>
     </div>`;
 }
 
@@ -685,6 +701,8 @@ function updateCard(i){
   const pct = dur ? Math.min(100, (p.pos/dur)*100) : 0;
   const fill = card.querySelector('.cfill');
   if (fill) fill.style.width = pct + '%';
+  const cd = card.querySelector('.cdone');
+  if (cd) cd.classList.toggle('on', !!p.done);
   const times = card.querySelector('.ctime');
   if (times){
     const started = p.pos > 3000 && !p.done;
@@ -830,6 +848,19 @@ function restartSet(){
   }
 }
 
+function restartAt(i){
+  if (i === currentIndex) return restartSet();
+  const s = SETS[i];
+  savePos(s.url, 0, getPos(s.url).dur || s.dur || 0, false);
+  updateCard(i); updateSub();
+  playSet(i);
+}
+function toggleDoneAt(i){
+  const s = SETS[i];
+  markDone(s.url, !getPos(s.url).done);
+  if (filter !== 'all') render(); else updateCard(i);
+  updateSub(); updateFullMarkBtn(); highlightCards();
+}
 function toggleDoneCurrent(){
   if (currentIndex < 0) return;
   const s = SETS[currentIndex];
@@ -1594,8 +1625,7 @@ document.getElementById('miniPlay').innerHTML = IC_PLAY;
 document.getElementById('miniPlay').addEventListener('click', onPlayPause);
 document.getElementById('fullPlay').querySelector('.ic').innerHTML = IC_PLAY;
 document.getElementById('fullPlay').addEventListener('click', onPlayPause);
-document.getElementById('fullRestart').addEventListener('click', restartSet);
-document.getElementById('fullMarkDone').addEventListener('click', toggleDoneCurrent);
+// (1.27) Reiniciar / Escuchado pasaron a cada tarjeta de la lista (debajo del play)
 document.getElementById('plExpand').addEventListener('click', () => {
   document.getElementById('player').classList.add('open');
 });
