@@ -113,7 +113,8 @@
     padding:env(safe-area-inset-top) 20px calc(20px + env(safe-area-inset-bottom));
     transform:translateY(100%);transition:transform .3s ease;z-index:40}
   .player.open .pl-full{transform:translateY(0)}
-  .pl-full-head{display:flex;justify-content:center;padding:10px 0 4px}
+  .pl-full-head{display:flex;justify-content:center;padding:10px 0 4px;position:relative}
+  .pl-full-ver{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--dim);font-variant-numeric:tabular-nums}
   .pl-collapse{background:none;border:0;color:var(--fg);font-size:30px;cursor:pointer;
     padding:4px 50px;line-height:1}
   .pl-full-body{flex:1 1 auto;display:flex;flex-direction:column;justify-content:flex-start;
@@ -367,6 +368,7 @@
   <div class="pl-full" id="plFull">
     <div class="pl-full-head">
       <button class="pl-collapse" id="plCollapse" aria-label="Contraer">⌄</button>
+      <span class="pl-full-ver" id="fullVer"></span>
     </div>
     <div class="pl-full-body">
       <div class="pl-fixed">
@@ -419,7 +421,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.22';
+const APP_VERSION = '1.23';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -1505,6 +1507,7 @@ function loadTags(){
 // ============================================================
 // Íconos SVG estáticos + versión
 document.getElementById('ver').textContent = 'v' + APP_VERSION;
+document.getElementById('fullVer').textContent = 'v' + APP_VERSION;
 document.getElementById('miniPlay').innerHTML = IC_PLAY;
 
 document.getElementById('miniPlay').addEventListener('click', onPlayPause);
