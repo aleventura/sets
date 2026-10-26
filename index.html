@@ -377,6 +377,11 @@
   .gapline{border-bottom:0;padding:6px 8px;margin-bottom:6px;border:1px dashed #2a2a33;border-radius:10px}
   .gapline.now{background:#2a1c12;border-color:rgba(242,111,33,.5)}
   .gap-mks{margin:-2px 0 8px 0;padding-left:8px}
+  /* 1.33: nombre → Spotify; barra fina de progreso del track que suena */
+  .tk-sp{color:inherit;text-decoration:none}
+  .tk-sp:active{opacity:.6}
+  .tk,.gapline{position:relative;overflow:hidden}
+  .tk-prog{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--acc);pointer-events:none;transition:width .4s linear}
   /* 1.26: sin encabezado "Tracklist N tracks", más contraste, contenido del track +20% */
   .tl-head{display:none}
   .pl-scroll{margin-top:8px}
@@ -514,7 +519,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.32';
+const APP_VERSION = '1.33';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -1320,7 +1325,8 @@ function renderTracklist(){
     const editor = (tlEditRow === i) ? noteEditor(tr, i, ov) : '';
     // Bloque sin identificar (Track ID no lo reconoció y no tiene nota): fila atenuada, con ✎ para nombrarlo.
     if (!ov && tr.empty){
-      return '<div class="gapline" data-jump="' + tr.t + '">' +
+      return '<div class="gapline" data-jump="' + tr.t + '" data-end="' + (it.end != null ? it.end : '') + '">' +
+        '<i class="tk-prog"></i>' +
         '<span class="g-t">' + rangeLabel(tr.t, it.end) + '</span>' +
         '<span class="g-lbl"><span class="dot"></span>sin identificar' +
           '</span>' +
@@ -1330,9 +1336,13 @@ function renderTracklist(){
     let cls = 'tk', label;
     if (ov){ cls += ' tk-user'; label = [ov.artist, ov.title].filter(Boolean).map(esc).join(' — '); }
     else { label = [tr.artist, tr.title].filter(Boolean).map(esc).join(' — ') || 'ID'; }
+    // 1.33: tocar el nombre abre la búsqueda del track en Spotify (el minuto sigue saltando)
+    { const spQs = (ov ? [ov.artist, ov.title] : [tr.artist, tr.title]).filter(Boolean).join(' ').trim();
+      if (spQs) label = '<a class="tk-sp" data-sp href="https://open.spotify.com/search/' + encodeURIComponent(spQs) + '" target="_blank" rel="noopener">' + label + '</a>'; }
     if (isHeard(s.url, key)) cls += ' heard';
     const dl = '';
-    return '<div class="' + cls + '" data-jump="' + tr.t + '">' +
+    return '<div class="' + cls + '" data-jump="' + tr.t + '" data-end="' + (it.end != null ? it.end : '') + '">' +
+      '<i class="tk-prog"></i>' +
       heardBtn(s.url, key) +
       '<span class="tk-t">' + rangeLabel(tr.t, it.end) + '</span>' +
       '<span class="tk-name">' + label + dl + playsHTML(tr) + '</span>' +
@@ -1362,6 +1372,9 @@ function renderTracklist(){
     if (ov){ cls += ' tk-user'; label = [ov.artist, ov.title].filter(Boolean).map(esc).join(' — '); }
     else if (tr.empty){ cls += ' tk-empty'; label = 'sin identificar'; }
     else { label = [tr.artist, tr.title].filter(Boolean).map(esc).join(' — ') || 'ID'; }
+    // 1.33: tocar el nombre abre la búsqueda del track en Spotify (el minuto sigue saltando)
+    { const spQs = (ov ? [ov.artist, ov.title] : [tr.artist, tr.title]).filter(Boolean).join(' ').trim();
+      if (spQs) label = '<a class="tk-sp" data-sp href="https://open.spotify.com/search/' + encodeURIComponent(spQs) + '" target="_blank" rel="noopener">' + label + '</a>'; }
     if (isHeard(s.url, key)) cls += ' heard';
     return '<div class="' + cls + '">' +
       heardBtn(s.url, key) +
@@ -1513,7 +1526,17 @@ function highlightNow(p){
       if (k > 0 && (p - (+arr[k].dataset.jump)) <= NEAR) on.add(arr[k - 1]);
     } else if (arr[0] && (+arr[0].dataset.jump - p) <= 10000){ on.add(arr[0]); }
   }
-  rows.forEach(r => { const want = on.has(r); if (want !== r.classList.contains('now')) r.classList.toggle('now', want); });
+  rows.forEach(r => {
+    const want = on.has(r); if (want !== r.classList.contains('now')) r.classList.toggle('now', want);
+    // 1.33: barra fina de progreso del track que suena
+    const bar = r.querySelector(':scope > .tk-prog'); if (!bar) return;
+    let w = 0;
+    if (want){
+      const t0 = +r.dataset.jump, e = r.dataset.end !== '' ? +r.dataset.end : (curDurMs || 0);
+      if (e > t0 && p >= t0) w = Math.min(100, (p - t0) / (e - t0) * 100);
+    }
+    const ws = w.toFixed(1) + '%'; if (bar.style.width !== ws) bar.style.width = ws;
+  });
 }
 function renderTimes(p){
   highlightNow(p);
@@ -1737,6 +1760,7 @@ document.getElementById('tlBody').addEventListener('click', e => {
   if (e.target.closest('#tlExport')){ exportTracklists(); return; }
   if (e.target.closest('#tlExportTags')){ exportTrackAttrs(); return; }
   if (e.target.closest('#tlEdit')){ const w = document.getElementById('tlPasteWrap'); if (w){ w.style.display = (w.style.display==='none'?'':'none'); if (w.style.display!=='none'){ const t=document.getElementById('tlPaste'); if (t) t.focus(); } } return; }
+  if (e.target.closest('[data-sp]')) return;   // 1.33: nombre → Spotify, sin saltar
   // Tocar cualquier parte de una fila con tiempo (track, bloque o marca) carga/salta a ese punto
   const j = e.target.closest('[data-jump]');
   if (j && j.dataset.jump !== ''){ jumpTo(parseInt(j.dataset.jump,10)); return; }
