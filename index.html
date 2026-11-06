@@ -399,6 +399,11 @@
   .tk-heard-btn .hc{border-color:#5a5a66;color:#7a7a86}
   .tk>.tk-t,.tk>.tk-name,.tk>.tk-act,.tk>.tk-tags,.tk>.tk-mks,
   .gapline>.g-t,.gapline>.g-lbl,.gapline>.tk-edit,.gap-mks{zoom:1.2}
+  /* 1.37: ✓ escuchado también en bloques sin identificar */
+  .gapline>.tk-heard-btn{width:34px;height:32px;margin:-4px -2px -4px -8px}
+  .gapline.heard{background:#173126;border-color:#2a5a48;border-style:solid}
+  .gapline.heard .tk-heard-btn .hc{background:var(--ok);border-color:var(--ok);color:#0e0e10}
+  .gapline.heard .g-t,.gapline.heard .g-lbl{color:var(--ok)}
   /* 1.26: botones del player más chicos y cabecera (⌄ + versión) compacta */
   .pl-foot{gap:28px;margin-top:0}
   .pl-foot .fbtn{gap:3px}
@@ -523,7 +528,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.36';
+const APP_VERSION = '1.37';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -1353,8 +1358,10 @@ function renderTracklist(){
     const editor = (tlEditRow === i) ? noteEditor(tr, i, ov, it.manual ? key : null) : '';
     // Bloque sin identificar (Track ID no lo reconoció y no tiene nota): fila atenuada, con ✎ para nombrarlo.
     if (!ov && tr.empty){
-      return '<div class="gapline" data-jump="' + T + '" data-end="' + (it.end != null ? it.end : '') + '">' +
+      // 1.37: los bloques sin identificar también se marcan escuchados (✓ verde)
+      return '<div class="gapline' + (isHeard(s.url, key) ? ' heard' : '') + '" data-jump="' + T + '" data-end="' + (it.end != null ? it.end : '') + '">' +
         '<i class="tk-prog"></i>' +
+        heardBtn(s.url, key) +
         '<span class="g-t">' + rangeLabel(T, endL) + '</span>' +
         '<span class="g-lbl"><span class="dot"></span>sin identificar' +
           '</span>' +
@@ -1382,7 +1389,8 @@ function renderTracklist(){
     '</div>' + editor;
   }
   function introRow(it){
-    return '<div class="gapline" data-jump="0">' +
+    return '<div class="gapline' + (isHeard(s.url, 'intro') ? ' heard' : '') + '" data-jump="0">' +
+      heardBtn(s.url, 'intro') +
       '<span class="g-t">' + rangeLabel(0, it.end) + '</span>' +
       '<span class="g-lbl"><span class="dot"></span>sin identificar · intro</span>' +
     '</div>' + marksHTML('intro', 'gap-mks');
