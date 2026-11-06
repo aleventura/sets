@@ -42,6 +42,8 @@
   .chip.active{background:var(--acc);border-color:var(--acc);color:#fff}
   .chip .n{opacity:.7;font-weight:600;margin-left:3px}
   .chip.active .n{opacity:.9}
+  .pl-cats{padding-bottom:8px}
+  .pl-cats .chip{padding:5px 11px;font-size:12px}
 
   .list{padding:14px 12px calc(var(--player-h) + 28px);padding-top:var(--header-h,64px)}
 
@@ -450,6 +452,7 @@
     <span class="ver" id="ver"></span>
   </div>
   <a href="beta.html" style="display:block;padding:6px 10px;margin:0 0 8px;background:#2a1a0e;border:1px solid var(--acc);border-radius:8px;color:var(--acc);font-size:12px;font-weight:600;text-decoration:none;text-align:center">🧪 Probar versión beta — arregla la interferencia de audio en el auto</a>
+  <div class="filters pl-cats" id="plCats"></div>
   <div class="pl-row"><select id="selPlaylist" class="pl-select" aria-label="Playlist"></select></div>
   <div class="filters" id="filters">
     <button class="chip active" data-filter="all">Todos<span class="n" data-n="all"></span></button>
@@ -529,7 +532,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.38';
+const APP_VERSION = '1.39';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -537,32 +540,40 @@ const IC_PREV  = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="6" 
 const IC_NEXT  = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="16.6" y="6" width="2.4" height="12" rx="1"/><path d="M4 6v12l10.5-6z"/></svg>';
 // Playlists públicas navegables (editar aquí para agregar/quitar una)
 const PLAYLISTS = [
-  { name: 'app_list',            url: 'https://soundcloud.com/alejandro_ventura/sets/app_list' },
-  { name: 'DJ · Mia Lafontaine', url: 'https://soundcloud.com/alejandro_ventura/sets/dj-mia-lafontaine' },
-  { name: 'DJ · KALEA',          url: 'https://soundcloud.com/alejandro_ventura/sets/dj-kalea' },
-  { name: 'DJ · ANSTASCIA',      url: 'https://soundcloud.com/alejandro_ventura/sets/dj-anstascia' },
-  { name: 'DJ · Romain Garcia',  url: 'https://soundcloud.com/alejandro_ventura/sets/dj-romain-garcia' },
-  { name: 'DJ · Rampue',         url: 'https://soundcloud.com/alejandro_ventura/sets/dj-rampue' },
-  { name: 'DJ · Mess',           url: 'https://soundcloud.com/alejandro_ventura/sets/dj-mess' },
-  { name: 'DJ · GALLiVANTER',    url: 'https://soundcloud.com/alejandro_ventura/sets/dj-gallivanter' },
-  { name: 'DJ · Goldcap',        url: 'https://soundcloud.com/alejandro_ventura/sets/dj-goldcap' },
-  { name: 'DJ · Diass',          url: 'https://soundcloud.com/alejandro_ventura/sets/dj-diass' },
-  { name: 'DJ · Isabeau Fort',   url: 'https://soundcloud.com/alejandro_ventura/sets/dj-isabeau-fort' },
-  { name: 'DJ · SHARE',          url: 'https://soundcloud.com/alejandro_ventura/sets/dj-share' },
-  { name: 'DJ · Doctor Dru',     url: 'https://soundcloud.com/alejandro_ventura/sets/dj-doctor-dru' },
-  { name: 'DJ · Mimi Love',      url: 'https://soundcloud.com/alejandro_ventura/sets/mimi-love' },
-  { name: 'DJ · Curol',          url: 'https://soundcloud.com/alejandro_ventura/sets/dj-curol' },
-  { name: 'DJ · Ame',            url: 'https://soundcloud.com/alejandro_ventura/sets/dj-ame' },
-  { name: 'DJ · Ben Ja Min',      url: 'https://soundcloud.com/alejandro_ventura/sets/dj-ben-ja-min' },
-  { name: 'Festival · Babylon',  url: 'https://soundcloud.com/alejandro_ventura/sets/festival-babylon' },
-  { name: 'Festival · GOAT',     url: 'https://soundcloud.com/alejandro_ventura/sets/festival-goat' },
-  { name: 'Festival · Garbicz',  url: 'https://soundcloud.com/alejandro_ventura/sets/2026-garbicz' },
-  { name: 'Festival · BM 2026',  url: 'https://soundcloud.com/alejandro_ventura/sets/festival-bm-2026' },
-  { name: 'Track · Supernova',   url: 'https://soundcloud.com/alejandro_ventura/sets/track-supernova' },
-  { name: 'Best sets Alec',      url: 'https://soundcloud.com/alejandro_ventura/sets/copy-of-best-sets-alec' },
-  { name: 'Revisar 2026',        url: 'https://soundcloud.com/alejandro_ventura/sets/revisar-2026' },
+  { name: 'app_list',            url: 'https://soundcloud.com/alejandro_ventura/sets/app_list', n: 7 },
+  { name: 'DJ · Mia Lafontaine', url: 'https://soundcloud.com/alejandro_ventura/sets/dj-mia-lafontaine', n: 18 },
+  { name: 'DJ · KALEA',          url: 'https://soundcloud.com/alejandro_ventura/sets/dj-kalea', n: 9 },
+  { name: 'DJ · ANSTASCIA',      url: 'https://soundcloud.com/alejandro_ventura/sets/dj-anstascia', n: 8 },
+  { name: 'DJ · Romain Garcia',  url: 'https://soundcloud.com/alejandro_ventura/sets/dj-romain-garcia', n: 4 },
+  { name: 'DJ · Rampue',         url: 'https://soundcloud.com/alejandro_ventura/sets/dj-rampue', n: 6 },
+  { name: 'DJ · Mess',           url: 'https://soundcloud.com/alejandro_ventura/sets/dj-mess', n: 3 },
+  { name: 'DJ · GALLiVANTER',    url: 'https://soundcloud.com/alejandro_ventura/sets/dj-gallivanter', n: 8 },
+  { name: 'DJ · Goldcap',        url: 'https://soundcloud.com/alejandro_ventura/sets/dj-goldcap', n: 10 },
+  { name: 'DJ · Diass',          url: 'https://soundcloud.com/alejandro_ventura/sets/dj-diass', n: 17 },
+  { name: 'DJ · Isabeau Fort',   url: 'https://soundcloud.com/alejandro_ventura/sets/dj-isabeau-fort', n: 2 },
+  { name: 'DJ · SHARE',          url: 'https://soundcloud.com/alejandro_ventura/sets/dj-share', n: 8 },
+  { name: 'DJ · Doctor Dru',     url: 'https://soundcloud.com/alejandro_ventura/sets/dj-doctor-dru', n: 4 },
+  { name: 'DJ · Mimi Love',      url: 'https://soundcloud.com/alejandro_ventura/sets/mimi-love', n: 7 },
+  { name: 'DJ · Curol',          url: 'https://soundcloud.com/alejandro_ventura/sets/dj-curol', n: 11 },
+  { name: 'DJ · Ame',            url: 'https://soundcloud.com/alejandro_ventura/sets/dj-ame', n: 4 },
+  { name: 'DJ · Ben Ja Min',      url: 'https://soundcloud.com/alejandro_ventura/sets/dj-ben-ja-min', n: 5 },
+  { name: 'Festival · Babylon',  url: 'https://soundcloud.com/alejandro_ventura/sets/festival-babylon', n: 1 },
+  { name: 'Festival · GOAT',     url: 'https://soundcloud.com/alejandro_ventura/sets/festival-goat', n: 2 },
+  { name: 'Festival · Garbicz',  url: 'https://soundcloud.com/alejandro_ventura/sets/2026-garbicz', n: 4 },
+  { name: 'Festival · BM 2026',  url: 'https://soundcloud.com/alejandro_ventura/sets/festival-bm-2026', n: 1 },
+  { name: 'Track · Supernova',   url: 'https://soundcloud.com/alejandro_ventura/sets/track-supernova', n: 16 },
+  { name: 'Best sets Alec',      url: 'https://soundcloud.com/alejandro_ventura/sets/copy-of-best-sets-alec', n: 29 },
+  { name: 'Revisar 2026',        url: 'https://soundcloud.com/alejandro_ventura/sets/revisar-2026', n: 56 },
 ]
 const LS_PL = 'sc_sets_playlist_v1';   // última playlist elegida
+// 1.39: playlists agrupadas por tipo (prefijo "DJ · ", "Festival · ", "Track · "; el resto = Otros).
+// n = cantidad de sets de la playlist (semilla del refresh); se actualiza al cargarla y se guarda en localStorage.
+const PL_CATS = ['DJ', 'Festival', 'Track', 'Otros'];
+const LS_PLCOUNT = 'sc_sets_plcount_v1';
+let PL_COUNT = (function(){ try { return JSON.parse(localStorage.getItem(LS_PLCOUNT) || '{}') || {}; } catch(e){ return {}; } })();
+function plCat(p){ const m = /^(DJ|Festival|Track)\s*·\s*/.exec(p.name); return m ? m[1] : 'Otros'; }
+function plShort(p){ return p.name.replace(/^(DJ|Festival|Track)\s*·\s*/, ''); }
+function plCount(p){ return (PL_COUNT[p.url] != null) ? PL_COUNT[p.url] : p.n; }
 let PLAYLIST_URL = (function(){
   try { const sv = localStorage.getItem(LS_PL); if (sv && PLAYLISTS.some(p => p.url === sv)) return sv; } catch(e){}
   return PLAYLISTS[0].url;
@@ -1933,6 +1944,12 @@ function loadPlaylist(){
           dur: s.duration || 0,
           art: s.artwork_url || (s.user && s.user.avatar_url) || null
         })).filter(s => s.url);
+        // 1.39: actualizar la cantidad de sets de esta playlist en el selector
+        if (PL_COUNT[PLAYLIST_URL] !== SETS.length){
+          PL_COUNT[PLAYLIST_URL] = SETS.length;
+          try { localStorage.setItem(LS_PLCOUNT, JSON.stringify(PL_COUNT)); } catch(e){}
+          renderPlSelect();
+        }
         bindWidget();
         render();
         syncHeaderHeight();
@@ -1961,18 +1978,55 @@ function loadPlaylist(){
   });
 }
 
+// 1.39: chips de tipo + selector con los nombres sin prefijo y (N sets)
+function renderPlSelect(){
+  const sel = document.getElementById('selPlaylist');
+  const cats = document.getElementById('plCats');
+  const cur = PLAYLISTS.find(p => p.url === PLAYLIST_URL) || PLAYLISTS[0];
+  const cat = plCat(cur);
+  if (cats){
+    cats.innerHTML = PL_CATS.filter(c => PLAYLISTS.some(p => plCat(p) === c)).map(c =>
+      '<button class="chip' + (c === cat ? ' active' : '') + '" data-plcat="' + c + '">' + c +
+      '<span class="n">' + PLAYLISTS.filter(p => plCat(p) === c).length + '</span></button>').join('');
+  }
+  if (sel){
+    sel.innerHTML = PLAYLISTS.filter(p => plCat(p) === cat).map(p => {
+      const n = plCount(p);
+      return '<option value="' + esc(p.url) + '">' + esc(plShort(p)) + (n != null ? ' (' + n + ')' : '') + '</option>';
+    }).join('');
+    sel.value = cur.url;
+  }
+  try { syncHeaderHeight(); } catch(e){}
+}
+
 function boot(){
   if (!window.SC || !window.SC.Widget){ setTimeout(boot, 200); return; }
   const sel = document.getElementById('selPlaylist');
+  const cats = document.getElementById('plCats');
   if (sel){
-    sel.innerHTML = PLAYLISTS.map(p => '<option value="' + esc(p.url) + '">' + esc(p.name) + '</option>').join('');
-    sel.value = PLAYLIST_URL;
     sel.addEventListener('change', function(){
       PLAYLIST_URL = sel.value;
       try { localStorage.setItem(LS_PL, PLAYLIST_URL); } catch(e){}
+      renderPlSelect();
       loadPlaylist();
     });
   }
+  if (cats){
+    cats.addEventListener('click', function(e){
+      const b = e.target.closest('[data-plcat]');
+      if (!b) return;
+      const cat = b.dataset.plcat;
+      const cur = PLAYLISTS.find(p => p.url === PLAYLIST_URL);
+      if (cur && plCat(cur) === cat) return;
+      const first = PLAYLISTS.find(p => plCat(p) === cat);
+      if (!first) return;
+      PLAYLIST_URL = first.url;
+      try { localStorage.setItem(LS_PL, PLAYLIST_URL); } catch(e){}
+      renderPlSelect();
+      loadPlaylist();
+    });
+  }
+  renderPlSelect();
   loadPlaylist();
 }
 
