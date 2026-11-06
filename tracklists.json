@@ -3101,75 +3101,86 @@
     ]
   },
   "https://soundcloud.com/doctordru/doctor-dru-in-the-mix-for-beat-1009fm-cdmx": {
-    "source": "https://trackid.net/audiostreams/doctor-dru-in-the-mix-for-beat-1009fm-cdmx",
     "title": "Doctor Dru in the mix for Beat 100.9fm , CDMX",
+    "ordered": true,
+    "source": "https://soundcloud.com/doctordru/doctor-dru-in-the-mix-for-beat-1009fm-cdmx",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/doctordru/doctor-dru-in-the-mix-for-beat-1009fm-cdmx"
+      },
+      {
+        "name": "1001tracklists",
+        "url": "https://www.1001tracklists.com/tracklist/25gc6fu9/doctor-dru-beat-100.9-fm-mexico-2023-11-06.html"
+      },
+      {
+        "name": "trackid.net",
+        "url": "https://trackid.net/audiostreams/doctor-dru-in-the-mix-for-beat-1009fm-cdmx"
+      }
+    ],
     "tracks": [
       {
-        "artist": "Argy",
         "t": 48000,
-        "title": "I'm In"
+        "artist": "Argy",
+        "title": "I’m In"
       },
       {
-        "artist": "lovetempo, Reznik, good guy mikesh",
         "t": 271000,
-        "title": "The One (Reznik &amp; Mikesh Remix)"
+        "artist": "Lovetempo",
+        "title": "The One (Reznik & Mikesh Remix)"
       },
       {
-        "artist": "Upercent",
         "t": 590000,
+        "artist": "Upercent",
         "title": "Ruta"
       },
       {
-        "artist": "Colossio, Luke Garcia",
         "t": 861000,
-        "title": "Let Go (Colossio Revision)"
+        "artist": "Colossio & Luke Garcia feat. Matthew James",
+        "title": "Let Go ( Musumeci Drum Mix )"
       },
       {
-        "empty": true,
-        "t": 1073000
-      },
-      {
-        "artist": "DJ Seinfeld, Confidence Man",
         "t": 1169000,
-        "title": "Now U Do (Carlita Remix)"
+        "artist": "DJ Seinfeld",
+        "title": "Now You Do ( Carlita extended Remix )"
       },
       {
-        "empty": true,
-        "t": 1412000
+        "artist": "Angelos, Keene, Emmanuel Jal",
+        "title": "Budáh"
       },
       {
-        "artist": "Red Axes",
         "t": 1678000,
-        "title": "Relax Shiva (Extended)"
+        "artist": "Red Axes",
+        "title": "Relax Shiva"
       },
       {
-        "artist": "Tal Fussman",
         "t": 2014000,
+        "artist": "Tal Fussman",
         "title": "Bridging The Gap"
       },
       {
-        "artist": "Paul Ursin",
         "t": 2193000,
+        "artist": "Paul Ursin",
         "title": "1997"
       },
       {
-        "artist": "Dominik Marz",
         "t": 2403000,
+        "artist": "Dominik Marz",
         "title": "The Shell"
       },
       {
-        "empty": true,
-        "t": 2679000
+        "artist": "The Organism",
+        "title": "Ego ( Doctor Dru Remix )"
       },
       {
-        "artist": "Monkey Safari",
         "t": 2978000,
+        "artist": "Monkey Safari",
         "title": "Malmedy"
       },
       {
-        "artist": "Moderat",
         "t": 3230000,
-        "title": "More Love (Rampa &amp;ME Remix)"
+        "artist": "Moderat",
+        "title": "More Love ( Rampa, &me remix )"
       }
     ]
   },
@@ -5879,44 +5890,129 @@
     ]
   },
   "https://soundcloud.com/user-893362037/a-me-dj-trikk-full-set-dgtl": {
-    "source": "https://trackid.net/audiostreams/ame-dj-trikk-full-set-dgtl-amsterdam-2026-1451685001",
     "title": "ÂME DJ TRIKK FULL SET DGTL AMSTERDAM 2026",
+    "ordered": true,
+    "source": "https://soundcloud.com/user-893362037/a-me-dj-trikk-full-set-dgtl",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/user-893362037/a-me-dj-trikk-full-set-dgtl"
+      },
+      {
+        "name": "1001tracklists",
+        "url": "https://www.1001tracklists.com/tracklist/28bdtvlk/ame-trikk-dgtl-festival-netherlands-2026-04-04.html"
+      },
+      {
+        "name": "trackid.net",
+        "url": "https://trackid.net/audiostreams/ame-dj-trikk-full-set-dgtl-amsterdam-2026-1451685001"
+      }
+    ],
     "tracks": [
       {
-        "empty": true,
-        "t": 0
+        "artist": "Darlow",
+        "title": "ID"
       },
       {
-        "artist": "Aphrohead",
-        "t": 1765328,
-        "title": "In the Dark We Live (Thee Lite)"
+        "artist": "Darlow",
+        "title": "Escalera"
       },
       {
-        "empty": true,
-        "t": 1811328
-      },
-      {
-        "artist": "Djolee",
-        "t": 1944328,
-        "title": "Aggressor"
-      },
-      {
-        "empty": true,
-        "t": 2192328
-      },
-      {
-        "artist": "Röyksopp",
-        "t": 3797328,
-        "title": "What Else Is There? (feat. Fever Ray and Trentemøller) [True Electric] (Mixed)"
-      },
-      {
-        "empty": true,
-        "t": 3949328
+        "artist": "Djolée",
+        "title": "ID"
       },
       {
         "artist": "Julian Koerndl",
+        "title": "Wind-Up Birdie"
+      },
+      {
+        "artist": "Skatman & Kid Simius",
+        "title": "ID"
+      },
+      {
+        "artist": "Ayala",
+        "title": "Something",
+        "info": "1001tracklists: Ayala – Something (lista oficial: Ayala – ID)"
+      },
+      {
+        "artist": "Ivory & Aera",
+        "title": "Connection"
+      },
+      {
+        "t": 1765328,
+        "artist": "Aphrohead",
+        "title": "In The Dark We Live (Thee Lite)"
+      },
+      {
+        "t": 1944328,
+        "artist": "Djolée",
+        "title": "Aggressor",
+        "info": "1001tracklists: Djolee – Aggressor (lista oficial: Djolée – ID) · trackid coincide"
+      },
+      {
+        "artist": "Avangart Tabldot",
+        "title": "Sweat Drip"
+      },
+      {
+        "artist": "IVORY",
+        "title": "ID",
+        "info": "1001tracklists: IVORY – ID (lista oficial: ID – ID)"
+      },
+      {
+        "artist": "Âme & Trikk ft. Jens Kuross",
+        "title": "Don't Waste My Time (Jonathan Kaspar Remix)"
+      },
+      {
+        "artist": "Nowa & Curci",
+        "title": "Electric Fields"
+      },
+      {
+        "artist": "Shiffer",
+        "title": "Need For Speed"
+      },
+      {
+        "artist": "Jimi Jules",
+        "title": "I've Been Looking For You"
+      },
+      {
+        "t": 3797328,
+        "artist": "Röyksopp ft. Fever Ray & Trentemøller",
+        "title": "What Else Is There? (True Electric) (Dixon True Electric Edit)"
+      },
+      {
+        "artist": "Gespona & Martin Cozar",
+        "title": "ID"
+      },
+      {
+        "artist": "Abuk",
+        "title": "ID",
+        "info": "1001tracklists: Abuk – ID (lista oficial: ID – ID)"
+      },
+      {
+        "artist": "Hardt Antoine",
+        "title": "ID",
+        "info": "1001tracklists: Hardt Antoine – ID (lista oficial: ID – ID)"
+      },
+      {
+        "artist": "Dyzen & Sideral",
+        "title": "Feel So Right",
+        "alerta": "1001tracklists dice: Dyzen & Sideral – Hooligan"
+      },
+      {
         "t": 5335328,
+        "artist": "Severin Su & Julian Koerndl",
         "title": "The Pied Piper"
+      },
+      {
+        "artist": "Auggië",
+        "title": "Sing My Song"
+      },
+      {
+        "artist": "Âme & RY X",
+        "title": "Love Is The Dance"
+      },
+      {
+        "artist": "Jimi Jules",
+        "title": "Don't Break My Heart"
       }
     ]
   },
@@ -6477,61 +6573,72 @@
     ]
   },
   "https://soundcloud.com/zaeino/eden-soundscape-introduction-part-2-zaeino": {
-    "source": "https://trackid.net/audiostreams/eden-soundscape-introduction-part-2-zaeino",
     "title": "Eden Soundscape - Introduction Part 2 - ZÆINO",
+    "ordered": true,
+    "source": "https://soundcloud.com/zaeino/eden-soundscape-introduction-part-2-zaeino",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/zaeino/eden-soundscape-introduction-part-2-zaeino"
+      },
+      {
+        "name": "trackid.net",
+        "url": "https://trackid.net/audiostreams/eden-soundscape-introduction-part-2-zaeino"
+      }
+    ],
     "tracks": [
       {
-        "artist": "Franco Dalmati",
         "t": 1000,
-        "title": "Magenta"
+        "artist": "Franco Dalmati",
+        "title": "Magenta (Original Mix)"
       },
       {
-        "artist": "Gai Barone",
         "t": 333000,
-        "title": "Juste Un De Plus"
+        "artist": "Gai Barone",
+        "title": "Juste Un De Plus (Original Mix)"
       },
       {
-        "artist": "Cosmos Sounds Project",
         "t": 643000,
+        "artist": "Cosmos Sounds Project",
         "title": "Dr. X (Original Mix)"
       },
       {
-        "empty": true,
-        "t": 985000
+        "artist": "Mike Rish",
+        "title": "Sunset On Mars (Original Mix)"
       },
       {
-        "artist": "Poli-Poli",
         "t": 1298000,
+        "artist": "Poli-Poli",
         "title": "Earth Space (Weird Sounding Dude Remix)"
       },
       {
-        "empty": true,
-        "t": 1656000
+        "artist": "Twice As Nice",
+        "title": "Ouverture (Guy J Remix)"
       },
       {
-        "artist": "Newman (I Love)",
         "t": 2042000,
-        "title": "Strawberry Moon (Extended Mix)"
+        "artist": "Newman (I Love)",
+        "title": "Strawberry Moon (Original Mix)"
       },
       {
-        "artist": "Guy J",
         "t": 2372000,
-        "title": "Stranger In A Strange World"
+        "artist": "Guy J",
+        "title": "Stranger In A Strange World (Original Mix)"
       },
       {
-        "artist": "The Wash, Patch Park",
         "t": 2696000,
-        "title": "Ignition"
+        "artist": "Patch Park x The Wash",
+        "title": "Ignition (Zuccasam Remix)"
       },
       {
-        "artist": "Poli-Poli",
         "t": 2987000,
-        "title": "Plastic Fantastic"
+        "artist": "Poli",
+        "title": "Poli - Plastic Fantastic (Original Mix)"
       },
       {
-        "artist": "Emi Galvan",
         "t": 3328000,
-        "title": "Supernova"
+        "artist": "Emi Galvan",
+        "title": "Supernova (Original Mix)"
       }
     ]
   },
@@ -7451,11 +7558,27 @@
   },
   "https://soundcloud.com/goldcap/the-goldcast-152-nov-28-2025": {
     "title": "The Goldcast 152 (Nov 28, 2025) with Gratitude",
+    "ordered": true,
+    "source": "https://soundcloud.com/goldcap/the-goldcast-152-nov-28-2025",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/goldcap/the-goldcast-152-nov-28-2025"
+      },
+      {
+        "name": "1001tracklists",
+        "url": "https://www.1001tracklists.com/tracklist/16s79lxk/goldcap-the-goldcast-152-2025-11-28.html"
+      }
+    ],
     "tracks": [
       {
+        "artist": "Nu",
+        "title": "MEDIDA"
+      },
+      {
         "t": 516000,
-        "artist": "Blond:ish feat. Bahramji",
-        "title": "Laberinto"
+        "artist": "Blond:ish",
+        "title": "Laberinto Feat. Bahramji"
       },
       {
         "t": 1049000,
@@ -7463,14 +7586,38 @@
         "title": "Metanoia"
       },
       {
+        "artist": "Viken Arman",
+        "title": "Done Yar"
+      },
+      {
         "t": 1828000,
         "artist": "SAAND",
-        "title": "Fiddler (Original Mix)"
+        "title": "Fiddler"
+      },
+      {
+        "artist": "Sabo",
+        "title": "Yay Bahar"
       },
       {
         "t": 2518000,
         "artist": "Nickodemus",
         "title": "Crazy Stranger"
+      },
+      {
+        "artist": "Be Svendsen",
+        "title": "Bulgarian Chicks"
+      },
+      {
+        "artist": "Nico Stojan",
+        "title": "Cheriemoya"
+      },
+      {
+        "artist": "FC Kahuna",
+        "title": "Hayling feat. Hafdis Huld (Damian Lazarus Re-Shape)"
+      },
+      {
+        "artist": "Low Tide",
+        "title": "Skism (Tara Brooks Remix)"
       },
       {
         "t": 4411000,
@@ -7480,7 +7627,7 @@
       {
         "t": 4785000,
         "artist": "Audiofly",
-        "title": "Excuse My Wildness (feat. Jaw)"
+        "title": "Excuse My Wildness Feat. Jaw"
       },
       {
         "t": 5057000,
@@ -7488,14 +7635,18 @@
         "title": "Natackha"
       },
       {
+        "artist": "SIMBAD",
+        "title": "Guide de La Revolucion (Eduardo Castillo Buenavista Edit)"
+      },
+      {
         "t": 5765000,
-        "artist": "LUM (mx)",
+        "artist": "LUM",
         "title": "Urpillay"
       },
       {
         "t": 6040000,
         "artist": "Unders",
-        "title": "Brand Message (Dub Version)"
+        "title": "Brand Message (Dub)"
       },
       {
         "t": 6449000,
@@ -7505,27 +7656,42 @@
       {
         "t": 6718000,
         "artist": "Armen Miran",
-        "title": "Nani Jan (Original)"
+        "title": "Nani Jan"
+      },
+      {
+        "artist": "SIS",
+        "title": "Messara"
       },
       {
         "t": 7125000,
         "artist": "Sarkis Mikael",
-        "title": "Stay feat. St. Terrible, Wend (Extended Mix)"
+        "title": "Stay feat. St. Terrible & WEND (Extended Mix)"
       }
-    ],
-    "source": ""
+    ]
   },
   "https://soundcloud.com/goldcap/the-goldcast-153-dec-12-2025-with-guestmix-by-manumat": {
     "title": "The Goldcast 153 (Dec 12, 2025) with guestmix by MANUMAT",
+    "ordered": true,
+    "source": "https://soundcloud.com/goldcap/the-goldcast-153-dec-12-2025-with-guestmix-by-manumat",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/goldcap/the-goldcast-153-dec-12-2025-with-guestmix-by-manumat"
+      },
+      {
+        "name": "1001tracklists",
+        "url": "https://www.1001tracklists.com/tracklist/24kzcptk/goldcap-manumat-the-goldcast-153-2025-12-12.html"
+      }
+    ],
     "tracks": [
       {
         "t": 51000,
         "artist": "Farhot",
-        "title": "HOOYOO with Siriusmo"
+        "title": "HOOYOO (with Siriusmo)"
       },
       {
         "t": 360000,
-        "artist": "SIDOROFF",
+        "artist": "Sidorof",
         "title": "I Know (Xingo & Malako Remix)"
       },
       {
@@ -7536,12 +7702,13 @@
       {
         "t": 1024000,
         "artist": "Hot Oasis",
-        "title": "Jamra feat. SAFY (DJ Phellix Remix)"
+        "title": "Jamra feat. SAFY (DJ Phellix Remix)",
+        "alerta": "Solo trackid: no está en la lista oficial"
       },
       {
         "t": 1312000,
         "artist": "Madraas",
-        "title": "Meiku (Extended Mix)"
+        "title": "Meiku"
       },
       {
         "t": 1718000,
@@ -7550,18 +7717,23 @@
       },
       {
         "t": 2033000,
-        "artist": "Nat Barrera, Swa Swally",
+        "artist": "Nat Barrera & Swa Swally",
         "title": "Souk Zrabi (Mula Remix)"
       },
       {
         "t": 2326000,
         "artist": "The Oddness",
-        "title": "Mere Mortals"
+        "title": "Mere Mortal"
       },
       {
         "t": 2547000,
         "artist": "Suhaila Salimpour",
-        "title": "El Toba Loop"
+        "title": "El Toba Loop",
+        "alerta": "Solo trackid: no está en la lista oficial"
+      },
+      {
+        "artist": "Kanoon Taksim",
+        "title": "Daret el Ayam"
       },
       {
         "t": 2709000,
@@ -7575,43 +7747,61 @@
       },
       {
         "t": 3270000,
-        "artist": "Sidartha Siliceo, Ramiro Rossotti",
+        "artist": "Sidartha Siliceo & Ramiro Rossotti",
         "title": "Kajuraho Reservoire (Instrumental Mix)"
+      },
+      {
+        "artist": "Rampue",
+        "title": "Sonnenblumencore"
       },
       {
         "t": 3998000,
         "artist": "Aretha Franklin",
-        "title": "Respect"
+        "title": "Respect (Nico Ortiz edit)"
       },
       {
         "t": 4224000,
         "artist": "DJ Le Roi",
-        "title": "I Get Deep (feat. Roland Clark) (Late Nite Tuff Guy Remix - Emanuel Satie Rework)"
+        "title": "I Get Deep (feat. Roland Clark) (Late Nite Tuff Guy Remix - Emanuel Satie Rework)",
+        "alerta": "Solo trackid: no está en la lista oficial"
+      },
+      {
+        "artist": "Billy Caso",
+        "title": "Parameter (MANUMAT deeper re-touch)"
       },
       {
         "t": 4512000,
         "artist": "Ornette",
-        "title": "Crazy (Nôze Remix - Extended Club Version)"
+        "title": "Crazy (Noze Remix)"
       },
       {
         "t": 4769000,
-        "artist": "Tigerbalm, Giorgio Lopez, Bernardo Pinheiro",
+        "artist": "Tigerbalm, Giorgio Lopez",
         "title": "Nayar (Bernardo Pinheiro Remix)"
       },
       {
         "t": 4999000,
         "artist": "Bizarre Billy",
-        "title": "Insomnia (Kano Koto Koxo Mix)"
+        "title": "Insomnia (Tangerine Dub Mix)"
+      },
+      {
+        "artist": "Ditti",
+        "title": "Dark Heart"
       },
       {
         "t": 5668000,
         "artist": "Midland",
-        "title": "Final Credits"
+        "title": "Final Credits (Agus O Closing Edit)"
       },
       {
         "t": 5672000,
         "artist": "Midland",
-        "title": "Final Credits (Mixed)"
+        "title": "Final Credits (Mixed)",
+        "alerta": "Solo trackid: no está en la lista oficial"
+      },
+      {
+        "artist": "Ana Tijoux",
+        "title": "1977 (Tom Zeta Maccabi Edit)"
       },
       {
         "t": 5978000,
@@ -7619,9 +7809,17 @@
         "title": "Ozongela (Nadav Dagon Remix)"
       },
       {
+        "artist": "Fer Br",
+        "title": "Jazzuuup"
+      },
+      {
         "t": 6532000,
-        "artist": "Pete Tong, HER-O, Jules Buckley",
+        "artist": "Pete Tong, HER-O, Jules Buckley, Robert Owens",
         "title": "Rose Rouge"
+      },
+      {
+        "artist": "The Soap Dragons",
+        "title": "Im Free (Nino Tores Edit)"
       },
       {
         "t": 7138000,
@@ -7633,8 +7831,7 @@
         "artist": "Yukazu",
         "title": "Rokoko (Dirty Doering Remix)"
       }
-    ],
-    "source": ""
+    ]
   },
   "https://soundcloud.com/thegardensofbabylon/socko-live-the-gardens-of-babylon-festival-2023": {
     "title": "Socko Live - The Gardens of Babylon Festival 2023",
@@ -10254,6 +10451,18 @@
   },
   "https://soundcloud.com/mistier/melodic-frequencies-001-mixed-by-anton-bass": {
     "title": "Melodic Frequencies - 001",
+    "ordered": true,
+    "source": "https://soundcloud.com/mistier/melodic-frequencies-001-mixed-by-anton-bass",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/mistier/melodic-frequencies-001-mixed-by-anton-bass"
+      },
+      {
+        "name": "1001tracklists",
+        "url": "https://www.1001tracklists.com/tracklist/1yx8pg9t/mistier-melodic-frequencies-001-2024-04-12.html"
+      }
+    ],
     "tracks": [
       {
         "t": 31000,
@@ -10268,7 +10477,7 @@
       {
         "t": 520000,
         "artist": "Volaris",
-        "title": "Close To You (3am In Tulum Extended Mix)"
+        "title": "Close to You"
       },
       {
         "t": 845000,
@@ -10277,18 +10486,24 @@
       },
       {
         "t": 1139000,
-        "artist": "Moderat, Keinemusik",
-        "title": "More Love (Rampa &ME Remix)"
+        "artist": "Rampa, &Me, Keinemusik",
+        "title": "More Love (Rampa &Me Remix) - Keinemusik}"
       },
       {
         "t": 1280000,
         "artist": "Mind Against",
-        "title": "OnlyL ft. TSHA & NIMMO"
+        "title": "OnlyL ft. TSHA & NIMMO",
+        "alerta": "Solo trackid: no está en la lista oficial"
+      },
+      {
+        "artist": "Only ft. TSHA & Nimmo",
+        "title": "Nimmo, Mind Against, TSHA",
+        "alerta": "1001tracklists dice: Mind Against vs. TSHA ft. Nimmo – OnlyL"
       },
       {
         "t": 1568000,
         "artist": "Aerofeel5, Vakabular",
-        "title": "Under Your Skin (Extended Mix)"
+        "title": "Under Your Skin"
       },
       {
         "t": 1885000,
@@ -10298,22 +10513,23 @@
       {
         "t": 2166000,
         "artist": "Trilucid",
-        "title": "For Another Life (Extended Mix)"
+        "title": "For Another Life"
       },
       {
         "t": 2487000,
         "artist": "Vakabular",
-        "title": "Special Vibe (Extended Mix)"
+        "title": "Special Vibe"
       },
       {
         "t": 2813000,
         "artist": "Habitatt",
-        "title": "Fly With Me (Extended Mix)"
+        "title": "Fly With Me"
       },
       {
         "t": 3007000,
         "artist": "Brian Cid",
-        "title": "Follow Who"
+        "title": "Follow Who",
+        "alerta": "Solo trackid: no está en la lista oficial"
       },
       {
         "t": 3121000,
@@ -10322,11 +10538,10 @@
       },
       {
         "t": 3330000,
-        "artist": "Sultan + Shepard, LANKS",
-        "title": "Highest Love (Extended Mix)"
+        "artist": "Sultan & Shepard, LANKS",
+        "title": "Highest Love"
       }
-    ],
-    "source": ""
+    ]
   },
   "https://soundcloud.com/akumandra/mezcla-85-fahlberg-akumandra": {
     "title": "Mezcla 85 / Fahlberg / Akumandra",
@@ -10699,66 +10914,87 @@
   },
   "https://soundcloud.com/lohraspkansara/house-keeping-057": {
     "title": "House Keeping 057",
+    "ordered": true,
+    "source": "https://soundcloud.com/lohraspkansara/house-keeping-057",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/lohraspkansara/house-keeping-057"
+      },
+      {
+        "name": "1001tracklists",
+        "url": "https://www.1001tracklists.com/tracklist/21svpus1/lohrasp-kansara-house-keeping-057-2026-01-30.html"
+      }
+    ],
     "tracks": [
       {
         "t": 140000,
-        "artist": "Jude & Frank",
-        "title": "Pra Nao Dizer Que Não Falei Das Flores (Extended Mix) (Extended Mix)"
+        "artist": "Jude & Frank, Lohrasp Kansara",
+        "title": "Pra Nao Dizer Que Nao Falei Das Flores"
       },
       {
         "t": 393000,
         "artist": "Lohrasp Kansara",
-        "title": "I Follow Rivers"
+        "title": "I Follow Rivers",
+        "alerta": "Solo trackid: no está en la lista oficial"
       },
       {
         "t": 621000,
         "artist": "Andrea Oliva",
-        "title": "Don't Be Sad (Extended Mix)"
+        "title": "Don't Be Sad"
       },
       {
         "t": 918000,
-        "artist": "Aaron Sevilla",
+        "artist": "Alba Dreid, Aaron Sevilla, Andres Matheus",
         "title": "Oye Mi Canto"
       },
       {
         "t": 1297000,
-        "artist": "Fahlberg",
+        "artist": "Arodes, Fahlberg",
         "title": "If Your Girl Only Knew"
       },
       {
         "t": 1601000,
-        "artist": "Guztavo Pt",
+        "artist": "Guztavo PT, Mizak",
         "title": "Damelo"
       },
       {
         "t": 1714000,
-        "artist": "Maesic",
-        "title": "Hold It (Extended Mix)"
+        "artist": "Maesic, Kilimanjaro, Zentola",
+        "title": "Hold It"
       },
       {
         "t": 1916000,
-        "artist": "Eran Hersh",
-        "title": "Tik Tok (Extended Mix)"
+        "artist": "Eran Hersh, DJ Free Spirit, Tekkman",
+        "title": "Tik Tok"
       },
       {
         "t": 2125000,
-        "artist": "Andres Matheus",
-        "title": "Me Gusta (Extended Mix)"
+        "artist": "Massianello, Andres Matheus",
+        "title": "Me Gusta"
       },
       {
         "t": 2422000,
-        "artist": "Kintar, Lohrasp Kansara",
-        "title": "Temple of Doom (Extended Mix)"
+        "artist": "Kintar & Lohrasp Kansara",
+        "title": "Temple Of Doom"
+      },
+      {
+        "artist": "Safar, Benda Haloy, Hind Ennaira",
+        "title": "Janguariye"
       },
       {
         "t": 2976000,
-        "artist": "Karl Cotbrum",
+        "artist": "Karl Cotbrum, Joy Marquez",
         "title": "Out Of Mind (Joy Marquez Rework)"
       },
       {
+        "artist": "Karl Cotbrum",
+        "title": "Out Of Mind 2026 (Joy Marquez Remix)"
+      },
+      {
         "t": 3249000,
-        "artist": "La Santa Music",
-        "title": "Amohana (Extended Mix) (Extended Mix)"
+        "artist": "La Santa, Craig Leo",
+        "title": "Amohana"
       },
       {
         "t": 3501000,
@@ -10777,18 +11013,31 @@
       },
       {
         "t": 4293000,
-        "artist": "Jesús Fernández, NenaHalena",
+        "artist": "Jesus Fernandez, NenaHalena",
         "title": "Tribal Mood"
       },
       {
         "t": 4450000,
         "artist": "Narasimha",
-        "title": "Wakili"
+        "title": "Wakili",
+        "alerta": "Solo trackid: no está en la lista oficial"
+      },
+      {
+        "artist": "Genairo Nvilla",
+        "title": "Shaka"
+      },
+      {
+        "artist": "Allan Nunez",
+        "title": "Tambora"
       },
       {
         "t": 5208000,
-        "artist": "PAUZA, Arema Arega",
-        "title": "Monte (Rizzo (Col) Remix)"
+        "artist": "Pauza, Arema Arega",
+        "title": "Monte (Rizzo Col Remix)"
+      },
+      {
+        "artist": "John Alto",
+        "title": "What I Feel"
       },
       {
         "t": 5801000,
@@ -10796,33 +11045,45 @@
         "title": "Kick It Back"
       },
       {
+        "artist": "SILAS (UK)",
+        "title": "Drumba"
+      },
+      {
+        "artist": "Tony Romera",
+        "title": "Map"
+      },
+      {
         "t": 6275000,
         "artist": "Tiga",
-        "title": "Mind Dimension (Adam Sellouk Extended Remix)"
+        "title": "Mind Dimension (Adam Sellouk Remix)"
+      },
+      {
+        "artist": "Trish O",
+        "title": "Get Down"
       },
       {
         "t": 6812000,
-        "artist": "Aden Rémai",
+        "artist": "Illyus & Barrientos, Aden Remai",
         "title": "Deep Down"
       },
       {
         "t": 7060000,
-        "artist": "Sam Frandisco & Steve Martano",
-        "title": "Together (Extended Mix)"
+        "artist": "Sam Frandisco, Steve Martano",
+        "title": "Together"
       },
       {
         "t": 7411000,
-        "artist": "Robin M, Robin Michelangelo",
-        "title": "Pampero (Radio Edit) (Radio Edit)"
+        "artist": "Robin M",
+        "title": "Pampero"
       },
       {
         "t": 7591000,
-        "artist": "Crusy",
+        "artist": "Crusy, Karretero",
         "title": "Magic Sax"
       },
       {
         "t": 7892000,
-        "artist": "Calussa",
+        "artist": "Calussa & Melizos",
         "title": "305"
       },
       {
@@ -10832,32 +11093,40 @@
       },
       {
         "t": 8587000,
-        "artist": "Illyus Barrientos",
+        "artist": "Illyus & Barrientos",
         "title": "Baz Bouncy Thang"
       },
       {
         "t": 8740000,
         "artist": "Genairo Nvilla",
-        "title": "Aries (Extended Mix)"
+        "title": "Aries"
+      },
+      {
+        "artist": "The Rumbar",
+        "title": "El Timbal (David Novacek Remix)"
+      },
+      {
+        "artist": "Meloko, Garla",
+        "title": "Slow Down (Kashovski Remix)"
       },
       {
         "t": 9579000,
         "artist": "Juliann",
-        "title": "Driftin' (Extended Mix)"
+        "title": "Driftin'"
       },
       {
         "t": 9777000,
-        "artist": "David Tort",
-        "title": "Let Me Love U (Extended Mix)"
+        "artist": "David Tort, Markem",
+        "title": "Let Me Love You"
       },
       {
         "t": 9974000,
         "artist": "Sharam",
-        "title": "Get Wild (Andrea Oliva & Jaquet Extended Remix)"
+        "title": "Get Wild (Andrea Oliva & Jaquet Remix)"
       },
       {
         "t": 10219000,
-        "artist": "Bedouin",
+        "artist": "Bedouin, Marlene",
         "title": "Reason (Robin M Remix)"
       },
       {
@@ -10873,65 +11142,68 @@
       {
         "t": 11139000,
         "artist": "DJ Spencer",
-        "title": "Kuumba"
+        "title": "Kuuba"
       },
       {
         "t": 11434000,
-        "artist": "Aytiwan",
-        "title": "Believe (Radio Edit)"
+        "artist": "Aytiwan & Harmonique",
+        "title": "Believe"
       },
       {
         "t": 11641000,
-        "artist": "Paakman",
-        "title": "Un Beso (Extended Mix)"
+        "artist": "Paakman, DJ Free Spirit",
+        "title": "Un Beso"
       },
       {
         "t": 11967000,
-        "artist": "DJ Satelite",
-        "title": "Donkili Ye (Extended Mix)"
+        "artist": "DJ Satelite, DJ Galio, Seres Producoes",
+        "title": "Donkili Ye"
       },
       {
         "t": 12294000,
-        "artist": "Maziri",
+        "artist": "Maziri Feat. Tissilawen",
         "title": "Tamiditine (Alex Twin Remix)"
       },
       {
         "t": 12480000,
-        "artist": "Maziri",
-        "title": "Tamiditine (Fnx Omar Remix)"
+        "artist": "Maziri Feat. Tissilawen",
+        "title": "Tamiditine (FNX Omar Remix)"
       },
       {
         "t": 12654000,
         "artist": "Moeaike",
-        "title": "Lift Me High (Extended Mix)"
+        "title": "Lift Me High"
       },
       {
         "t": 12917000,
-        "artist": "Juany Bravo, Dean Mickoski, Alé Kumá, Morenita",
-        "title": "Camisola (Extended Mix)"
+        "artist": "Juany Bravo, Dean Mickoski",
+        "title": "Camisola"
       },
       {
         "t": 13339000,
-        "artist": "Francis Mercier, Mark Borino",
+        "artist": "Francis Mercier, Mark Morino",
         "title": "All My Life"
       },
       {
         "t": 13544000,
-        "artist": "Simone Vitullo",
-        "title": "Cracks (feat. Cari Golden)"
+        "artist": "Simone Vitullo Feat. Cari Golden",
+        "title": "Cracks"
       },
       {
         "t": 13918000,
-        "artist": "andhim",
+        "artist": "Ameme, Andhim, Malou",
         "title": "Feel The Love (Hotlap Remix)"
       },
       {
         "t": 14231000,
-        "artist": "Marcus Santoro",
-        "title": "Back to Life"
+        "artist": "Marcus Santoro, Hix, Suvi",
+        "title": "Back To Life"
+      },
+      {
+        "artist": "Tony Shades",
+        "title": "Runi"
       }
-    ],
-    "source": ""
+    ]
   },
   "https://soundcloud.com/pink-mammoth-official/sapphira-solstice-pink-mammoth-burning-man-2025": {
     "title": "Sapphira Solstice - Pink Mammoth - Burning Man 2025",
@@ -11209,46 +11481,85 @@
   },
   "https://soundcloud.com/anjunadeep/the-anjunadeep-edition-438": {
     "title": "The Anjunadeep Edition 438 with Romain Garcia",
+    "ordered": true,
+    "source": "https://soundcloud.com/anjunadeep/the-anjunadeep-edition-438",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/anjunadeep/the-anjunadeep-edition-438"
+      }
+    ],
     "tracks": [
+      {
+        "artist": "Romain Garcia",
+        "title": "Everybody Dreams (Anjunadeep)"
+      },
       {
         "t": 348000,
         "artist": "Romain Garcia",
-        "title": "Lights (Extended Mix)"
+        "title": "Lights (Anjunadeep)"
       },
       {
         "t": 827000,
         "artist": "Romain Garcia",
-        "title": "Burning (Radio Edit) (Radio Edit)"
+        "title": "Burning (Kidding Aside)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "Lophorina (Anjunadeep)"
       },
       {
         "t": 1539000,
         "artist": "Romain Garcia",
-        "title": "Waves"
+        "title": "Waves (Kidding Aside)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "Blue Parrot (Anjunadeep)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "ID (White)"
       },
       {
         "t": 2425000,
         "artist": "Teho",
-        "title": "At Any Cost (Romain Garcia Remix)"
+        "title": "At Any Cost [Romain Garcia Remix] (Labo T)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "ID (White)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "Night Memory (Anjunadeep)"
       }
-    ],
-    "source": ""
+    ]
   },
   "https://soundcloud.com/ilmodo/the-progcast-episode-313": {
     "title": "The Progcast - Episode 313 - Massio",
+    "ordered": true,
+    "source": "https://soundcloud.com/ilmodo/the-progcast-episode-313",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/ilmodo/the-progcast-episode-313"
+      }
+    ],
     "tracks": [
       {
         "t": 59000,
-        "artist": "Ewerseen",
+        "artist": "Ewerseen, Fonsa, Jäger feat. Alex Laine",
         "title": "Jealous"
       },
       {
         "t": 284000,
-        "artist": "atsou, Non Grata (GR)",
-        "title": "Here to Stay"
+        "artist": "atsou, Non Grata (GR) feat. Rondo Mo",
+        "title": "Here to Stay (MIDH 095)"
       },
       {
         "t": 546000,
-        "artist": "Arodes",
+        "artist": "arodes",
         "title": "Gwele (Extended Mix)"
       },
       {
@@ -11259,7 +11570,7 @@
       {
         "t": 964000,
         "artist": "OZO",
-        "title": "Doha"
+        "title": "DOHA (ch4yn master__24bit)"
       },
       {
         "t": 1196000,
@@ -11269,12 +11580,12 @@
       {
         "t": 1383000,
         "artist": "Massuma",
-        "title": "Mermaid"
+        "title": "Mermaid (Original Mix)"
       },
       {
         "t": 1666000,
         "artist": "Yanick",
-        "title": "No Need To Stop"
+        "title": "No Need To Stop (Original Mix)"
       },
       {
         "t": 1890000,
@@ -11283,8 +11594,12 @@
       },
       {
         "t": 2084000,
-        "artist": "Tayllor, Paakman, Okan Evci",
+        "artist": "ID ID",
         "title": "Rise Up"
+      },
+      {
+        "artist": "Marciiano, Daniel Dahan",
+        "title": "Midbar (Extended Mix)"
       },
       {
         "t": 2490000,
@@ -11299,71 +11614,146 @@
       {
         "t": 3002000,
         "artist": "Alex Twin",
-        "title": "E O Meu Axé"
+        "title": "E O Meu Axe (Extended Mix)"
+      },
+      {
+        "artist": "Klangkarussell",
+        "title": "Let Me Come To Life (Mickey Dastinz Remix)"
       },
       {
         "t": 3571000,
-        "artist": "Hyenah",
+        "artist": "Hyenah feat Miči",
         "title": "This Moment"
       }
-    ],
-    "source": ""
+    ]
   },
   "https://soundcloud.com/youngr_music/youngr-live-from-cova-santa-ibiza": {
     "title": "Youngr - Live From Cova Santa, Ibiza",
+    "ordered": true,
+    "source": "https://soundcloud.com/youngr_music/youngr-live-from-cova-santa-ibiza",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/youngr_music/youngr-live-from-cova-santa-ibiza"
+      }
+    ],
     "tracks": [
       {
-        "t": 506000,
+        "t": 0,
+        "artist": "",
+        "title": "Intro Jam"
+      },
+      {
+        "t": 180000,
+        "artist": "",
+        "title": "Flesh & Bones"
+      },
+      {
+        "t": 295000,
+        "artist": "",
+        "title": "Put Me Together"
+      },
+      {
+        "t": 480000,
         "artist": "youngr",
         "title": "Tried So Hard"
       },
       {
-        "t": 1151000,
+        "t": 720000,
+        "artist": "",
+        "title": "Everybody"
+      },
+      {
+        "t": 870000,
+        "artist": "",
+        "title": "Gypsy"
+      },
+      {
+        "t": 1110000,
         "artist": "youngr",
         "title": "Wild & Untamed"
       },
       {
-        "t": 1387000,
+        "t": 1342000,
         "artist": "youngr",
         "title": "The Bam Bam Song"
       },
       {
-        "t": 1684000,
+        "t": 1560000,
         "artist": "youngr",
-        "title": "Love in the Room"
+        "title": "Love In The Room"
       },
       {
-        "t": 3266000,
+        "t": 2085000,
+        "artist": "",
+        "title": "Chop Suey / Papa Roach Mashup"
+      },
+      {
+        "t": 2245000,
+        "artist": "",
+        "title": "Move Ya Boddee (unreleased)"
+      },
+      {
+        "t": 2760000,
+        "artist": "",
+        "title": "Zombie"
+      },
+      {
+        "t": 3163000,
         "artist": "Sevek, Hannah Boleyn & Youngr",
-        "title": "Trouble (Extended Mix)"
+        "title": "Trouble ft. Hannah Boleyn"
       },
       {
-        "t": 3867000,
+        "t": 3420000,
+        "artist": "",
+        "title": "Ace of Spades"
+      },
+      {
+        "t": 3780000,
         "artist": "youngr",
         "title": "RICH!"
       },
       {
-        "t": 4061000,
+        "t": 4050000,
         "artist": "youngr",
         "title": "Heavy Glow"
       },
       {
-        "t": 4722000,
+        "t": 4260000,
+        "artist": "",
+        "title": "Out Of The Blue ft. Samuel Miller"
+      },
+      {
+        "t": 4694000,
         "artist": "youngr",
-        "title": "Rhythm in your Soul"
+        "title": "Rhythm In Your Soul"
       },
       {
-        "t": 6378000,
+        "t": 5153000,
+        "artist": "",
+        "title": "The Drums Go..."
+      },
+      {
+        "t": 5485000,
+        "artist": "",
+        "title": "I'm Not A DJ"
+      },
+      {
+        "t": 5900000,
+        "artist": "",
+        "title": "God Put A Smile Upon My Face"
+      },
+      {
+        "t": 6353000,
         "artist": "The Temper Trap, Youngr",
-        "title": "Sweet Disposition (Bootleg)"
+        "title": "Sweet Disposition Bootleg"
       },
       {
-        "t": 6652000,
+        "t": 6650000,
         "artist": "Delerium",
-        "title": "Silence (Youngr’s 20 Years of Silence Remix)"
+        "title": "Silence"
       }
-    ],
-    "source": ""
+    ]
   },
   "https://soundcloud.com/mayanwarriorofficial/rebolledo-mayan-warrior-burning-man-2024": {
     "title": "Rebolledo - Mayan Warrior - Burning Man 2024",
@@ -11995,18 +12385,33 @@
     ]
   },
   "https://soundcloud.com/spreedelay/mimi-love-garbicz-2026": {
-    "source": "",
     "title": "Mimi Love @ Garbicz 2026 ◈ Seefloor",
+    "ordered": true,
+    "source": "https://soundcloud.com/spreedelay/mimi-love-garbicz-2026",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/spreedelay/mimi-love-garbicz-2026"
+      }
+    ],
     "tracks": [
+      {
+        "artist": "Ripperton, CLAUDYA AKA MASAYA",
+        "title": "Hey Kid (Original Mix)"
+      },
       {
         "t": 178000,
         "artist": "Motip White",
-        "title": "Swing Boat"
+        "title": "Swing Boat (Original Mix)"
       },
       {
         "t": 473000,
         "artist": "Anja Schneider",
-        "title": "I Care For You"
+        "title": "I Care For You (Original Mix)"
+      },
+      {
+        "artist": "Namito",
+        "title": "Snakes Don't Scare Me Anymore (Original Mix)"
       },
       {
         "t": 1012000,
@@ -12015,7 +12420,7 @@
       },
       {
         "t": 1323000,
-        "artist": "Tom Pooks, Joy Kitikonti",
+        "artist": "Joy Kitikonti, Tom Pooks",
         "title": "New Dawn (Kolombo Remix)"
       },
       {
@@ -12025,28 +12430,36 @@
       },
       {
         "t": 1798000,
-        "artist": "The S.O.S., Simkid",
+        "artist": "Simkid, Voah, The S.O.S.",
         "title": "Hot Juno (N-You-Up Velvet Extended Mix)"
       },
       {
         "t": 2180000,
         "artist": "Radeckt",
-        "title": "Gotta Get Down"
+        "title": "Gotta Get Down (Original Mix)"
       },
       {
         "t": 2464000,
         "artist": "Denis Horvat",
-        "title": "Tameen"
+        "title": "Tameen (Original Mix)"
+      },
+      {
+        "artist": "SIS",
+        "title": "Nesrib (2019 Remaster)"
       },
       {
         "t": 3070000,
         "artist": "Dumming Dum",
-        "title": "We All"
+        "title": "We All (Original Mix)"
       },
       {
         "t": 3395000,
-        "artist": "Agoria",
-        "title": "We Were Little (feat. NOEMIE) [Floyd Lavine Remix] (Floyd Lavine Remix)"
+        "artist": "Agoria, Rami Khalife, Noémie",
+        "title": "We Were Little (Floyd Lavine Remix)"
+      },
+      {
+        "artist": "Night Talk",
+        "title": "Traces (Original Mix)"
       },
       {
         "t": 4022000,
@@ -12055,53 +12468,53 @@
       },
       {
         "t": 4215000,
-        "artist": "King Britt pres. Oba Funke",
+        "artist": "King Britt, Oba Funke",
         "title": "Uzoamaka (Nuno Dos Santos Bonus Beats)"
       },
       {
         "t": 4376000,
-        "artist": "Agoria",
-        "title": "Getaway (Henrik Schwarz Dub) (Henrik Schwarz Dub)"
+        "artist": "Henrik Schwarz, Agoria",
+        "title": "Getaway (Henrik Schwarz Dub)"
       },
       {
         "t": 4695000,
-        "artist": "Maxim Lany",
-        "title": "Unusual concept"
+        "artist": "Maxim Lany, Guychu",
+        "title": "Unusual Concepts (Original Mix)"
       },
       {
         "t": 4928000,
         "artist": "Daniel Bortz",
-        "title": "Chortz"
+        "title": "Chortz (Original Mix)"
       },
       {
         "t": 5254000,
-        "artist": "Paons",
+        "artist": "Mattes K, Paons",
         "title": "Keshin (Extended Mix)"
       },
       {
         "t": 5544000,
         "artist": "Argia",
-        "title": "U Forgot"
+        "title": "U Forgot (Original Mix)"
       },
       {
         "t": 5847000,
         "artist": "Haffenfold",
-        "title": "Day & Age"
+        "title": "Day & Age (Original Mix)"
       },
       {
         "t": 6177000,
         "artist": "Grant (NYC)",
-        "title": "Simone"
+        "title": "Simone (Original Mix)"
       },
       {
         "t": 6472000,
         "artist": "Aera",
-        "title": "Golden Times"
+        "title": "Golden Times (Original Mix)"
       },
       {
         "t": 6771000,
         "artist": "Jimi Jules",
-        "title": "Dreamin'"
+        "title": "Dreamin' (Original Mix)"
       },
       {
         "t": 7058000,
@@ -12110,58 +12523,67 @@
       },
       {
         "t": 7263000,
-        "artist": "André Hommen",
-        "title": "Battery Park"
+        "artist": "Andre Hommen",
+        "title": "Battery Park (Original Mix)"
       },
       {
-        "t": 8056000,
-        "artist": "Notre Dame",
-        "title": "Discoteca Eterna"
+        "artist": "Harada",
+        "title": "Paws (Original Mix)"
+      },
+      {
+        "artist": "Amancay, Agustin Giri",
+        "title": "Fluido (Original Mix)"
       },
       {
         "t": 8095000,
         "artist": "James Harcourt",
-        "title": "Hydra"
+        "title": "Hydra (Original Mix)"
       },
       {
         "t": 8370000,
-        "artist": "Lazarusman",
-        "title": "In You Go"
+        "artist": "Lazarusman, Stimming",
+        "title": "In You Go (Original Mix)"
       },
       {
         "t": 8738000,
         "artist": "Bebetta",
-        "title": "Megalon"
+        "title": "Megalon (Original Mix)"
       },
       {
         "t": 9067000,
         "artist": "Kolombo",
-        "title": "Radiak"
+        "title": "Radiak (Original Mix)"
       },
       {
         "t": 9324000,
         "artist": "Angelov",
-        "title": "Casteri"
+        "title": "Casteri (Original Mix)"
+      },
+      {
+        "t": 8056000,
+        "artist": "Notre Dame",
+        "title": "Discoteca Eterna (Original Mix)"
       },
       {
         "t": 9620000,
         "artist": "Notre Dame",
-        "title": "Discoteca Eterna"
+        "title": "Discoteca Eterna",
+        "alerta": "Solo trackid: no está en la lista oficial"
       },
       {
         "t": 9868000,
         "artist": "Arm In Arm",
-        "title": "Wolves Change Rivers (Extended Mix) (Extended Mix)"
+        "title": "Wolves Change Rivers (Extended Mix)"
       },
       {
         "t": 10110000,
         "artist": "Nark",
-        "title": "Carl's K-Hole (Mike Simonetti Remix) (Mike Simonetti Remix)"
+        "title": "Carl's K-Hole  (Mike Simonetti Remix)"
       },
       {
         "t": 10465000,
         "artist": "Falko Brocksieper",
-        "title": "Punta Ayampe"
+        "title": "Punta Ayampe (Original Mix)"
       }
     ]
   },
@@ -14736,15 +15158,23 @@
   },
   "https://soundcloud.com/goldcap/the-goldcast-079-jul-2-2021-with-guestmix-by-anstascia": {
     "title": "The Goldcast 079 (Jul 2, 2021) with guestmix by Anstascia",
+    "ordered": true,
+    "source": "https://soundcloud.com/goldcap/the-goldcast-079-jul-2-2021-with-guestmix-by-anstascia",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/goldcap/the-goldcast-079-jul-2-2021-with-guestmix-by-anstascia"
+      }
+    ],
     "tracks": [
       {
         "t": 0,
-        "artist": "Jeweled Lotus, kośa records",
+        "artist": "Jeweled Lotus",
         "title": "Bliss Garden (Sevn Remix)"
       },
       {
         "t": 410000,
-        "artist": "Matanza, Dandara, Biomigrant",
+        "artist": "Matanza, Dandara & Biomigrant",
         "title": "Arrieta"
       },
       {
@@ -14754,13 +15184,17 @@
       },
       {
         "t": 1118000,
-        "artist": "kośa musica, Kapchiz",
-        "title": "Todo (Sahale)"
+        "artist": "Kapchiz",
+        "title": "Todo (Sahale Remix)"
       },
       {
         "t": 1544000,
         "artist": "Deisen",
         "title": "Cinderella (Canson Remix)"
+      },
+      {
+        "artist": "Janax Pacha",
+        "title": "Bamboo (Nubrada Remix)"
       },
       {
         "t": 2409000,
@@ -14773,24 +15207,28 @@
         "title": "Harmonum"
       },
       {
+        "artist": "The Oddness",
+        "title": "Between Dust And Rain"
+      },
+      {
         "t": 3170000,
         "artist": "Bliz Nochi",
         "title": "Amana Ku (AmuAmu Remix)"
       },
       {
         "t": 3591000,
-        "artist": "Marco Tegui, Rapossa",
-        "title": "Through the Night feat. Felix Raphael"
+        "artist": "Marco Tegui & Rapossa",
+        "title": "Through the Night"
       },
       {
         "t": 3905000,
-        "artist": "Alvaro Suarez",
+        "artist": "Alvaro Suarez & Gavio",
         "title": "Tantra (Andi Muller Remix)"
       },
       {
         "t": 4225000,
         "artist": "Niko Schwind",
-        "title": "Zugvögel"
+        "title": "Zugvogel"
       },
       {
         "t": 4516000,
@@ -14814,16 +15252,15 @@
       },
       {
         "t": 6332000,
-        "artist": "Nhii",
+        "artist": "Nhoi",
         "title": "Alchemist"
       },
       {
         "t": 6698000,
-        "artist": "Alexkid with Liset Alea",
+        "artist": "AlexKid & Lisa Alea",
         "title": "Nightshade (Alexkid Club Remix)"
       }
-    ],
-    "source": ""
+    ]
   },
   "https://soundcloud.com/anstascia/anstascia-princesa-lisbon-feb-2025": {
     "title": "ANSTASCIA @ PRINCESA LISBON FEB 2025",
@@ -15273,6 +15710,18 @@
   },
   "https://soundcloud.com/metanoia-radioshow/metanoia-pres-maradoca-exclusive-guestmix": {
     "title": "Metanoia pres. MARADOCA [Exclusive Guestmix]",
+    "ordered": true,
+    "source": "https://soundcloud.com/metanoia-radioshow/metanoia-pres-maradoca-exclusive-guestmix",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/metanoia-radioshow/metanoia-pres-maradoca-exclusive-guestmix"
+      },
+      {
+        "name": "1001tracklists",
+        "url": "https://www.1001tracklists.com/tracklist/fm45u9t/less-is-more-maradoca-metanoia-radioshow-332-2025-09-18.html"
+      }
+    ],
     "tracks": [
       {
         "t": 0,
@@ -15282,22 +15731,26 @@
       {
         "t": 241000,
         "artist": "Adam Ten, DvirNuns",
-        "title": "Comusa"
+        "title": "Comusa (Original Mix)"
       },
       {
         "t": 422000,
         "artist": "Guy J",
-        "title": "Karma (Radio Version)"
+        "title": "Karma (Original Mix)"
       },
       {
         "t": 596000,
-        "artist": "Gil Bokobza",
-        "title": "Isintu"
+        "artist": "Toshi, Gil Bokobza",
+        "title": "Isintu (Extended)"
       },
       {
         "t": 783000,
-        "artist": "SAFAR",
-        "title": "Love Parade"
+        "artist": "Safar (FR)",
+        "title": "Love Parade (Extended Mix)"
+      },
+      {
+        "artist": "M3SIA",
+        "title": "Echos Of Kayi (Dirilis Ertugrul Bootleg)"
       },
       {
         "t": 1232000,
@@ -15307,7 +15760,7 @@
       {
         "t": 1541000,
         "artist": "Emi Galvan",
-        "title": "Supernova"
+        "title": "Supernova (Original Mix)"
       },
       {
         "t": 1875000,
@@ -15317,22 +15770,22 @@
       {
         "t": 2167000,
         "artist": "Ali Farahani, Tutchev Space",
-        "title": "Wakabam"
+        "title": "Wakabam (Original Mix)"
       },
       {
         "t": 2360000,
-        "artist": "Illusionize, Silver Panda",
-        "title": "Sully"
+        "artist": "illusionize, Emy Perez, Silver Panda",
+        "title": "Sully (Original Mix)"
       },
       {
         "t": 2571000,
-        "artist": "Silver Panda, Sevenn",
+        "artist": "Sevenn, Silver Panda",
         "title": "Welcome The Night (Extended Mix)"
       },
       {
         "t": 2829000,
         "artist": "Atric",
-        "title": "Reset Me"
+        "title": "Reset Me (Original Mix)"
       },
       {
         "t": 3012000,
@@ -15341,13 +15794,13 @@
       },
       {
         "t": 3213000,
-        "artist": "TH;EN",
+        "artist": "Th;en",
         "title": "Illusionist (Extended Mix)"
       },
       {
         "t": 3518000,
         "artist": "Fur Coat, Lexer",
-        "title": "Far Away"
+        "title": "Far Away (Original Mix)"
       },
       {
         "t": 3680000,
@@ -15356,21 +15809,20 @@
       },
       {
         "t": 3931000,
-        "artist": "ZAFRIR",
-        "title": "Um"
+        "artist": "Zafrir",
+        "title": "Um (Original Mix)"
       },
       {
         "t": 4176000,
         "artist": "Starkato, Intaktogene",
-        "title": "Choral"
+        "title": "Choral (Original Mix)"
       },
       {
         "t": 4386000,
-        "artist": "andhim",
-        "title": "You're Not Alone"
+        "artist": "Andhim",
+        "title": "You're Not Alone (Extended)"
       }
-    ],
-    "source": ""
+    ]
   },
   "https://soundcloud.com/rauschhaus/rauschhaus-mystic-creatures-2025-freaky-forest": {
     "title": "Rauschhaus | Mystic Creatures 2025 | Freaky Forest",
@@ -15465,10 +15917,18 @@
   },
   "https://soundcloud.com/david_haskins/deep-melodic-house-037": {
     "title": "Deep Melodic House #037 - feat. David Hohme, Traumhouse, Slow Ted & more...",
+    "ordered": true,
+    "source": "https://soundcloud.com/david_haskins/deep-melodic-house-037",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/david_haskins/deep-melodic-house-037"
+      }
+    ],
     "tracks": [
       {
         "t": 0,
-        "artist": "David Hasert, Shlomi",
+        "artist": "David Hasert & Shlomi",
         "title": "Patience (David Hohme Remix)"
       },
       {
@@ -15478,13 +15938,13 @@
       },
       {
         "t": 387000,
-        "artist": "David Hohme",
+        "artist": "David Hohme & Dustin Nantais",
         "title": "In Your Sway (Jiminy Hop Remix)"
       },
       {
         "t": 656000,
         "artist": "Guy Didden",
-        "title": "Venture (Extended Mix)"
+        "title": "Venture"
       },
       {
         "t": 926000,
@@ -15498,18 +15958,18 @@
       },
       {
         "t": 1382000,
-        "artist": "Lafreq, Sabryna",
-        "title": "Little Secret"
+        "artist": "Lafreq & Sabryna",
+        "title": "Little Secret (Original Mix)"
       },
       {
         "t": 1546000,
-        "artist": "Satoshi Fumi",
-        "title": "The Heart of Universe (Robert R. Hardy Dub Mix)"
+        "artist": "Satoshi Fumi & Victoria RAY",
+        "title": "The Heart of Universe (Robert R Hardy Remix)"
       },
       {
         "t": 1732000,
         "artist": "Augusto Grimoldi",
-        "title": "Pampa"
+        "title": "Pampa (Original Mix)"
       },
       {
         "t": 2011000,
@@ -15518,8 +15978,8 @@
       },
       {
         "t": 2312000,
-        "artist": "Alej Ch, Nathan Katz",
-        "title": "Pulsar (Extended Mix) (Extended Mix)"
+        "artist": "Alej Ch & Nathan Katz",
+        "title": "Pulsar (Extended Mix)"
       },
       {
         "t": 2603000,
@@ -15529,28 +15989,35 @@
       {
         "t": 2783000,
         "artist": "Emi Galvan",
-        "title": "Supernova"
+        "title": "Supernova (Extended Mix)"
       },
       {
         "t": 3056000,
-        "artist": "Tryger, NAASA",
+        "artist": "Tryger & NAASA",
         "title": "Night Train (Extended Mix)"
       },
       {
         "t": 3306000,
         "artist": "Hernán Torres",
-        "title": "Liquid"
+        "title": "Liquid (Original Mix)"
       }
-    ],
-    "source": ""
+    ]
   },
   "https://soundcloud.com/brandondimichele/club-house-mix-summer-2025-part-4": {
     "title": "Club House Mix - Summer 2025 part 4",
+    "ordered": true,
+    "source": "https://soundcloud.com/brandondimichele/club-house-mix-summer-2025-part-4",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/brandondimichele/club-house-mix-summer-2025-part-4"
+      }
+    ],
     "tracks": [
       {
         "t": 46000,
-        "artist": "Federico Epis",
-        "title": "Missing Sunshine"
+        "artist": "Federico Epis feat. Olya Gram",
+        "title": "Missing Sunshine (Original Mix)"
       },
       {
         "t": 287000,
@@ -15569,8 +16036,8 @@
       },
       {
         "t": 1038000,
-        "artist": "Emi Galvan, NOIYSE PROJECT",
-        "title": "Connection"
+        "artist": "Emi Galvan & NOIYSE PROJECT",
+        "title": "Connection (Original Mix)"
       },
       {
         "t": 1261000,
@@ -15580,7 +16047,7 @@
       {
         "t": 1527000,
         "artist": "ELECGROUND",
-        "title": "Magnetosphere (Extended Mix) (Extended Mix)"
+        "title": "Magnetosphere (Extended Mix)"
       },
       {
         "t": 1727000,
@@ -15600,12 +16067,12 @@
       {
         "t": 2547000,
         "artist": "Navar",
-        "title": "Indian Sun"
+        "title": "Indian Sun (Original Mix)"
       },
       {
         "t": 2957000,
         "artist": "Julieta Kühnle",
-        "title": "Full of Nothing"
+        "title": "Full of Nothing (Original Mix)"
       },
       {
         "t": 3204000,
@@ -15615,7 +16082,7 @@
       {
         "t": 3527000,
         "artist": "Lane 8 feat. Matthew Dear",
-        "title": "Undercover (Yotto Remix)"
+        "title": "Undercover (YOTTO Remix)"
       },
       {
         "t": 3707000,
@@ -15625,7 +16092,7 @@
       {
         "t": 3919000,
         "artist": "John Digweed, Nick Muir, Spencer Brown",
-        "title": "Relentless"
+        "title": "Relentless (Original Mix)"
       },
       {
         "t": 4128000,
@@ -15645,20 +16112,19 @@
       {
         "t": 4823000,
         "artist": "Emi Galvan",
-        "title": "Supernova"
+        "title": "Supernova (Original Mix)"
       },
       {
         "t": 5068000,
         "artist": "Gaston Sosa",
-        "title": "Mayo"
+        "title": "Mayo (Original Mix)"
       },
       {
         "t": 5224000,
         "artist": "RÜFÜS DU SOL",
         "title": "Breathe (Deer Jade Remix)"
       }
-    ],
-    "source": ""
+    ]
   },
   "https://soundcloud.com/deephousebucharest/dhb-radio-014-w-colm": {
     "title": "DHB Radio 014 w. Colm",
@@ -15945,54 +16411,83 @@
   },
   "https://soundcloud.com/anjunadeep/the-anjunadeep-edition-555": {
     "title": "The Anjunadeep Edition 555 with Cornelius SA",
+    "ordered": true,
+    "source": "https://soundcloud.com/anjunadeep/the-anjunadeep-edition-555",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/anjunadeep/the-anjunadeep-edition-555"
+      },
+      {
+        "name": "1001tracklists",
+        "url": "https://www.1001tracklists.com/tracklist/1ql0gz79/cornelius-sa-the-anjunadeep-edition-555-2025-07-10.html"
+      }
+    ],
     "tracks": [
+      {
+        "artist": "ID",
+        "title": "ID (White)"
+      },
       {
         "t": 174000,
         "artist": "Cornelius SA",
-        "title": "My Love For You (Mixed)"
+        "title": "My Love For You (Anjunadeep)"
       },
       {
         "t": 476000,
-        "artist": "Cornelius SA",
-        "title": "Falling feat. Claxy, Ra5im (Juan Sapia Remix)"
+        "artist": "Cornelius SA feat. Claxy & Ra5im",
+        "title": "Falling [Juan Sapia Remix] (Musique de Lune)"
       },
       {
         "t": 880000,
-        "artist": "A.M.R, Cornelius SA",
-        "title": "Amber Sunlight Falls"
+        "artist": "A.M.R & Cornelius SA",
+        "title": "Amber Sunlight Falls (Monstercat)"
       },
       {
         "t": 1098000,
         "artist": "Tagavaka",
-        "title": "Sanctuary (Extended Mix)"
+        "title": "Sanctuary (Anjunadeep)"
       },
       {
         "t": 1600000,
         "artist": "Durante",
-        "title": "Follow (Extended Mix)"
+        "title": "Follow (Extended Mix)",
+        "alerta": "Solo trackid: no está en la lista oficial"
+      },
+      {
+        "artist": "ID",
+        "title": "ID (White)"
+      },
+      {
+        "artist": "Durante feat. Running Touch",
+        "title": "Fellow (Anjunadeep)",
+        "alerta": "1001tracklists dice: Durante ft. Running Touch – Follow"
       },
       {
         "t": 2027000,
         "artist": "Emi Galvan",
-        "title": "Supernova"
+        "title": "Supernova (Melody Of the Soul)"
       },
       {
         "t": 2484000,
-        "artist": "Ilias Katelanos, Plecta, Alexandra Savvidi",
-        "title": "Nymfes"
+        "artist": "Ilias Katelanos, Plecta & Alexandra Savvidi",
+        "title": "Nymfes (Melody Of the Soul)"
       },
       {
         "t": 2754000,
-        "artist": "M.O.S., Ilias Katelanos, Plecta, Alexandra Savvidi",
-        "title": "When We Are Alone"
+        "artist": "M.O.S., Ilias Katelanos, Plecta & Alexandra Savvidi",
+        "title": "When We’re Alone (Melody Of the Soul)"
       },
       {
         "t": 3105000,
         "artist": "Four Tet",
-        "title": "Into Dust (Still Falling)"
+        "title": "Into Dust (Still Falling) (XL Recordings)"
+      },
+      {
+        "artist": "ID",
+        "title": "ID (White)"
       }
-    ],
-    "source": ""
+    ]
   },
   "https://soundcloud.com/thegardensofbabylon/the-night-sky-25-arc": {
     "title": "The Night Sky '25 - ARC",
@@ -16269,7 +16764,23 @@
   },
   "https://soundcloud.com/goldcap/the-goldcast-162-feb-20-2026": {
     "title": "The Goldcast 162 (Feb 20, 2026) with guestmix by Sound of Mint",
+    "ordered": true,
+    "source": "https://soundcloud.com/goldcap/the-goldcast-162-feb-20-2026",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/goldcap/the-goldcast-162-feb-20-2026"
+      },
+      {
+        "name": "1001tracklists",
+        "url": "https://www.1001tracklists.com/tracklist/1x4255w1/goldcap-sound-of-mint-the-goldcast-162-2026-02-20.html"
+      }
+    ],
     "tracks": [
+      {
+        "artist": "Nato (FR)",
+        "title": "Baako"
+      },
       {
         "t": 292000,
         "artist": "Bahri Bekil",
@@ -16311,19 +16822,52 @@
         "title": "Feel Me (Maxxim Extended Remix)"
       },
       {
-        "t": 3220000,
-        "artist": "Paul Losev",
-        "title": "Ròmy (Extended Mix)"
+        "t": 5819000,
+        "artist": "Ecklectic Mick",
+        "title": "Say no to the Devil"
       },
       {
-        "t": 5819000,
-        "artist": "Moodymann",
-        "title": "No"
+        "t": 3220000,
+        "artist": "Paul Losev",
+        "title": "Ròmy (Extended Mix)"
       },
       {
         "t": 5931000,
         "artist": "Calabasa",
-        "title": "Pulse Majeur"
+        "title": "Pulse Majeur",
+        "alerta": "Solo trackid: no está en la lista oficial"
+      },
+      {
+        "artist": "Sound of Mint",
+        "title": "We are one: The Journey (Unreleased)"
+      },
+      {
+        "artist": "Sound of Mint",
+        "title": "From The Ashes to the Flame (Unreleased)"
+      },
+      {
+        "artist": "Sound of Mint",
+        "title": "Sometimes The Music Plays You (Unreleased)"
+      },
+      {
+        "artist": "Sound of Mint",
+        "title": "Tiniri (Unreleased)"
+      },
+      {
+        "artist": "Sound of Mint",
+        "title": "Together We Rise (Unreleased)"
+      },
+      {
+        "artist": "Sound of Mint",
+        "title": "Nina Meets Brazil (Unreleased)"
+      },
+      {
+        "artist": "Sound of Mint",
+        "title": "I'm Just A Happy Soul (Unreleased)"
+      },
+      {
+        "artist": "Moodymann",
+        "title": "No"
       },
       {
         "t": 6097000,
@@ -16333,22 +16877,45 @@
       {
         "t": 6383000,
         "artist": "Julius Papp",
-        "title": "Spatium (Main)"
+        "title": "Spatium (main) (2020 retouch)"
+      },
+      {
+        "artist": "Sound of Mint",
+        "title": "Le Griot Paul Bimbi"
+      },
+      {
+        "artist": "Sound of Mint",
+        "title": "Ode To Ali (Unreleased)"
+      },
+      {
+        "artist": "Sound of Mint",
+        "title": "Tsa'hik (Unreleased)"
       }
-    ],
-    "source": ""
+    ]
   },
   "https://soundcloud.com/goldcap/the-goldcast-159-jan-30-2026": {
     "title": "The Goldcast 159 (Jan 30, 2026) with guestmix by Malek Mhedhbi",
+    "ordered": true,
+    "source": "https://soundcloud.com/goldcap/the-goldcast-159-jan-30-2026",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/goldcap/the-goldcast-159-jan-30-2026"
+      },
+      {
+        "name": "1001tracklists",
+        "url": "https://www.1001tracklists.com/tracklist/289hf6zt/goldcap-malek-mhedhbi-the-goldcast-159-2026-01-30.html"
+      }
+    ],
     "tracks": [
       {
         "t": 29000,
         "artist": "Brooklyn Funk Essentials",
-        "title": "Bust The Bus Stop"
+        "title": "Bust The Bus Stop (Instrumental)"
       },
       {
         "t": 306000,
-        "artist": "KVM",
+        "artist": "KVM & Wisdom",
         "title": "That Girl (Nwata) (Extended)"
       },
       {
@@ -16377,79 +16944,88 @@
         "title": "Trendafil"
       },
       {
+        "t": 3480000,
+        "artist": "Mollono.Bass",
+        "title": "You (Extended Mix)"
+      },
+      {
+        "artist": "NYTO",
+        "title": "Seraphin"
+      },
+      {
         "t": 2598000,
         "artist": "Ella Jenkins",
-        "title": "Wade In The Water"
+        "title": "Wade In The Water (Goldcap Beatless Edit)"
       },
       {
         "t": 2853000,
-        "artist": "Ricardo Illic",
-        "title": "Sciamanica (Extended)"
+        "artist": "Ricardo Illic & DEMIAN ANENKU",
+        "title": "Sciamanica (Extended Mix)"
       },
       {
         "t": 3098000,
-        "artist": "David Petros",
+        "artist": "David Petros & Patrik Khach",
         "title": "Clarinetino"
-      },
-      {
-        "t": 3480000,
-        "artist": "Novak",
-        "title": "Can You Feel It"
       },
       {
         "t": 3762000,
         "artist": "Josef Schumacher",
-        "title": "Rhythm"
+        "title": "Rhythm (Extended Mix)"
+      },
+      {
+        "artist": "Novak",
+        "title": "Can You Feel It (Extended Mix)"
       },
       {
         "t": 4096000,
         "artist": "D'AL SENIO",
-        "title": "Diga"
+        "title": "Diga (HVMZA Remix)"
       },
       {
         "t": 4137000,
         "artist": "D'AL SENIO",
-        "title": "Diga (HVMZA Remix)"
+        "title": "Diga (HVMZA Remix)",
+        "alerta": "Solo trackid: no está en la lista oficial"
       },
       {
         "t": 4391000,
-        "artist": "Tech Panda, Kenzani",
-        "title": "JIJA (Radio Edit) (Radio Edit)"
+        "artist": "Tech Panda x Kenzani",
+        "title": "Jija (Extended Mix)"
       },
       {
         "t": 4693000,
-        "artist": "Tech Panda, Kenzani",
-        "title": "Rebirth (Radio Edit) (Radio Edit)"
+        "artist": "Tech Panda x Kenzani",
+        "title": "Rebirth"
       },
       {
         "t": 4920000,
         "artist": "Matizze",
-        "title": "Urban Jungle (Extended Mix)"
+        "title": "Urban Jungle  (Extended Mix)"
       },
       {
         "t": 5159000,
-        "artist": "Enzo Siffredi",
+        "artist": "Enzo Siffredi & PÆDE & Noxx ft. Cesaar",
         "title": "Another Day (Extended Mix)"
       },
       {
         "t": 5484000,
-        "artist": "Malek Mhedhbi",
+        "artist": "Malek Mhedhbi x Chook",
         "title": "Tumbaku"
       },
       {
         "t": 5741000,
-        "artist": "Enzo Siffredi",
+        "artist": "Malek Mhedhbi x Chook",
         "title": "Allez Allez"
       },
       {
         "t": 5946000,
-        "artist": "HUGEL",
+        "artist": "HUGEL, SOLTO",
         "title": "Jamaican (Bam Bam) (Extended Mix)"
       },
       {
         "t": 6202000,
-        "artist": "AVÖ",
-        "title": "DiscoBall (Extended Mix)"
+        "artist": "Nasso",
+        "title": "Discoball"
       },
       {
         "t": 6684000,
@@ -16458,11 +17034,10 @@
       },
       {
         "t": 6833000,
-        "artist": "Africanism",
+        "artist": "Malek Mhedhbi & Africanism",
         "title": "Dunu Daanu"
       }
-    ],
-    "source": ""
+    ]
   },
   "https://soundcloud.com/djdiass/diass-the-reactor-sunset-playa-venao-panama-april-2024": {
     "title": "Diass @ THE REACTOR Sunset (Playa Venao, Panama) April 2024",
@@ -17566,6 +18141,2004 @@
         "t": 7305000,
         "artist": "Bill Withers",
         "title": "Lovely Day"
+      }
+    ]
+  },
+  "https://soundcloud.com/aboveandbeyond/group-therapy-650-with-above": {
+    "title": "Group Therapy 650 with Above & Beyond and Romain Garcia",
+    "ordered": true,
+    "source": "https://soundcloud.com/aboveandbeyond/group-therapy-650-with-above",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/aboveandbeyond/group-therapy-650-with-above"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Above & Beyond",
+        "title": "Sun In Your Eyes [Marsh Remix] (Anjunabeats)"
+      },
+      {
+        "artist": "Cosmic Gate",
+        "title": "You (Wake Your Mind)"
+      },
+      {
+        "artist": "Le Youth & Lipless feat. Hana Fatur",
+        "title": "i don’t know what to say (This Never Happened)"
+      },
+      {
+        "artist": "J Ribbon",
+        "title": "Won’t Stop (Anjunabeats)"
+      },
+      {
+        "artist": "M.O.S.",
+        "title": "Beyond Your Mind [Durante Remix] (UV)"
+      },
+      {
+        "artist": "Michael Cassette",
+        "title": "Space Rocket (Anjunadeep)"
+      },
+      {
+        "artist": "Guy Didden feat. ALLKNIGHT",
+        "title": "Astray (Colorize)"
+      },
+      {
+        "artist": "Tinlicker feat. Hero Baldwin",
+        "title": "I Want My Freedom (PIAS)"
+      },
+      {
+        "artist": "DJ Chus & Leo Guardo & Jordan Arts",
+        "title": "Find You (Armada)"
+      },
+      {
+        "artist": "L.GU. & Pete K",
+        "title": "This Moment (Colorize)"
+      },
+      {
+        "artist": "John Grand",
+        "title": "Corazon (Euphonic)"
+      },
+      {
+        "artist": "Feiertag",
+        "title": "Rise (Anjunadeep Explorations)"
+      },
+      {
+        "artist": "Andy Duguid & Chelsea Holland",
+        "title": "You and I (Black Hole)"
+      },
+      {
+        "artist": "Jody Wisternoff",
+        "title": "Sweetest Thing [Marsh Remix] (Anjunadeep)"
+      },
+      {
+        "artist": "Sunny Lax",
+        "title": "Thoth (Enhanced Progressive)"
+      },
+      {
+        "artist": "Joris Voorn",
+        "title": "Tomorrow [Sultan + Shepard Remix] (Armada)"
+      },
+      {
+        "artist": "Lycii",
+        "title": "Breath (Enhanced Progressive)"
+      },
+      {
+        "artist": "Nümind",
+        "title": "Butterfiles [Michael Cassette Remix] (Euphonic)"
+      },
+      {
+        "artist": "CVMRN",
+        "title": "Shine (CVMRN)"
+      },
+      {
+        "artist": "Above & Beyond and Justine Suissa",
+        "title": "Alright Now [Above & Beyond Club Mix] (Anjunabeats)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "Next To You (Anjunadeep)"
+      },
+      {
+        "artist": "Romain Garcia feat. Mondingo",
+        "title": "Desire (Anjunadeep)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "Digital Diva (Anjunadeep)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "Heya (Anjunadeep)"
+      },
+      {
+        "artist": "Ross Quinn & Punctual",
+        "title": "Omen [Romain Garcia Remix] (Helix)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "Used To (Anjunadeep)"
+      }
+    ]
+  },
+  "https://soundcloud.com/anjunadeep/the-anjunadeep-edition-388": {
+    "title": "The Anjunadeep Edition 388 with Romain Garcia",
+    "ordered": true,
+    "source": "https://soundcloud.com/anjunadeep/the-anjunadeep-edition-388",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/anjunadeep/the-anjunadeep-edition-388"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Romain Garcia",
+        "title": "Ona (Anjunadeep)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "Mysterious Bird (Kidding Aside)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "White Flag (Ton Töpferei)"
+      },
+      {
+        "artist": "Romain Garcia x Douran",
+        "title": "ID (White)"
+      },
+      {
+        "artist": "Ben Böhmer & Romain Garcia",
+        "title": "Cappadocia (Cercle)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "Lights (Anjunadeep)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "ID (White)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "Syamo (Kidding Aside)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "Before You Go (Anjunadeep)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "Blue Parrot (Anjunadeep)"
+      },
+      {
+        "artist": "Lydsten",
+        "title": "Calcite [Romain Garcia Remix] (Enlace Records)"
+      }
+    ]
+  },
+  "https://soundcloud.com/cerclelive/carlita-set": {
+    "title": "Carlita at Cinecittà in Rome, Italy for Cercle",
+    "ordered": true,
+    "source": "https://soundcloud.com/cerclelive/carlita-set",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/cerclelive/carlita-set"
+      }
+    ],
+    "tracks": [
+      {
+        "t": 0,
+        "artist": "Astra Club",
+        "title": "Landing ft Julietta (unreleased)"
+      },
+      {
+        "t": 193000,
+        "artist": "Jasper James & Wallace",
+        "title": "Tatacha (unreleased)"
+      },
+      {
+        "t": 507000,
+        "artist": "Mochakk, Joni",
+        "title": "Da Fonk (feat. Joni)"
+      },
+      {
+        "t": 703000,
+        "artist": "Radio Slave",
+        "title": "Wait A Minute"
+      },
+      {
+        "t": 895000,
+        "artist": "Makree",
+        "title": "Came To Groove (Extended Mix)"
+      },
+      {
+        "t": 1158000,
+        "artist": "Axel Boman",
+        "title": "Nokturn (Grand Finale)"
+      },
+      {
+        "t": 1389000,
+        "artist": "The Heartists",
+        "title": "Belo Horizonti"
+      },
+      {
+        "t": 1767000,
+        "artist": "Sean Finn & DJ Wady & Moondark",
+        "title": "Pasilda (CASSIMM Remix)"
+      },
+      {
+        "t": 2014000,
+        "artist": "Arno Cost, Norman Doray",
+        "title": "Show Luv (Extended Mix)"
+      },
+      {
+        "t": 2307000,
+        "artist": "Bertani, Tognarelli",
+        "title": "Voulez Vous (Original Mix)"
+      },
+      {
+        "t": 2501000,
+        "artist": "DJ Chus",
+        "title": "Underwater"
+      },
+      {
+        "t": 2831000,
+        "artist": "YouANDme",
+        "title": "Ppppp (Diva Mix)"
+      },
+      {
+        "t": 3140000,
+        "artist": "Tiga",
+        "title": "Mind Dimension (Ben Sterling Remix)"
+      },
+      {
+        "t": 3433000,
+        "artist": "LP Giobbi",
+        "title": "Georgia (Extended) (unreleased)"
+      },
+      {
+        "t": 3714000,
+        "artist": "andhim & Carlita",
+        "title": "Nation (unreleased)"
+      },
+      {
+        "t": 3990000,
+        "artist": "Carlita",
+        "title": "Bon Trip"
+      },
+      {
+        "t": 4309000,
+        "artist": "Carlita",
+        "title": "Cash for Love (unreleased)"
+      },
+      {
+        "t": 4568000,
+        "artist": "Mind Against",
+        "title": "ID"
+      },
+      {
+        "t": 4912000,
+        "artist": "Andhim",
+        "title": "Nice to meet you"
+      },
+      {
+        "t": 5253000,
+        "artist": "Carlita, DJ Tennis, Alex Metric",
+        "title": "Cinecittà (Cercle Records)"
+      },
+      {
+        "t": 5674000,
+        "artist": "",
+        "title": "Interview with Carlita"
+      }
+    ]
+  },
+  "https://soundcloud.com/danjunadj/deep-space-183-deep-melodic-house-yotto-simon-doty-lane-8-oliver-smith-tinlicker-romain-garcia": {
+    "title": "Deep Space #183: Deep Melodic House: Yotto, Simon Doty, Lane 8, Oliver Smith, Tinlicker, Romain Garcia",
+    "ordered": true,
+    "source": "https://soundcloud.com/danjunadj/deep-space-183-deep-melodic-house-yotto-simon-doty-lane-8-oliver-smith-tinlicker-romain-garcia",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/danjunadj/deep-space-183-deep-melodic-house-yotto-simon-doty-lane-8-oliver-smith-tinlicker-romain-garcia"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Thomas Compana",
+        "title": "The Beautiful Lake (Original Mix)"
+      },
+      {
+        "artist": "Tinlicker",
+        "title": "Dream With Somebody (Extended Mix)"
+      },
+      {
+        "artist": "Daniel Testas",
+        "title": "On a Moon River (Original Mix)"
+      },
+      {
+        "artist": "Hessian, Courtney Storm",
+        "title": "Heartbeat (Extended Mix)"
+      },
+      {
+        "artist": "Dabeat, Kamilo Sanclemente",
+        "title": "Nightalkers (Original Mix)"
+      },
+      {
+        "artist": "Neuralis",
+        "title": "Event Horizon (Cendryma Remix)"
+      },
+      {
+        "artist": "Nordfold",
+        "title": "Soul Seek (Extended Mix)"
+      },
+      {
+        "artist": "Oliver Smith",
+        "title": "Make Me Feel (Extended Mix)"
+      },
+      {
+        "artist": "Parallel Voices",
+        "title": "Still (Extended Mix)"
+      },
+      {
+        "artist": "Pierce Fulton",
+        "title": "Kuaga (Yotto Remix)"
+      },
+      {
+        "artist": "PRAANA, Julia Church",
+        "title": "Lullaby (Bound To Divide Extended Remix)"
+      },
+      {
+        "artist": "Rebelski",
+        "title": "The Sirens (Tim Green Remix)"
+      },
+      {
+        "artist": "Rodriguez Jr., Jan Blomqvist",
+        "title": "Destination Lost (Extended Mix)"
+      },
+      {
+        "artist": "Romain Garcia, Mondingo",
+        "title": "Desire feat. Mondingo (Extended Mix)"
+      },
+      {
+        "artist": "The Dualz",
+        "title": "Hold On (Extended Mix)"
+      },
+      {
+        "artist": "Simon Doty",
+        "title": "Footloose (Extended Mix)"
+      },
+      {
+        "artist": "Underworld",
+        "title": "Two Months Off (Tim Green Remix)"
+      },
+      {
+        "artist": "Volaris",
+        "title": "Slow Motion (Extended Mix)"
+      },
+      {
+        "artist": "Yotto, Anden",
+        "title": "Grouplove (Extended Mix)"
+      },
+      {
+        "artist": "Ben Böhmer",
+        "title": "Strangers (Original Mix)"
+      },
+      {
+        "artist": "Lane 8",
+        "title": "Little Voices (Original Mix)"
+      },
+      {
+        "artist": "Le Youth",
+        "title": "Chills (Extended Mix)"
+      },
+      {
+        "artist": "YOTTO",
+        "title": "Flash Pattern (Extended Mix)"
+      }
+    ]
+  },
+  "https://soundcloud.com/danjunadj/deep-space-2025-top-50-deep-melodic-house-tunes-marsh-yotto-romain-garcia-fahlburg-nordfold": {
+    "title": "Deep Space 2025 Top 50 Deep Melodic House Tunes: Marsh, Yotto, Romain Garcia, Fahlburg, Nordfold",
+    "ordered": true,
+    "source": "https://soundcloud.com/danjunadj/deep-space-2025-top-50-deep-melodic-house-tunes-marsh-yotto-romain-garcia-fahlburg-nordfold",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/danjunadj/deep-space-2025-top-50-deep-melodic-house-tunes-marsh-yotto-romain-garcia-fahlburg-nordfold"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Marsh, Volen Sentir, XIRA",
+        "title": "Different (Original Mix)"
+      },
+      {
+        "artist": "Garlington",
+        "title": "Weightless (Extended Mix)"
+      },
+      {
+        "artist": "Bridges, molly (USA)",
+        "title": "Daylight (Extended Mix)"
+      },
+      {
+        "artist": "Leo Stannard, Banyan",
+        "title": "Drive All Night (Extended Mix)"
+      },
+      {
+        "artist": "Moone",
+        "title": "Rushing In (Extended Mix)"
+      },
+      {
+        "artist": "Thaylo",
+        "title": "Stand Your Ground (Extended Mix)"
+      },
+      {
+        "artist": "Hessian, Courtney Storm",
+        "title": "Heartbeat (Extended Mix)"
+      },
+      {
+        "artist": "Hessian, Anan Prince, molly (USA)",
+        "title": "Dawn (Extended Mix)"
+      },
+      {
+        "artist": "Tinlicker, Boxer Rebellion",
+        "title": "Diamonds (Further Than I Ever Was)"
+      },
+      {
+        "artist": "Contenance",
+        "title": "A New Colour (Extended Mix)"
+      },
+      {
+        "artist": "Fahlberg",
+        "title": "Memory Lane (Original Mix)"
+      },
+      {
+        "artist": "Panama, Massane",
+        "title": "Nowhere To Hide (Angara Extended Remix)"
+      },
+      {
+        "artist": "Albuquerque",
+        "title": "Permission (Original Mix)"
+      },
+      {
+        "artist": "Fahlberg",
+        "title": "Make You Feel (Original Mix)"
+      },
+      {
+        "artist": "Zankee Gulati",
+        "title": "Mind Opener (Marsh Extended Remix)"
+      },
+      {
+        "artist": "Nordfold",
+        "title": "Praise The Sun (Extended Mix)"
+      },
+      {
+        "artist": "YOTTO, Something Good",
+        "title": "Love Shop (Extended Mix)"
+      },
+      {
+        "artist": "Nils Hoffmann, Chloe",
+        "title": "Rivers (feat. Chloe) (Fat Sushi Remix)"
+      },
+      {
+        "artist": "MXV, Courtney Storm, molly (USA)",
+        "title": "Wander (Extended Mix)"
+      },
+      {
+        "artist": "Ezequiel Arias",
+        "title": "Love Rhythm (Extended Mix)"
+      },
+      {
+        "artist": "Jordin Post",
+        "title": "Everwonder (Extended Mix)"
+      },
+      {
+        "artist": "Kaskade, Lipless",
+        "title": "State Of Mind (Extended Mix)"
+      },
+      {
+        "artist": "MXV, L.G.U., Coulson",
+        "title": "Spend My Days (Extended Mix)"
+      },
+      {
+        "artist": "Phonic, Alar",
+        "title": "Should We Go Home (Extended Mix)"
+      },
+      {
+        "artist": "Avoure, Gio Santi",
+        "title": "Always On My Mind (Original Mix)"
+      },
+      {
+        "artist": "Helsloot, Mees Salomé",
+        "title": "Solace (Extended Mix)"
+      },
+      {
+        "artist": "Quiver, Dave Seaman, Trilucid, Leo Wood, Ewan Hoo’s Army",
+        "title": "Voice Recognition (feat. Leo Wood) (Trilucid Club Remix)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "Alone (Extended Mix)"
+      },
+      {
+        "artist": "Matt Fax",
+        "title": "Versa (Extended Mix)"
+      },
+      {
+        "artist": "Ophanim",
+        "title": "Taiga (Extended Mix)"
+      },
+      {
+        "artist": "Rebel Of Sleep",
+        "title": "Distant Thoughts (Extended Mix)"
+      },
+      {
+        "artist": "Run Rivers, Banaati",
+        "title": "It All Comes Down To You (Extended Mix)"
+      },
+      {
+        "artist": "Royksopp, Susanne Sundfor",
+        "title": "Running To The Sea (feat. Susanne Sundfor) (Aname Remix)"
+      },
+      {
+        "artist": "Slow Ted",
+        "title": "Antarctica (Jack Willard Remix)"
+      },
+      {
+        "artist": "Sound Quelle",
+        "title": "Ah Up (M.O.S Extended Remix)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "Tokyo Mafia (Extended Mix)"
+      },
+      {
+        "artist": "Juan Sapia",
+        "title": "Illusion Of Time (Extended Mix)"
+      },
+      {
+        "artist": "Thysma",
+        "title": "Save Me (Extended Mix)"
+      },
+      {
+        "artist": "RÜFÜS DU SOL",
+        "title": "In the Moment (GHEIST Remix)"
+      },
+      {
+        "artist": "Garlington",
+        "title": "Chasing the Moment (Extended Mix)"
+      },
+      {
+        "artist": "Guy Didden, Mats Westbroek",
+        "title": "Rising Sun (Extended Mix)"
+      },
+      {
+        "artist": "Robin Tordjman",
+        "title": "Educated Wish (Original Mix)"
+      },
+      {
+        "artist": "D-Nox, Andre Moret",
+        "title": "Brisa (Extended Mix)"
+      },
+      {
+        "artist": "Eel Todeo, Rinzen",
+        "title": "The Sound of Hope (Extended Mix)"
+      },
+      {
+        "artist": "Ophanim",
+        "title": "Opus (Extended Mix)"
+      },
+      {
+        "artist": "Nordfold",
+        "title": "Soul Seek (Extended Mix)"
+      },
+      {
+        "artist": "Dinia, Lynnix, ItsArius",
+        "title": "Maze Of Memories (Extended Mix)"
+      },
+      {
+        "artist": "Booka Shade, Helsloot",
+        "title": "Broken Glass (Helsloot Extended Remix)"
+      },
+      {
+        "artist": "Nicolas Viana",
+        "title": "Blaze (Original Mix)"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "Next To You (Extended Mix)"
+      }
+    ]
+  },
+  "https://soundcloud.com/djlexgreen/dj-lex-green-presents-guestmix-277-diego-antoine-santiago-chile": {
+    "title": "DJ LEX GREEN presents GUESTMIX #277 - Diego Antoine (Santiago, Chile)",
+    "ordered": true,
+    "source": "https://soundcloud.com/djlexgreen/dj-lex-green-presents-guestmix-277-diego-antoine-santiago-chile",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/djlexgreen/dj-lex-green-presents-guestmix-277-diego-antoine-santiago-chile"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Billy Dancer",
+        "title": "Fidelity"
+      },
+      {
+        "artist": "Soundsinsane , Diego Antoine",
+        "title": "Los Niños Que Gritan"
+      },
+      {
+        "artist": "Mario Clavasquin , Diego Antoine",
+        "title": "IKI"
+      },
+      {
+        "artist": "Hixe",
+        "title": "Out Of Control"
+      },
+      {
+        "artist": "Diego Antoine , Monokromo & Pretty Young Sounds",
+        "title": "Paradise"
+      },
+      {
+        "artist": "Dayne Harris",
+        "title": "As We Dance"
+      },
+      {
+        "artist": "Soundsinsane x Diego Antoine",
+        "title": "I LIKED"
+      },
+      {
+        "artist": "Diego Antoine",
+        "title": "Bendita Obsesion"
+      },
+      {
+        "artist": "Frank-lo, Aldo & 4Step",
+        "title": "Tiburon (Original Mix)"
+      },
+      {
+        "artist": "Diego Antoine & Soundsinsane",
+        "title": "Mariposa (Extended)"
+      },
+      {
+        "artist": "Alonse Burg",
+        "title": "She Moving"
+      },
+      {
+        "artist": "Villow",
+        "title": "Bailar"
+      },
+      {
+        "artist": "Von Beck, David Schaffer",
+        "title": "Got The Hit"
+      },
+      {
+        "artist": "ARTBAT",
+        "title": "Dance"
+      }
+    ]
+  },
+  "https://soundcloud.com/goldcap/the-goldcast-154-dec-26-2025-fair-thee-well-25": {
+    "title": "The Goldcast 154 (Dec 26, 2025)  Fair Thee Well 25'",
+    "ordered": true,
+    "source": "https://soundcloud.com/goldcap/the-goldcast-154-dec-26-2025-fair-thee-well-25",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/goldcap/the-goldcast-154-dec-26-2025-fair-thee-well-25"
+      },
+      {
+        "name": "1001tracklists",
+        "url": "https://www.1001tracklists.com/tracklist/1nrftf6t/goldcap-the-goldcast-154-2025-12-26.html"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "MI.LA",
+        "title": "Zlato"
+      },
+      {
+        "artist": "Yamil",
+        "title": "Loneliness"
+      },
+      {
+        "artist": "MakhmuriaN",
+        "title": "Dance With Me (Extended Mix)"
+      },
+      {
+        "artist": "Mt Axel",
+        "title": "Ozongela"
+      },
+      {
+        "artist": "Nüur & X.A.M.A.N.",
+        "title": "Ritmo Salvaje"
+      },
+      {
+        "artist": "AtalaiA",
+        "title": "Banquet of Birds"
+      },
+      {
+        "artist": "Nickewer & Lautaro Deem",
+        "title": "Almaty Nights"
+      },
+      {
+        "artist": "Raw Main",
+        "title": "Skydome"
+      },
+      {
+        "artist": "Augusto Yepes",
+        "title": "Indian Flair"
+      },
+      {
+        "artist": "Evan Hatfield",
+        "title": "It's Hot Outside"
+      },
+      {
+        "artist": "Faith Evans",
+        "title": "Love Like This (Abel Ray & Yaya Alen Edit)"
+      },
+      {
+        "artist": "Inamo",
+        "title": "Secret Keeper (Ramiro Rossotti Instrumental Mix)"
+      },
+      {
+        "artist": "DakhaBrakha",
+        "title": "Yanki"
+      },
+      {
+        "artist": "Felix E",
+        "title": "Marion feat. Sister Sol"
+      },
+      {
+        "artist": "D.Tzere",
+        "title": "Takatik (Extended Mix)"
+      },
+      {
+        "artist": "Proluction",
+        "title": "And Again Okanake"
+      },
+      {
+        "artist": "Farolinho & Kiko Navarro feat. Hannah Nedas & Ivan St. Ives",
+        "title": "Alaroye Yokode"
+      },
+      {
+        "artist": "DJ Disse",
+        "title": "Real Roots"
+      },
+      {
+        "artist": "Marco Bosco & Alter Disco",
+        "title": "Pau"
+      },
+      {
+        "artist": "Rex Stax & Lizwi",
+        "title": "Lion (Sarab & Hunter (TN) Remix)"
+      },
+      {
+        "artist": "Marian (BR)",
+        "title": "Paradiso"
+      },
+      {
+        "artist": "about : river",
+        "title": "Premature Escape"
+      },
+      {
+        "artist": "Dina Ögon",
+        "title": "Orden Brann"
+      }
+    ]
+  },
+  "https://soundcloud.com/goldcap/the-goldcast-155-jan-2-2026-with-guestmix-by-ceej": {
+    "title": "The Goldcast 155 (Jan 2, 2026) with guestmix by CEEJ",
+    "ordered": true,
+    "source": "https://soundcloud.com/goldcap/the-goldcast-155-jan-2-2026-with-guestmix-by-ceej",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/goldcap/the-goldcast-155-jan-2-2026-with-guestmix-by-ceej"
+      },
+      {
+        "name": "1001tracklists",
+        "url": "https://www.1001tracklists.com/tracklist/1dc8pxkk/goldcap-ceej-the-goldcast-155-2026-01-02.html"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Evan Hatfield",
+        "title": "Wiggle"
+      },
+      {
+        "artist": "Maziri",
+        "title": "La Historia"
+      },
+      {
+        "artist": "Laaar",
+        "title": "Water Therapy"
+      },
+      {
+        "artist": "Malek Mhedhbi & Chook",
+        "title": "Alle Alle"
+      },
+      {
+        "artist": "Marcelo Berges",
+        "title": "Niños (MoM & Alvaro Suarez Remix)"
+      },
+      {
+        "artist": "Alin Dragan",
+        "title": "Cova Santa"
+      },
+      {
+        "artist": "Mt Axel",
+        "title": "Ozongela (Los Tigres Del Futuro Remix)"
+      },
+      {
+        "artist": "Nüur",
+        "title": "Soul Afrobionic"
+      },
+      {
+        "artist": "Rafael Santti",
+        "title": "Medina (Extended Mix)"
+      },
+      {
+        "artist": "Soudant",
+        "title": "Sway (Blackloud Remix)"
+      },
+      {
+        "artist": "MP3 & Shammalee",
+        "title": "Inshallah"
+      },
+      {
+        "artist": "Rey Vercosa, Cris Proenca, Lipy",
+        "title": "A Cor E Rosa (Remix)"
+      },
+      {
+        "artist": "DOT (BR), Rachel Reis",
+        "title": "Eu Vou Pra Bahia (Extended Mix)"
+      },
+      {
+        "artist": "YASS",
+        "title": "Kayini Wura"
+      },
+      {
+        "artist": "João Vaz Rosário",
+        "title": "Injabulo"
+      },
+      {
+        "artist": "Téodoro",
+        "title": "Yema"
+      },
+      {
+        "artist": "Lauren, Gotti (RO)",
+        "title": "CUCURILIA"
+      },
+      {
+        "artist": "SGX, Dave Ruthwell",
+        "title": "Spoor (Saad Al-Hussainy (DJ SIR-J Remix))"
+      },
+      {
+        "artist": "Stoja, JOHN ELLE, Zorden",
+        "title": "Teodora (Extended Mix)"
+      },
+      {
+        "artist": "Jabato, Moree MK, Manu VS, AbdelMoula",
+        "title": "RIF MYSTIC"
+      },
+      {
+        "artist": "Brezzilla",
+        "title": "Shepherd’s Dance"
+      },
+      {
+        "artist": "Valeron, Aaron Sevilla, Carlos Tadros",
+        "title": "La Vida"
+      },
+      {
+        "artist": "Nicolas Noura",
+        "title": "Noches En Malaga (Extended Mix)"
+      },
+      {
+        "artist": "Ale Kuma, Cumbiafrica, MORENITA",
+        "title": "La Noche (Extended Club Mix)"
+      }
+    ]
+  },
+  "https://soundcloud.com/goldcap/the-goldcast-157-jan-16-2026": {
+    "title": "The Goldcast 157 (Jan 16, 2026) Friday Frydays Vol. 3",
+    "ordered": true,
+    "source": "https://soundcloud.com/goldcap/the-goldcast-157-jan-16-2026",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/goldcap/the-goldcast-157-jan-16-2026"
+      },
+      {
+        "name": "1001tracklists",
+        "url": "https://www.1001tracklists.com/tracklist/131b00y9/goldcap-the-goldcast-157-2026-01-16.html"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Robert Plant",
+        "title": "Gospel Plough (live @ Tiny Desk)"
+      },
+      {
+        "artist": "Unknown Mortal Orchestra",
+        "title": "Necessary Evil"
+      },
+      {
+        "artist": "Nina Hagen",
+        "title": "Jai Mata Kali Jai Mata Durge"
+      },
+      {
+        "artist": "Glass Beams",
+        "title": "Mahal"
+      },
+      {
+        "artist": "Las Grecas",
+        "title": "Anabalina (Remasterizado)"
+      },
+      {
+        "artist": "Okay Temiz",
+        "title": "Denizalti Ruzgarlan"
+      },
+      {
+        "artist": "Roger Waters",
+        "title": "Perfect Sense, Pt. I"
+      },
+      {
+        "artist": "Hindi Zahra",
+        "title": "Ahiawa"
+      },
+      {
+        "artist": "Chicha Libre",
+        "title": "El Borrachito"
+      },
+      {
+        "artist": "Hossam Ramzy",
+        "title": "Rumbapa (Father of Rumba)"
+      },
+      {
+        "artist": "Apparat",
+        "title": "Stereo Rock And Roll"
+      },
+      {
+        "artist": "Richard In Your Mind",
+        "title": "Shooting Star"
+      },
+      {
+        "artist": "Mildlife",
+        "title": "Automatic"
+      },
+      {
+        "artist": "Romare",
+        "title": "All Night"
+      },
+      {
+        "artist": "IMARHAN",
+        "title": "Tahabort"
+      },
+      {
+        "artist": "Gabor Szabo",
+        "title": "Galatea's Guitar"
+      },
+      {
+        "artist": "The Very Best",
+        "title": "Hear Me"
+      },
+      {
+        "artist": "Hagalaz Runedance",
+        "title": "The Dawning"
+      },
+      {
+        "artist": "The Doors",
+        "title": "Gloria   (Live)"
+      },
+      {
+        "artist": "Angkanang Kunchai",
+        "title": "Teoy Salap Pamaa"
+      },
+      {
+        "artist": "Ultimate Spinach",
+        "title": "(Ballad of the) Hip Death Goddess"
+      },
+      {
+        "artist": "Gypsy Caravan",
+        "title": "Al Likindoy"
+      },
+      {
+        "artist": "Le Trio Joubran",
+        "title": "Masar"
+      },
+      {
+        "artist": "Robert Plant",
+        "title": "Everybody's Song (live @ Tiny Desk)"
+      },
+      {
+        "artist": "Homayoun Shajarian",
+        "title": "Iran-e Man"
+      }
+    ]
+  },
+  "https://soundcloud.com/goldcap/the-goldcast-160-feb-6-2026": {
+    "title": "The Goldcast 160 (Feb 6, 2026) with guestmix by Herhangi",
+    "ordered": true,
+    "source": "https://soundcloud.com/goldcap/the-goldcast-160-feb-6-2026",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/goldcap/the-goldcast-160-feb-6-2026"
+      },
+      {
+        "name": "1001tracklists",
+        "url": "https://www.1001tracklists.com/tracklist/1v89buft/goldcap-herhangi-the-goldcast-160-2026-02-06.html"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "SECR3T KEY",
+        "title": "Karmic Dance"
+      },
+      {
+        "artist": "Gassan & Rvckhimov",
+        "title": "On Weekend (Extended Mix)"
+      },
+      {
+        "artist": "Valdovinos & Transformation",
+        "title": "A Time to Love (Abuk Remix)"
+      },
+      {
+        "artist": "Adrien (RO)",
+        "title": "La Luna (D'AL SENIO Extended Remix)"
+      },
+      {
+        "artist": "KADI (IL)",
+        "title": "Lose Control feat. Naama Gali (Extended Mix)"
+      },
+      {
+        "artist": "84 Avenue",
+        "title": "Station Cygne (Extended Mix)"
+      },
+      {
+        "artist": "Peter Power",
+        "title": "Golden Ripples"
+      },
+      {
+        "artist": "Bodaishin & Santi Jaff",
+        "title": "Frydha (Extended Mix)"
+      },
+      {
+        "artist": "Mt Axel",
+        "title": "Ozongela (Nadav Dagon Remix)"
+      },
+      {
+        "artist": "Robbie Akbal & Aaron Suiss",
+        "title": "Time Left"
+      },
+      {
+        "artist": "Chris Leon & Dairo",
+        "title": "Like A P."
+      },
+      {
+        "artist": "Nato (FR)",
+        "title": "Baako (Mr Raoul K Remix)"
+      },
+      {
+        "artist": "AIWAA",
+        "title": "Music Is Life (AmuAmu Remix)"
+      },
+      {
+        "artist": "So®rio®s",
+        "title": "Diaspora"
+      },
+      {
+        "artist": "Augenstein",
+        "title": "Circles (Temple Tears Remix)"
+      },
+      {
+        "artist": "Iva Bodul",
+        "title": "Dancing Mountains"
+      },
+      {
+        "artist": "Mettabbana",
+        "title": "Teoc  (K2W0 Remix) - Mettabbana"
+      },
+      {
+        "artist": "Sydka",
+        "title": "Night Creed (Original Mix)"
+      },
+      {
+        "artist": "K2W0, Vyomacci",
+        "title": "Splitalfields"
+      },
+      {
+        "artist": "dotdotdot",
+        "title": "Blue - dotdotdot"
+      },
+      {
+        "artist": "dotdotdot",
+        "title": "Red"
+      },
+      {
+        "artist": "Derrok & Biomigrant",
+        "title": "SueÒo Profundo (Just Emma Remix)"
+      },
+      {
+        "artist": "The Oddness",
+        "title": "The Golden Tides"
+      },
+      {
+        "artist": "Bassara",
+        "title": "Let Go (Flave & Urem Remix)"
+      },
+      {
+        "artist": "Roze",
+        "title": "1984 (U®berhaupt & Auﬂerdem Remix)"
+      },
+      {
+        "artist": "Kolja",
+        "title": "Aufgeregt In Saalfeld (‹berhaupt & Auﬂerdem Remix)"
+      }
+    ]
+  },
+  "https://soundcloud.com/goldcap/the-goldcast-161-feb-13-2026": {
+    "title": "The Goldcast 161 (Feb 13, 2026) Friday Frydays Vol. 4",
+    "ordered": true,
+    "source": "https://soundcloud.com/goldcap/the-goldcast-161-feb-13-2026",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/goldcap/the-goldcast-161-feb-13-2026"
+      },
+      {
+        "name": "1001tracklists",
+        "url": "https://www.1001tracklists.com/tracklist/2mh68zsk/goldcap-the-goldcast-161-2026-02-13.html"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Ahmed Fakroun",
+        "title": "Ansani"
+      },
+      {
+        "artist": "Chicha Libre",
+        "title": "Tres Pasajeros"
+      },
+      {
+        "artist": "Taraf de Haïdouks",
+        "title": "Hora ca la ursari"
+      },
+      {
+        "artist": "The Blues Project",
+        "title": "No Time Like The Right Time (Single Version)"
+      },
+      {
+        "artist": "The Hygrades",
+        "title": "Rough Rider"
+      },
+      {
+        "artist": "The Brian Jonestown Massacre",
+        "title": "Anemone"
+      },
+      {
+        "artist": "Ahmed Ben Ali",
+        "title": "Subhana"
+      },
+      {
+        "artist": "The Funkees",
+        "title": "Acid Rock"
+      },
+      {
+        "artist": "Capsula",
+        "title": "Dice Man"
+      },
+      {
+        "artist": "Ragnarok",
+        "title": "Dagarnas Skum"
+      },
+      {
+        "artist": "Kahlil Gibran",
+        "title": "Pain (Poetry Reading)"
+      },
+      {
+        "artist": "Gitkin",
+        "title": "The Drive"
+      },
+      {
+        "artist": "Fadoul",
+        "title": "Bsslama Hbibti"
+      },
+      {
+        "artist": "Ziad Rahbani",
+        "title": "Don't Blame Me"
+      },
+      {
+        "artist": "The Chakachas",
+        "title": "Stories"
+      },
+      {
+        "artist": "Onuma Singsiri",
+        "title": "Mae Kha Som Tam"
+      },
+      {
+        "artist": "YIN YIN",
+        "title": "One Inch Punch"
+      },
+      {
+        "artist": "Electric Octopus",
+        "title": "Focal Swan"
+      },
+      {
+        "artist": "La Shica",
+        "title": "María de la O"
+      },
+      {
+        "artist": "Puscifer",
+        "title": "Bad Wolf"
+      },
+      {
+        "artist": "Raja Zahr",
+        "title": "Drum Sequence"
+      },
+      {
+        "artist": "Roger Waters",
+        "title": "Money"
+      },
+      {
+        "artist": "Hindi Zahra",
+        "title": "Set Me Free"
+      },
+      {
+        "artist": "Douaa",
+        "title": "Haditouni"
+      },
+      {
+        "artist": "Amythyst Kiah & Her Chest of Glass",
+        "title": "Trouble so Hard"
+      },
+      {
+        "artist": "Najib Alhoush",
+        "title": "Ya Aen Daly"
+      },
+      {
+        "artist": "Thong Huad",
+        "title": "Diew Sor Diew Caan"
+      },
+      {
+        "artist": "Jimmy Page & Robert Plant",
+        "title": "Kashmir (Unledded live)"
+      }
+    ]
+  },
+  "https://soundcloud.com/goldcap/the-goldcast-164-mar-20-2026": {
+    "title": "The Goldcast 164 (Mar 20, 2026) with guestmix by funkenschleuder & Énriq",
+    "ordered": true,
+    "source": "https://soundcloud.com/goldcap/the-goldcast-164-mar-20-2026",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/goldcap/the-goldcast-164-mar-20-2026"
+      },
+      {
+        "name": "1001tracklists",
+        "url": "https://www.1001tracklists.com/tracklist/2fwmd18k/goldcap-funkenschleuderenriq-the-goldcast-164-2026-03-20.html"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "funkenschleuder & Énriq",
+        "title": "Die Eulen (unreleased)"
+      },
+      {
+        "artist": "funkenschleuder & Énriq",
+        "title": "Die Nacht (Soble Remix) (unreleased)"
+      },
+      {
+        "artist": "funkenschleuder & Énriq",
+        "title": "Die Nacht (unreleased)"
+      },
+      {
+        "artist": "funkenschleuder & Énriq",
+        "title": "Indian Poppy (leveldva)"
+      },
+      {
+        "artist": "funkenschleuder & Énriq",
+        "title": "Forests (Geju Remix) (leveldva)"
+      },
+      {
+        "artist": "funkenschleuder & Énriq",
+        "title": "In den Bergen (The Oddness Remix) (unreleased)"
+      },
+      {
+        "artist": "funkenschleuder & Énriq",
+        "title": "In den Bergen (unreleased)"
+      },
+      {
+        "artist": "funkenschleuder & Énriq",
+        "title": "Unterm Mandelmond (unreleased)"
+      },
+      {
+        "artist": "funkenschleuder & Énriq",
+        "title": "Warten (unreleased)"
+      },
+      {
+        "artist": "Juliette Magnevasoa",
+        "title": "L´enfant éparpillée (funkenschleuder & Énriq edit) (unreleased)"
+      },
+      {
+        "artist": "funkenschleuder & Énriq",
+        "title": "Im Morgentau  (Geju Remix)"
+      },
+      {
+        "artist": "funkenschleuder & Énriq",
+        "title": "Im Morgentau (unreleased)"
+      }
+    ]
+  },
+  "https://soundcloud.com/jonsweetnamedj/raices-23-xbeat-radio": {
+    "title": "RAÍCES 23 By Jon Sweetname",
+    "ordered": true,
+    "source": "https://soundcloud.com/jonsweetnamedj/raices-23-xbeat-radio",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/jonsweetnamedj/raices-23-xbeat-radio"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Aston Alba",
+        "title": "Johera"
+      },
+      {
+        "artist": "Colle, Nes Mburu",
+        "title": "Kupata"
+      },
+      {
+        "artist": "Rinzen, Molly Moonwater",
+        "title": "Déjà Vu feat. Molly Moonwater"
+      },
+      {
+        "artist": "Juan Yarin",
+        "title": "Clokkie"
+      },
+      {
+        "artist": "Diass",
+        "title": "Gospel"
+      },
+      {
+        "artist": "Tommy Gustav",
+        "title": "Nobody Else"
+      },
+      {
+        "artist": "Krutykh, Vitaliy Rybakin",
+        "title": "Dream Forever"
+      },
+      {
+        "artist": "Devaloka",
+        "title": "Glow"
+      },
+      {
+        "artist": "Cedric Salander, Deniz Reno",
+        "title": "Give Me Your Love"
+      },
+      {
+        "artist": "Mikkelrev",
+        "title": "Toulouse (Istia Remix)"
+      },
+      {
+        "artist": "Kolomin",
+        "title": "Miracle"
+      },
+      {
+        "artist": "Damir Pushkar",
+        "title": "Give Me Time"
+      },
+      {
+        "artist": "Momo Khani feat. Lukas Love",
+        "title": "Satellite"
+      },
+      {
+        "artist": "Seven Drops",
+        "title": "Edge of Time (Mass Digital Remix) - Be Adult Music"
+      }
+    ]
+  },
+  "https://soundcloud.com/mikedysondj/opening-set-for-romain-garcie-live-howler-dec-2026": {
+    "title": "Romain Garcia opening set live @ Howler Dec 2025",
+    "ordered": true,
+    "source": "https://soundcloud.com/mikedysondj/opening-set-for-romain-garcie-live-howler-dec-2026",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/mikedysondj/opening-set-for-romain-garcie-live-howler-dec-2026"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Mike Koglin",
+        "title": "The Silence (GMJ & Matter Remix)"
+      },
+      {
+        "artist": "Christian Luke",
+        "title": "Alexandria (Original Mix)"
+      },
+      {
+        "artist": "Sander Van Doorn, Nils  Hoffmann",
+        "title": "Need To Feel Loved (Nils Hoffmann Extended Remix)"
+      },
+      {
+        "artist": "Cara Murphy",
+        "title": "Dusk"
+      },
+      {
+        "artist": "Howling, Âme",
+        "title": "Howling (Âme Remix)"
+      },
+      {
+        "artist": "Tinlicker",
+        "title": "Be Here And Now (feat. Nathan Nicholson) (Original Mix)"
+      },
+      {
+        "artist": "Mike Foyle vs. Signalrun",
+        "title": "Love Theme Dusk (ANUQRAM Extended Remix)"
+      },
+      {
+        "artist": "Diana Miro, Boxer",
+        "title": "In The Dark (Extended Mix)"
+      },
+      {
+        "artist": "Estiva",
+        "title": "Le Rêve (Extended Mix)"
+      },
+      {
+        "artist": "XIRA, 3LAU",
+        "title": "Tokyo (feat. XIRA) (Extended Mix)"
+      },
+      {
+        "artist": "Rufus Du Sol",
+        "title": "Surrender (feat. Curtis Harding) (Magdalena Remix)"
+      },
+      {
+        "artist": "Jan Burton, Gabriel & Dresden",
+        "title": "Underwater feat. Jan Burton (Tinlicker Extended Mix)"
+      },
+      {
+        "artist": "ANUQRAM",
+        "title": "Get On (Extended Mix)"
+      },
+      {
+        "artist": "Boxer",
+        "title": "Extra-Terrestrial (Extended Mix)"
+      },
+      {
+        "artist": "Jakatta",
+        "title": "American Dream (PROFF Extended Interpretation)"
+      },
+      {
+        "artist": "Sebastien Leger, Lost Miracle",
+        "title": "Mistily (Extended Mix)"
+      },
+      {
+        "artist": "Boxer, Matt Fax",
+        "title": "Higher (Extended Mix)"
+      }
+    ]
+  },
+  "https://soundcloud.com/pinkowitz/live-at-vinyl-direct-support-romain-garcia": {
+    "title": "Direct Support for Romain Garcia - Live at Club Vinyl - Feb. 7, 2026",
+    "ordered": true,
+    "source": "https://soundcloud.com/pinkowitz/live-at-vinyl-direct-support-romain-garcia",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/pinkowitz/live-at-vinyl-direct-support-romain-garcia"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Pinkowitz",
+        "title": "Special Relativity (Drifting Through Space Edit)"
+      },
+      {
+        "artist": "Aldi, Matías Delóngaro",
+        "title": "Away (Pinkowitz Remix)"
+      },
+      {
+        "artist": "Pinkowitz",
+        "title": "Dawn on the North Pole"
+      },
+      {
+        "artist": "Pinkowitz",
+        "title": "Strategic Ambiguity"
+      },
+      {
+        "artist": "Snowedin",
+        "title": "Estructura (Pinkowitz Remix)"
+      },
+      {
+        "artist": "Phillipe Lois",
+        "title": "ID"
+      },
+      {
+        "artist": "Komytea",
+        "title": "Algebra"
+      },
+      {
+        "artist": "16BL",
+        "title": "Deep In My Soul"
+      },
+      {
+        "artist": "Jody Wisternoff",
+        "title": "The Bridge"
+      },
+      {
+        "artist": "Dusky",
+        "title": "It's Not Enough (feat. Janai)"
+      },
+      {
+        "artist": "NotMeghan",
+        "title": "ID"
+      },
+      {
+        "artist": "fishplant",
+        "title": "Fibonacci's Forest (Pinkowitz Remix)"
+      },
+      {
+        "artist": "Pinkowitz",
+        "title": "ID"
+      },
+      {
+        "artist": "Dreamteller",
+        "title": "ID"
+      },
+      {
+        "artist": "TASBA",
+        "title": "ID"
+      },
+      {
+        "artist": "maur.",
+        "title": "wish u"
+      },
+      {
+        "artist": "Powel",
+        "title": "Think Honest"
+      },
+      {
+        "artist": "Mihai Popoviciu",
+        "title": "What I Need"
+      },
+      {
+        "artist": "Molac",
+        "title": "A Negative Space"
+      },
+      {
+        "artist": "THOLIN",
+        "title": "ID"
+      },
+      {
+        "artist": "Andrew Long",
+        "title": "ID (Pinkowitz Remix)"
+      },
+      {
+        "artist": "Pinkowitz",
+        "title": "Stonecutter's Credo (STEREO MUNK Remix)"
+      },
+      {
+        "artist": "Domestique",
+        "title": "ID"
+      },
+      {
+        "artist": "Pinkowitz",
+        "title": "Into the Nebula"
+      },
+      {
+        "artist": "Andrew Bayer",
+        "title": "Counting The Points (Club Mix)"
+      },
+      {
+        "artist": "Tomas Gerd",
+        "title": "La Leona (Pinkowitz Remix)"
+      },
+      {
+        "artist": "Pinkowitz, Dreamteller",
+        "title": "ID"
+      },
+      {
+        "artist": "Lane 8",
+        "title": "Diamonds"
+      },
+      {
+        "artist": "Pinkowitz",
+        "title": "ID"
+      }
+    ]
+  },
+  "https://soundcloud.com/rampue/stiff-little-spinners-bytefm-1": {
+    "title": "Stiff Little Spinners ByteFM Mix - #37",
+    "ordered": true,
+    "source": "https://soundcloud.com/rampue/stiff-little-spinners-bytefm-1",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/rampue/stiff-little-spinners-bytefm-1"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Rosa Lux feat. Basim Alansar",
+        "title": "Mafish Kedah (rampue Remix)"
+      },
+      {
+        "artist": "Majestät",
+        "title": "Set Her Free (Martin Buttrich Remix) (Matthias Meyer Remix)"
+      },
+      {
+        "artist": "Solee",
+        "title": "Ditzingen"
+      },
+      {
+        "artist": "Matthias Meyer",
+        "title": "November Rain (Mario Basanov Remix)"
+      },
+      {
+        "artist": "Baru",
+        "title": "Take A Look (Filburt’s O_RS Rebuild)"
+      },
+      {
+        "artist": "Nhan Solo feat. Stee Downes",
+        "title": "Letting You Down (Nils Hoffmann Remix)"
+      },
+      {
+        "artist": "Sucre Sale",
+        "title": "She’s like The Wind (Niconé & Sascha Braemer Remix)"
+      }
+    ]
+  },
+  "https://soundcloud.com/romaingarcia/new-year-mix-2019-2020": {
+    "title": "New Year Mix - 2019 → 2020",
+    "ordered": true,
+    "source": "https://soundcloud.com/romaingarcia/new-year-mix-2019-2020",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/romaingarcia/new-year-mix-2019-2020"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Romain Garcia",
+        "title": "ID"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "ID"
+      },
+      {
+        "artist": "Volen Sentir",
+        "title": "Arrival"
+      },
+      {
+        "artist": "London Grammar",
+        "title": "If You Wait (Romain Garcia RMX)"
+      },
+      {
+        "artist": "Ben Böhmer",
+        "title": "Lost in Mind"
+      },
+      {
+        "artist": "RÜFÜS DU SOL",
+        "title": "Eyes (Cassian & Durante RMX)"
+      },
+      {
+        "artist": "N'to",
+        "title": "Croche"
+      },
+      {
+        "artist": "Romain Garcia",
+        "title": "ID"
+      },
+      {
+        "artist": "Sebastien Leger",
+        "title": "Lanarka"
+      },
+      {
+        "artist": "Durante",
+        "title": "Maia"
+      },
+      {
+        "artist": "Kays",
+        "title": "Rainbow"
+      }
+    ]
+  },
+  "https://soundcloud.com/stmpdrcrds/stmpd-rcrds-radio-079-gabss": {
+    "title": "STMPD RCRDS Radio 079 - Gabss",
+    "ordered": true,
+    "source": "https://soundcloud.com/stmpdrcrds/stmpd-rcrds-radio-079-gabss",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/stmpdrcrds/stmpd-rcrds-radio-079-gabss"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Julian Jordon",
+        "title": "Right Nahh"
+      },
+      {
+        "artist": "Jack Orley",
+        "title": "Think About"
+      },
+      {
+        "artist": "Mauro Venti",
+        "title": "Heat Boy (Instrumental Mix)"
+      },
+      {
+        "artist": "BARTS",
+        "title": "Accelerate"
+      },
+      {
+        "artist": "Vluarr",
+        "title": "On The Move"
+      },
+      {
+        "artist": "Skytech & ANG",
+        "title": "Shadows In The Night"
+      },
+      {
+        "artist": "Good Times Ahead & MNNR",
+        "title": "Clutch"
+      },
+      {
+        "artist": "NOME.",
+        "title": "Don’t Give Up"
+      },
+      {
+        "artist": "Matisse & Sadko, Vion Konger feat. Scrufizzer",
+        "title": "Pull Up"
+      },
+      {
+        "artist": "Gabss",
+        "title": "Side to Side"
+      },
+      {
+        "artist": "Gabss & Talón",
+        "title": "No phone party"
+      },
+      {
+        "artist": "Chemical Surf",
+        "title": "Second Floor (INNDRIVE & No One Knows Edit)"
+      },
+      {
+        "artist": "Prospa",
+        "title": "Love Songs (PAVER Remix)"
+      },
+      {
+        "artist": "Gabss, Riko & Gugga",
+        "title": "Your Love"
+      },
+      {
+        "artist": "Snow Patrol",
+        "title": "Open Your Eyes [Gabss & Vintage Culture Remix]"
+      }
+    ]
+  },
+  "https://soundcloud.com/taglo/romain-garcia-warm-up-set-howler-melbourne": {
+    "title": "Romain Garcia Warm Up Set - Howler, Melbourne",
+    "ordered": true,
+    "source": "https://soundcloud.com/taglo/romain-garcia-warm-up-set-howler-melbourne",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/taglo/romain-garcia-warm-up-set-howler-melbourne"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Yuvée",
+        "title": "Freydies (Extended Mix)"
+      },
+      {
+        "artist": "DAVI",
+        "title": "Self R3B0OT (Original Mix)"
+      },
+      {
+        "artist": "Alex O’Rion",
+        "title": "RetrogloW (Original Mix)"
+      },
+      {
+        "artist": "PROFF",
+        "title": "Light Between The Trees (Extended Mix)"
+      },
+      {
+        "artist": "A.M.R, Moone",
+        "title": "Numb"
+      },
+      {
+        "artist": "Krasa Rosa",
+        "title": "Zigzag (Original Mix)"
+      },
+      {
+        "artist": "Gorge",
+        "title": "Mokeo (Original Mix)"
+      },
+      {
+        "artist": "Quivver",
+        "title": "Consciousness (Extended Mix)"
+      },
+      {
+        "artist": "PROFF & M.O.S",
+        "title": "Scarlet Sails (Extended Mix)"
+      },
+      {
+        "artist": "Marsh",
+        "title": "My Stripes (Taglo Bootleg)"
+      },
+      {
+        "artist": "DSF",
+        "title": "Not Like You (2025 Organic Extended Mix)"
+      },
+      {
+        "artist": "M.O.S., Leonid Sivelkin, Krasa Rosa",
+        "title": "On The Strings Of Love (Original Mix)"
+      },
+      {
+        "artist": "Capoon, Amand",
+        "title": "Ouverture (Khen Remix)"
+      },
+      {
+        "artist": "Taglo, Elysjs",
+        "title": "Swimming With Sirens (Extended Mix)"
+      },
+      {
+        "artist": "Groove Armada",
+        "title": "My Friends That Matter (Taglo’s Simon Doty Mashup)"
+      },
+      {
+        "artist": "Ranta, Krasa Rosa, Miroshin",
+        "title": "Kolbyenkaya (Original Mix)"
+      },
+      {
+        "artist": "Volen Sentir, Makebo",
+        "title": "Alchemist (Original Mix)"
+      }
+    ]
+  },
+  "https://soundcloud.com/thehumanexperience/two-tigers-kiss-burning-man-2024": {
+    "title": "David Block presents: Two Tigers @ KISS | Burning Man 2024",
+    "ordered": true,
+    "source": "https://soundcloud.com/thehumanexperience/two-tigers-kiss-burning-man-2024",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/thehumanexperience/two-tigers-kiss-burning-man-2024"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Anuradha Paudwal (David Block Remix)",
+        "title": "Gayatri Mantra"
+      },
+      {
+        "artist": "Sllash & Doppe",
+        "title": "Bamboleo"
+      },
+      {
+        "artist": "Eden Prince",
+        "title": "Memories"
+      },
+      {
+        "artist": "HUGEL, GROSSOMODDO",
+        "title": "Andalucia"
+      },
+      {
+        "artist": "Eran Hersh, Anorre, The NGHBRS",
+        "title": "3 Sense"
+      },
+      {
+        "artist": "Gianni Romana, Emanuele Esposito, Helen Tesfazghi",
+        "title": "It's Not Right"
+      },
+      {
+        "artist": "Noizu, Westend, NO/ME (David Block Remix)",
+        "title": "Push to Start"
+      },
+      {
+        "artist": "SPINALL x Chainsmokers (David Block Edit)",
+        "title": "Bunda\" x \"Addicted"
+      },
+      {
+        "artist": "Oliver Heldens, Nile Rogers, House Gospel Choir",
+        "title": "I Was Made for Lovin' You"
+      },
+      {
+        "artist": "Maz, Antdot, Ginton, Latefa",
+        "title": "Jolie Fille"
+      },
+      {
+        "artist": "Rockin Moroccin",
+        "title": "You Got the Love"
+      },
+      {
+        "artist": "Florent Feltz, Qualista",
+        "title": "Sonho De Sofia"
+      },
+      {
+        "artist": "Bishop Briggs x Alex Wann (David Block Edit)",
+        "title": "River\" x \"Milkshake remix"
+      },
+      {
+        "artist": "Asake (David Block Remix)",
+        "title": "Dull"
+      }
+    ]
+  },
+  "https://soundcloud.com/xinobi/xinobi-playground-burning-man": {
+    "title": "Xinobi @ Playground - Burning Man 2026",
+    "ordered": true,
+    "source": "https://soundcloud.com/xinobi/xinobi-playground-burning-man",
+    "sources": [
+      {
+        "name": "Lista oficial (SoundCloud)",
+        "url": "https://soundcloud.com/xinobi/xinobi-playground-burning-man"
+      }
+    ],
+    "tracks": [
+      {
+        "artist": "Julian Luna, Adam Valey",
+        "title": "Ubuntu"
+      },
+      {
+        "artist": "NECRO",
+        "title": "Perfect World (Xinobi Remix)"
+      },
+      {
+        "artist": "Adana Twins, Xinobi",
+        "title": "Oxalá"
+      },
+      {
+        "artist": "Xinobi, Meta_",
+        "title": "The Stars (Misha Remix)"
+      },
+      {
+        "artist": "Xinobi, Vaarwell",
+        "title": "Far Away Place (ARYME Remix - Alt Vocals)"
+      },
+      {
+        "artist": "David Mackay, Raul Vidal",
+        "title": "At Least We Are Under The Same Moon"
+      },
+      {
+        "artist": "Sigur Ros",
+        "title": "Svefn-g-englar (Xinobi Remix)"
+      },
+      {
+        "artist": "Xinobi, Isiko, Meta_",
+        "title": "The End Of Time"
+      },
+      {
+        "artist": "Xinobi, Lazarusman",
+        "title": "Searching For"
+      },
+      {
+        "artist": "Xinobi",
+        "title": "Piano Lessons"
+      },
+      {
+        "artist": "Xinobi",
+        "title": "Wonderful People"
+      },
+      {
+        "artist": "Turnstile",
+        "title": "LOOK OUT FOR ME (Xinobi Remix)"
+      },
+      {
+        "artist": "Jan Blomqvist, Rodriguez Jr.",
+        "title": "Destination Lost (Xinobi Remix)"
       }
     ]
   }
