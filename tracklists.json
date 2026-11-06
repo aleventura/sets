@@ -697,6 +697,79 @@
       }
     ]
   },
+  "https://soundcloud.com/brunnamusic/brunna-darksexy-electronic-mix-1": {
+    "source": "https://trackid.net/audiostreams/brunna-nocturnal-kodex-001",
+    "title": "BRUNNÄ | NOCTURNAL KØDEX_ 001",
+    "tracks": [
+      {
+        "artist": "Marcos Barrios, Len Mora, Joaquin Postigo",
+        "t": 13453,
+        "title": "Tribaile (Len Mora & Joaquin Postigo)"
+      },
+      {
+        "empty": true,
+        "t": 438453
+      },
+      {
+        "artist": "Cohema, Santìí",
+        "t": 1171453,
+        "title": "Mental Bliss"
+      },
+      {
+        "artist": "Louie Vega",
+        "t": 1511453,
+        "title": "Journey's Prelude"
+      },
+      {
+        "artist": "Funk Cartel",
+        "t": 1860453,
+        "title": "Dub Dragon (Original Mix)"
+      },
+      {
+        "empty": true,
+        "t": 2177453
+      },
+      {
+        "artist": "Lis Sarroca",
+        "t": 2484453,
+        "title": "Stroopwafel"
+      },
+      {
+        "empty": true,
+        "t": 2813453
+      },
+      {
+        "artist": "Benoit & Sergio",
+        "t": 3610453,
+        "title": "The Way You Get"
+      },
+      {
+        "artist": "Catz'n Dogz, Nala",
+        "t": 3801453,
+        "title": "Me Me Me"
+      },
+      {
+        "artist": "Kinky Sound, Modbit",
+        "t": 4073453,
+        "title": "Connect"
+      },
+      {
+        "artist": "KANT",
+        "t": 4407453,
+        "title": "Syne"
+      },
+      {
+        "artist": "Boot & Tax",
+        "t": 4798453,
+        "title": "Niente per niente"
+      },
+      {
+        "artist": "Kino Todo, Sima Noon",
+        "t": 5131453,
+        "title": "Translator (Azzecca Remix)"
+      }
+    ]
+  },
   "https://soundcloud.com/caleesi-sarahkreis/wonderfruit2024": {
     "source": "https://trackid.net/audiostreams/caleesi-sarah-kreis-wonderfruit-festival-2024-i-polygon-stage-i-thailand",
     "title": "Caleesi & Kreis @ Wonderfruit Festival 2024 I Polygon Stage I Thailand",
@@ -3865,6 +3938,135 @@
       }
     ]
   },
+  "https://soundcloud.com/jaden_thompson/jaden-thompson-circoloco-ibiza-250923": {
+    "source": "https://trackid.net/audiostreams/jaden-thompson-circoloco-ibiza-250923",
+    "title": "Jaden Thompson @ Circoloco Ibiza - 25/09/23",
+    "tracks": [
+      {
+        "empty": true,
+        "t": 0
+      },
+      {
+        "artist": "Mr. G",
+        "t": 170000,
+        "title": "Ben & Gerd (Killin' It M Day)"
+      },
+      {
+        "empty": true,
+        "t": 398000
+      },
+      {
+        "artist": "Christos Fourkis",
+        "t": 646000,
+        "title": "Beats & Djembe (Marc Francis Organ Mix)"
+      },
+      {
+        "empty": true,
+        "t": 888000
+      },
+      {
+        "artist": "Sem Jacobs, Tagmann",
+        "t": 1177000,
+        "title": "Jiggy Jerry"
+      },
+      {
+        "artist": "Jungle Brothers",
+        "t": 1383000,
+        "title": "I'll House You (Richie Rich Uk Remix)"
+      },
+      {
+        "empty": true,
+        "t": 1549000
+      },
+      {
+        "artist": "Shunji Moriwaki",
+        "t": 1893000,
+        "title": "Nueva York"
+      },
+      {
+        "empty": true,
+        "t": 2070000
+      },
+      {
+        "artist": "Missy Elliott",
+        "t": 2182000,
+        "title": "Gossip Folks (feat. Ludacris)"
+      },
+      {
+        "empty": true,
+        "t": 2217000
+      },
+      {
+        "artist": "Gustaff",
+        "t": 2408000,
+        "title": "Sacude (Afters Edit)"
+      },
+      {
+        "artist": "Tony Touch",
+        "t": 2462000,
+        "title": "Sacude (Manoo Def Beatapella)"
+      },
+      {
+        "empty": true,
+        "t": 2533000
+      },
+      {
+        "artist": "Afriqua",
+        "t": 2817000,
+        "title": "Da Whip"
+      },
+      {
+        "artist": "Ataxia",
+        "t": 2984000,
+        "title": "Keep My Youth"
+      },
+      {
+        "empty": true,
+        "t": 3203000
+      },
+      {
+        "artist": "Africanism, DJ Gregory",
+        "t": 3429000,
+        "title": "Block Party (Edit)"
+      },
+      {
+        "empty": true,
+        "t": 3583000
+      },
+      {
+        "artist": "Peppe Citarella",
+        "t": 3828000,
+        "title": "Enkama (feat. Eduardo Vargas)"
+      },
+      {
+        "empty": true,
+        "t": 3972000
+      },
+      {
+        "artist": "Fela Anikulapo Kuti",
+        "t": 4280000,
+        "title": "Shakara (Oloje)"
+      },
+      {
+        "empty": true,
+        "t": 4295000
+      },
+      {
+        "artist": "Vampire Sex",
+        "t": 4408000,
+        "title": "Disco Party Baby (Original Mix)"
+      },
+      {
+        "empty": true,
+        "t": 4515000
+      },
+      {
+        "artist": "Outlander",
+        "t": 4730000,
+        "title": "Vamp (Frank De Wulf Remix) (Frank De Wulf Remix)"
+      }
+    ]
+  },
   "https://soundcloud.com/kaleaberlin/kalea-kater-hopper-nye-20251-berlin-live-set": {
     "source": "https://trackid.net/audiostreams/kalea-kater-hopper-forever-25-i-nye-berlin-live-set",
     "title": "KALEA @ Kater (Hopper) | Forever 25 I NYE | Berlin",
@@ -4043,6 +4245,66 @@
         "artist": "Niconé, Aracil, Erhan Kesen feat. Secret Moon",
         "t": 10174000,
         "title": "Dancing in the Sand (Extended Mix)"
+      }
+    ]
+  },
+  "https://soundcloud.com/keinemusik/keinemusik-radio-show-by-mira-21062024": {
+    "source": "https://trackid.net/audiostreams/keinemusik-radio-show-by-mira-21062024",
+    "title": "Keinemusik Radio Show by Mira 21.06.2024",
+    "tracks": [
+      {
+        "artist": "Remcord",
+        "t": 668,
+        "title": "Carbon Fiber"
+      },
+      {
+        "artist": "Audio Junkies",
+        "t": 353668,
+        "title": "Revelations"
+      },
+      {
+        "artist": "Catz 'n Dogz feat. Cloud Boat",
+        "t": 705668,
+        "title": "Open Door"
+      },
+      {
+        "artist": "Meera (NO)",
+        "t": 1148668,
+        "title": "No Space"
+      },
+      {
+        "artist": "Mira (Berlin), Christopher Schwarzwalder",
+        "t": 1479668,
+        "title": "Cleo (Hardt Antoine Remix)"
+      },
+      {
+        "artist": "MoodFreak",
+        "t": 1813668,
+        "title": "Hook Agenda (Felix E Remix)"
+      },
+      {
+        "artist": "Martin Patino",
+        "t": 2206668,
+        "title": "Mind Games (Pablo Bolivar Remake)-5574"
+      },
+      {
+        "artist": "blaktone",
+        "t": 2437668,
+        "title": "Missed Connection (Extended Mix)"
+      },
+      {
+        "empty": true,
+        "t": 2694668
+      },
+      {
+        "artist": "Scsi-9",
+        "t": 2929668,
+        "title": "All She Wants Is (Robag Wruhme Mix)"
+      },
+      {
+        "artist": "Argia",
+        "t": 3197668,
+        "title": "Anhelo"
       }
     ]
   },
@@ -4324,6 +4586,129 @@
         "artist": "Mayra Andrade, Ankhoï",
         "t": 5938000,
         "title": "Afeto (Ankhoï Remix)"
+      }
+    ]
+  },
+  "https://soundcloud.com/maccabihouse/maccabi-podcast-by-tom-zeta": {
+    "source": "https://trackid.net/audiostreams/maccabi-podcast-by-tom-zeta-28012026",
+    "title": "Maccabi Podcast By Tom Zeta (28.01.2026)",
+    "tracks": [
+      {
+        "artist": "Tom Zeta",
+        "t": 58597,
+        "title": "Loco In The Coco"
+      },
+      {
+        "empty": true,
+        "t": 163597
+      },
+      {
+        "artist": "Daniel Lerman",
+        "t": 321597,
+        "title": "Higher"
+      },
+      {
+        "empty": true,
+        "t": 524597
+      },
+      {
+        "artist": "ITAYGA",
+        "t": 813597,
+        "title": "Desert Hum"
+      },
+      {
+        "empty": true,
+        "t": 1059597
+      },
+      {
+        "artist": "Kevin McKay",
+        "t": 1382597,
+        "title": "Something About You (Extended Mix)"
+      },
+      {
+        "empty": true,
+        "t": 1487597
+      },
+      {
+        "artist": "Tom Zeta",
+        "t": 2083597,
+        "title": "Es Torrent"
+      },
+      {
+        "artist": "Darco",
+        "t": 2200597,
+        "title": "Baziman"
+      },
+      {
+        "artist": "SPACHO & LAMOR",
+        "t": 2568597,
+        "title": "Tudeo (Extended Mix)"
+      },
+      {
+        "empty": true,
+        "t": 2730597
+      },
+      {
+        "artist": "Tom Zeta",
+        "t": 2820597,
+        "title": "Simple Things"
+      },
+      {
+        "empty": true,
+        "t": 3092597
+      },
+      {
+        "artist": "Tom Zeta",
+        "t": 3365597,
+        "title": "Like A Chili (Extended Version)"
+      }
+    ]
+  },
+  "https://soundcloud.com/maccabihouse/maccabi-podcast-toni-b": {
+    "source": "https://trackid.net/audiostreams/maccabi-podcast-by-toni-b-30122025",
+    "title": "Maccabi Podcast By Toni B (30.12.2025)",
+    "tracks": [
+      {
+        "artist": "Kendrick Lamar",
+        "t": 0,
+        "title": "BLOOD."
+      },
+      {
+        "artist": "Anton Kuertz",
+        "t": 95770,
+        "title": "Phatty"
+      },
+      {
+        "empty": true,
+        "t": 130770
+      },
+      {
+        "artist": "Disclosure",
+        "t": 1526770,
+        "title": "F For You"
+      },
+      {
+        "empty": true,
+        "t": 1540770
+      },
+      {
+        "artist": "Mahmut Orhan, Yigit Karakas",
+        "t": 2605770,
+        "title": "Mueva (Extended Mix)"
+      },
+      {
+        "artist": "Bob Moses",
+        "t": 2894770,
+        "title": "Enough to Believe (Eagles & Butterflies Remix)"
+      },
+      {
+        "empty": true,
+        "t": 2939770
+      },
+      {
+        "artist": "Dodi, Toni B",
+        "t": 3141770,
+        "title": "Vibe Check"
       }
     ]
   },
@@ -4924,6 +5309,54 @@
         "artist": "Jay de Lys, Kid Enigma",
         "t": 8453000,
         "title": "The Realest"
+      }
+    ]
+  },
+  "https://soundcloud.com/mosmusique/mos-x-odyssey-festival-rml-stage-060725": {
+    "source": "https://trackid.net/audiostreams/mos-x-odyssey-festival-rml-stage-060725",
+    "title": "M.O.S. x Odyssey Festival [RML Stage] (06.07.25)",
+    "tracks": [
+      {
+        "empty": true,
+        "t": 0
+      },
+      {
+        "artist": "M.O.S.",
+        "t": 598000,
+        "title": "Immensity (Extended Mix)"
+      },
+      {
+        "empty": true,
+        "t": 945000
+      },
+      {
+        "artist": "Sandra Collins, Micke",
+        "t": 1273000,
+        "title": "Thirteen (Quivver Remix)"
+      },
+      {
+        "artist": "Nicolas Viana, Alejo Fochi",
+        "t": 1659000,
+        "title": "Driving Time"
+      },
+      {
+        "artist": "M.O.S.",
+        "t": 1928000,
+        "title": "Favourite Colours (Extended Mix)"
+      },
+      {
+        "artist": "Emi Galvan",
+        "t": 2267000,
+        "title": "Supernova"
+      },
+      {
+        "empty": true,
+        "t": 2645000
+      },
+      {
+        "artist": "Ezequiel Arias, Durante",
+        "t": 4248000,
+        "title": "Dream Controller (Extended Mix)"
       }
     ]
   },
