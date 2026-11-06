@@ -407,6 +407,11 @@
   .gapline.heard{background:#173126;border-color:#2a5a48;border-style:solid}
   .gapline.heard .tk-heard-btn .hc{background:var(--ok);border-color:var(--ok);color:#0e0e10}
   .gapline.heard .g-t,.gapline.heard .g-lbl{color:var(--ok)}
+  /* 1.40: sin identificar = misma tarjeta que un track, borde punteado y nombre en cursiva */
+  .tk.tk-gap{border-style:dashed}
+  .tk.tk-gap.heard{border-style:solid}
+  .tk-unk{font-style:italic;color:#9a9aa4;font-weight:400}
+  .tk.heard .tk-unk{color:var(--ok)}
   /* 1.26: botones del player más chicos y cabecera (⌄ + versión) compacta */
   .pl-foot{gap:28px;margin-top:0}
   .pl-foot .fbtn{gap:3px}
@@ -532,7 +537,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.39';
+const APP_VERSION = '1.40';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -993,11 +998,12 @@ function getMarks(url){ return marks[url] || []; }
 function saveMarks(){ localStorage.setItem(LS_MARKS, JSON.stringify(marks)); syncDirty('marks'); }
 
 function addMarkHere(){ addMarkAt(curPosMs || 0); }
+function tlExists(){ if (currentIndex < 0) return false; const tl = getTracklist(SETS[currentIndex].url); return !!(tl && tl.tracks.length); }
 function addMarkAt(tMs){
   if (currentIndex < 0) return;
   const s = SETS[currentIndex];
   const t = Math.round(tMs || 0);
-  const note = (window.prompt('Comentario para la marca en ' + hhmmss(t) + ':', '') || '').trim();
+  const note = (window.prompt(tlExists() ? 'Comentario para la marca del track:' : ('Comentario para la marca en ' + hhmmss(t) + ':'), '') || '').trim();
   if (!note) return;
   const arr = getMarks(s.url).slice();
   arr.push({t: t, note: note});
@@ -1366,9 +1372,8 @@ function renderTracklist(){
     const arr = mkByHost[host];
     if (!arr || !arr.length) return '';
     return '<div class="tk-mks' + (cls ? ' ' + cls : '') + '">' + arr.map(m =>
-      '<div class="tk-mkl" data-jump="' + m.t + '">' +
+      '<div class="tk-mkl">' +
         '<span class="mk-pin">📍</span>' +
-        '<span class="mk-time">' + esc(hhmmss(m.t)) + '</span>' +
         '<span class="mk-note">' + esc(m.note) + '</span>' +
         '<button class="mk-x" data-delmark="' + m.mi + '" aria-label="Borrar marca">✕</button>' +
       '</div>').join('') + '</div>';
@@ -1383,14 +1388,17 @@ function renderTracklist(){
     // Bloque sin identificar (Track ID no lo reconoció y no tiene nota): fila atenuada, con ✎ para nombrarlo.
     if (!ov && tr.empty){
       // 1.37: los bloques sin identificar también se marcan escuchados (✓ verde)
-      return '<div class="gapline' + (isHeard(s.url, key) ? ' heard' : '') + '" data-jump="' + T + '" data-end="' + (it.end != null ? it.end : '') + '">' +
+      // 1.40: mismo layout que un track identificado (✓ | inicio | nombre | 🏷 ✎ 📍, tags y marcas dentro)
+      return '<div class="tk tk-gap' + (isHeard(s.url, key) ? ' heard' : '') + '" data-jump="' + T + '" data-end="' + (it.end != null ? it.end : '') + '">' +
         '<i class="tk-prog"></i>' +
         heardBtn(s.url, key) +
-        '<span class="g-t">' + rangeLabel(T, endL) + '</span>' +
-        '<span class="g-lbl"><span class="dot"></span>sin identificar' +
-          '</span>' +
+        '<span class="tk-t">' + rangeLabel(T, endL) + '</span>' +
+        '<span class="tk-name"><span class="tk-unk">sin identificar</span>' + flagsHTML(tr) + '</span>' +
+        '<div class="tk-act">' + tagBtn(i, s.url, key) +
         '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nombrar">✎</button>' +
-      '</div>' + marksHTML('i' + i, 'gap-mks') + editor;
+        '<button class="tk-addmk" data-addmark="' + T + '" data-addend="' + (it.end != null ? it.end : '') + '" aria-label="Agregar marca">📍</button></div>' +
+        attrHTML(s.url, key) + marksHTML('i' + i) +
+      '</div>' + editor;
     }
     let cls = 'tk', label;
     if (ov){ cls += ' tk-user'; label = [ov.artist, ov.title].filter(Boolean).map(esc).join(' — '); }
@@ -1413,11 +1421,15 @@ function renderTracklist(){
     '</div>' + editor;
   }
   function introRow(it){
-    return '<div class="gapline' + (isHeard(s.url, 'intro') ? ' heard' : '') + '" data-jump="0">' +
+    return '<div class="tk tk-gap' + (isHeard(s.url, 'intro') ? ' heard' : '') + '" data-jump="0" data-end="' + (it.end != null ? it.end : '') + '">' +
+      '<i class="tk-prog"></i>' +
       heardBtn(s.url, 'intro') +
-      '<span class="g-t">' + rangeLabel(0, it.end) + '</span>' +
-      '<span class="g-lbl"><span class="dot"></span>sin identificar · intro</span>' +
-    '</div>' + marksHTML('intro', 'gap-mks');
+      '<span class="tk-t">' + rangeLabel(0, it.end) + '</span>' +
+      '<span class="tk-name"><span class="tk-unk">sin identificar · intro</span></span>' +
+      '<div class="tk-act">' + tagBtn('intro', s.url, 'intro') +
+      '<button class="tk-addmk" data-addmark="0" data-addend="' + (it.end != null ? it.end : '') + '" aria-label="Agregar marca">📍</button></div>' +
+      attrHTML(s.url, 'intro') + marksHTML('intro') +
+    '</div>';
   }
   function markRow(it){
     return '<div class="mk-inline" data-jump="' + it.t + '">' +
@@ -1720,9 +1732,11 @@ function exportTrackAttrs(){
 function openTagModal(i){
   if (currentIndex < 0) return;
   const s = SETS[currentIndex];
-  const tl = getTracklist(s.url); if (!tl || !tl.tracks[i]) return;
-  const tr = tl.tracks[i];
-  tagModalCtx = { url: s.url, key: trackKey(tr, i), tr: tr, i: i };
+  const tl = getTracklist(s.url);
+  if (i === 'intro'){ tagModalCtx = { url: s.url, key: 'intro', tr: { empty: true, t: 0 }, i: -1 }; }
+  else { if (!tl || !tl.tracks[i]) return;
+    const tr = tl.tracks[i];
+    tagModalCtx = { url: s.url, key: trackKey(tr, i), tr: tr, i: i }; }
   renderTagModal();
   document.getElementById('tagModal').classList.add('open');
 }
@@ -1810,7 +1824,7 @@ document.getElementById('tlBody').addEventListener('click', e => {
   const ctb = e.target.closest('[data-clrt]');
   if (ctb){ e.stopPropagation(); setManualT(SETS[currentIndex].url, ctb.dataset.clrt, null); tlEditRow = -1; updateCard(currentIndex); renderTracklist(); return; }
   const tg = e.target.closest('[data-tagrow]');
-  if (tg){ openTagModal(parseInt(tg.dataset.tagrow,10)); return; }
+  if (tg){ const v = tg.dataset.tagrow; openTagModal(v === 'intro' ? 'intro' : parseInt(v,10)); return; }
   const er = e.target.closest('[data-editrow]');
   if (er){ const i = parseInt(er.dataset.editrow,10); tlEditRow = (tlEditRow === i) ? -1 : i; renderTracklist(); return; }
   const ns = e.target.closest('[data-notesave]');
@@ -1832,10 +1846,8 @@ document.getElementById('tlBody').addEventListener('click', e => {
   if (dm){ delMark(parseInt(dm.dataset.delmark,10)); return; }
   const am = e.target.closest('[data-addmark]');
   if (am){
-    const t0 = parseInt(am.dataset.addmark,10), t1 = am.dataset.addend !== '' ? parseInt(am.dataset.addend,10) : Infinity;
-    const p = curPosMs || 0;
-    const inTrack = currentIndex === loadedIndex && p >= t0 && p < t1;
-    addMarkAt(inTrack ? p : t0); return;
+    // 1.40: la marca pertenece al track; se guarda en el inicio del track, sin minuto exacto
+    addMarkAt(parseInt(am.dataset.addmark,10)); return;
   }
   if (e.target.closest('#tlMarkHere')){ addMarkHere(); return; }
   if (e.target.closest('#tidSave')){ saveTid(); return; }
