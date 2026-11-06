@@ -89,6 +89,10 @@
   /* 1.29: ＋ de marca → 📍; lápiz más grande, proporcional a 🏷 y 📍 */
   .tk-act .tk-addmk{font-size:15px;padding:0 2px}
   .tk-act .tk-edit{font-size:18px;padding:0 2px}
+  .tk-act .tk-sett{font-size:15px;padding:0 2px;background:none;border:0;cursor:pointer;line-height:1}
+  .tk-alert{display:block;font-size:11px;color:#ffb347;margin-top:2px;font-weight:600}
+  .tk-info{display:block;font-size:11px;color:var(--dim);margin-top:2px}
+  .tk-t.manual{font-style:italic;text-decoration:underline dotted}
   /* 1.30: tarjeta de set compacta — duración + tracks/marcas en una línea; ↺ ✓ más grandes */
   .card{gap:10px;padding:8px 8px 8px 8px;align-items:center}
   .card .art{width:66px;height:66px}
@@ -519,7 +523,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.35';
+const APP_VERSION = '1.36';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -1167,6 +1171,14 @@ function heardBtn(url, key){
 }
 function trackKey(tr, i){ return (tr.t != null && tr.t !== '') ? ('t' + tr.t) : ('i' + i); }
 function getTrackNote(url, key){ const m = TLNOTES[url]; return (m && m[key]) ? m[key] : null; }
+// 1.36: minuto de inicio fijado a mano. Se guarda en TLNOTES con clave '@t'+key ({artist:'@t', title:ms}) para que sincronice con la hoja sin cambiar el Apps Script.
+function getManualT(url, key){ const m = TLNOTES[url]; const n = m && m['@t' + key]; const v = n ? parseInt(n.title, 10) : NaN; return isFinite(v) ? v : null; }
+function setManualT(url, key, ms){
+  if (!TLNOTES[url]) TLNOTES[url] = {};
+  if (ms == null) delete TLNOTES[url]['@t' + key]; else TLNOTES[url]['@t' + key] = { artist: '@t', title: String(Math.round(ms)) };
+  if (!Object.keys(TLNOTES[url]).length) delete TLNOTES[url];
+  saveTLNotes();
+}
 function setTrackNote(url, key, artist, title){
   if (!TLNOTES[url]) TLNOTES[url] = {};
   artist = (artist||'').trim(); title = (title||'').trim();
@@ -1256,12 +1268,13 @@ function renderTracklist(){
     return (pv != null)
       ? '<span class="tk-plays" title="reproducciones">▷ ' + esc(pv.toLocaleString('es-CL')) + '</span>' : '';
   }
-  function noteEditor(tr, i, ov){
+  function noteEditor(tr, i, ov, mkey){
     return '<div class="tk-note">' +
         '<input id="tnA" placeholder="Artista" value="' + esc(ov ? ov.artist : tr.artist || '') + '">' +
         '<input id="tnT" placeholder="Título" value="' + esc(ov ? ov.title : tr.title || '') + '">' +
         '<button data-notesave="' + i + '">Guardar</button>' +
         (ov ? '<button class="ghost" data-notedel="' + i + '">Quitar</button>' : '') +
+        (mkey ? '<button class="ghost" data-clrt="' + esc(mkey) + '">Quitar minuto manual</button>' : '') +
       '</div>';
   }
   function rangeLabel(t, end){
@@ -1270,6 +1283,14 @@ function renderTracklist(){
   }
 
   const hasTL = !!(tl && tl.tracks.length);
+  const ordered = hasTL && !!tl.ordered;   // 1.36: lista en orden oficial (tracks sin minuto quedan en su lugar)
+  function flagsHTML(tr){
+    let h = '';
+    if (tr.alerta) h += '<span class="tk-alert">⚠ ' + esc(tr.alerta) + '</span>';
+    if (tr.info) h += '<span class="tk-info">ⓘ ' + esc(tr.info) + '</span>';
+    return h;
+  }
+  function setTBtn(key){ return '<button class="tk-sett" data-sett="' + esc(key) + '" aria-label="Fijar inicio en el minuto que suena" title="Fijar inicio en el minuto que suena">⏱</button>'; }
   const nT = hasTL ? tl.tracks.length : 0;
 
   const nHeard = hasTL ? tl.tracks.filter((tr, i) => isHeard(s.url, trackKey(tr, i))).length : 0;
@@ -1282,24 +1303,29 @@ function renderTracklist(){
   const timed = [], untimed = [];
   if (hasTL){
     tl.tracks.forEach((tr, i) => {
-      if (tr.t != null && tr.t !== '') timed.push({ tr, i, t: tr.t });
-      else untimed.push({ tr, i });
+      const key = trackKey(tr, i), mt = getManualT(s.url, key);
+      const t = (mt != null) ? mt : ((tr.t != null && tr.t !== '') ? tr.t : null);
+      if (t != null) timed.push({ tr, i, t, key, manual: mt != null });
+      else untimed.push({ tr, i, key });
     });
     timed.sort((a, b) => a.t - b.t);
     timed.forEach((it, k) => {
       it.end = (k + 1 < timed.length) ? timed[k + 1].t : (dur && dur > it.t ? dur : null);
+      // 1.36: si entre este track y el siguiente con minuto hay tracks sin minuto, la duración no se conoce
+      if (ordered){ const b = (k + 1 < timed.length) ? timed[k + 1].i : tl.tracks.length; it.noDur = untimed.some(u => u.i > it.i && u.i < b); }
     });
   }
+  const leadUntimed = ordered && timed.length && untimed.some(u => u.i < timed[0].i);
 
   const items = [];
   const INTRO_MIN = 45000;   // intro sin identificar si el primer track parte pasado :45
-  if (timed.length && timed[0].t >= INTRO_MIN){
+  if (timed.length && timed[0].t >= INTRO_MIN && !leadUntimed){
     items.push({ kind: 'intro', t: 0, end: timed[0].t });
   }
-  timed.forEach(it => items.push({ kind: 'track', t: it.t, end: it.end, tr: it.tr, i: it.i }));
+  timed.forEach(it => items.push({ kind: 'track', t: it.t, end: it.end, tr: it.tr, i: it.i, key: it.key, manual: it.manual, noDur: !!it.noDur }));
   // 1.25: cada marca va DENTRO del track (o bloque) que la contiene; solo las sueltas quedan como fila aparte
   const mkByHost = {};
-  const hasIntro = !!(timed.length && timed[0].t >= INTRO_MIN);
+  const hasIntro = !!(timed.length && timed[0].t >= INTRO_MIN && !leadUntimed);
   marksArr.forEach((m, mi) => {
     let host = null;
     timed.forEach(it => { if (it.t <= m.t) host = 'i' + it.i; });
@@ -1322,14 +1348,14 @@ function renderTracklist(){
   items.sort((a, b) => (a.t - b.t) || ((a.kind === 'mark' ? 1 : 0) - (b.kind === 'mark' ? 1 : 0)));
 
   function trackRow(it){
-    const tr = it.tr, i = it.i, key = trackKey(tr, i);
+    const tr = it.tr, i = it.i, key = it.key || trackKey(tr, i), T = it.t, endL = it.noDur ? null : it.end;
     const ov = getTrackNote(s.url, key);
-    const editor = (tlEditRow === i) ? noteEditor(tr, i, ov) : '';
+    const editor = (tlEditRow === i) ? noteEditor(tr, i, ov, it.manual ? key : null) : '';
     // Bloque sin identificar (Track ID no lo reconoció y no tiene nota): fila atenuada, con ✎ para nombrarlo.
     if (!ov && tr.empty){
-      return '<div class="gapline" data-jump="' + tr.t + '" data-end="' + (it.end != null ? it.end : '') + '">' +
+      return '<div class="gapline" data-jump="' + T + '" data-end="' + (it.end != null ? it.end : '') + '">' +
         '<i class="tk-prog"></i>' +
-        '<span class="g-t">' + rangeLabel(tr.t, it.end) + '</span>' +
+        '<span class="g-t">' + rangeLabel(T, endL) + '</span>' +
         '<span class="g-lbl"><span class="dot"></span>sin identificar' +
           '</span>' +
         '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nombrar">✎</button>' +
@@ -1343,14 +1369,15 @@ function renderTracklist(){
       if (spQs) label = '<a class="tk-sp" data-sp href="https://open.spotify.com/search/' + encodeURIComponent(spQs) + '" target="_blank" rel="noopener">' + label + '</a>'; }
     if (isHeard(s.url, key)) cls += ' heard';
     const dl = '';
-    return '<div class="' + cls + '" data-jump="' + tr.t + '" data-end="' + (it.end != null ? it.end : '') + '">' +
+    return '<div class="' + cls + '" data-jump="' + T + '" data-end="' + (it.end != null ? it.end : '') + '">' +
       '<i class="tk-prog"></i>' +
       heardBtn(s.url, key) +
-      '<span class="tk-t">' + rangeLabel(tr.t, it.end) + '</span>' +
-      '<span class="tk-name">' + label + dl + playsHTML(tr) + '</span>' +
+      '<span class="tk-t' + (it.manual ? ' manual' : '') + '">' + rangeLabel(T, endL) + '</span>' +
+      '<span class="tk-name">' + label + dl + playsHTML(tr) + flagsHTML(tr) + '</span>' +
       '<div class="tk-act">' + tagBtn(i, s.url, key) +
       '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nota">✎</button>' +
-      '<button class="tk-addmk" data-addmark="' + tr.t + '" data-addend="' + (it.end != null ? it.end : '') + '" aria-label="Agregar marca">📍</button></div>' +
+      ((ordered || it.manual) ? setTBtn(key) : '') +
+      '<button class="tk-addmk" data-addmark="' + T + '" data-addend="' + (it.end != null ? it.end : '') + '" aria-label="Agregar marca">📍</button></div>' +
       attrHTML(s.url, key) + marksHTML('i' + i) +
     '</div>' + editor;
   }
@@ -1368,7 +1395,7 @@ function renderTracklist(){
     '</div>';
   }
   function untimedRow(u){
-    const tr = u.tr, i = u.i, key = trackKey(tr, i), ov = getTrackNote(s.url, key);
+    const tr = u.tr, i = u.i, key = u.key || trackKey(tr, i), ov = getTrackNote(s.url, key);
     const editor = (tlEditRow === i) ? noteEditor(tr, i, ov) : '';
     let cls = 'tk', label;
     if (ov){ cls += ' tk-user'; label = [ov.artist, ov.title].filter(Boolean).map(esc).join(' — '); }
@@ -1381,9 +1408,9 @@ function renderTracklist(){
     return '<div class="' + cls + '">' +
       heardBtn(s.url, key) +
       '<span class="tk-t">—</span>' +
-      '<span class="tk-name">' + label + playsHTML(tr) + '</span>' +
+      '<span class="tk-name">' + label + playsHTML(tr) + flagsHTML(tr) + '</span>' +
       '<div class="tk-act">' + tagBtn(i, s.url, key) +
-      '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nota">✎</button></div>' +
+      '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nota">✎</button>' + setTBtn(key) + '</div>' +
       attrHTML(s.url, key) +
     '</div>' + editor;
   }
@@ -1397,16 +1424,31 @@ function renderTracklist(){
     return;
   }
 
-  const src = (hasTL && tl.source)
-    ? '<div class="tl-src">Fuente: <a href="' + esc(tl.source) + '" target="_blank" rel="noopener">' + esc(tl.source) + '</a></div>'
+  // 1.36: varias fuentes (lista oficial, 1001tracklists, trackid)
+  const srcs = (hasTL && Array.isArray(tl.sources) && tl.sources.length) ? tl.sources
+             : ((hasTL && tl.source) ? [{ name: tl.source, url: tl.source }] : []);
+  const src = srcs.length
+    ? '<div class="tl-src">Fuente' + (srcs.length > 1 ? 's' : '') + ': ' +
+        srcs.map(x => x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.name || x.url) + '</a>' : esc(x.name || '')).join(' · ') +
+        (ordered ? '<br>Orden de la lista oficial. ⏱ fija el inicio del track en el minuto que está sonando.' : '') +
+      '</div>'
     : '';
   let html = src;
+  // En orden oficial, cada track sin minuto va después del track con minuto que lo precede en la lista
+  const afterIdx = {};
+  if (ordered){
+    untimed.forEach(u => {
+      let host = null;
+      timed.forEach(t => { if (t.i < u.i && (host == null || t.i > host)) host = t.i; });
+      if (host == null) html += untimedRow(u); else (afterIdx[host] = afterIdx[host] || []).push(u);
+    });
+  }
   items.forEach(it => {
     if (it.kind === 'intro') html += introRow(it);
-    else if (it.kind === 'track') html += trackRow(it);
+    else if (it.kind === 'track'){ html += trackRow(it); if (afterIdx[it.i]) afterIdx[it.i].forEach(u => { html += untimedRow(u); }); }
     else if (it.kind === 'mark') html += markRow(it);
   });
-  untimed.forEach(u => { html += untimedRow(u); });
+  if (!ordered) untimed.forEach(u => { html += untimedRow(u); });
 
   const local = hasLocalTL(s.url);
   const foot = '<div class="tl-foot">' +
@@ -1726,6 +1768,15 @@ document.querySelectorAll('.seek[data-seek]').forEach(el => {
 document.getElementById('tlBody').addEventListener('click', e => {
   const hb = e.target.closest('[data-heard]');
   if (hb){ e.stopPropagation(); toggleHeard(SETS[currentIndex].url, hb.dataset.heard); renderTracklist(); return; }
+  // 1.36: ⏱ fija el inicio del track en el minuto que suena (solo si este set es el que está cargado)
+  const stb = e.target.closest('[data-sett]');
+  if (stb){
+    e.stopPropagation();
+    if (currentIndex !== loadedIndex){ stb.textContent = '▶?'; setTimeout(() => { stb.textContent = '⏱'; }, 1500); return; }
+    setManualT(SETS[currentIndex].url, stb.dataset.sett, curPosMs || 0); updateCard(currentIndex); renderTracklist(); return;
+  }
+  const ctb = e.target.closest('[data-clrt]');
+  if (ctb){ e.stopPropagation(); setManualT(SETS[currentIndex].url, ctb.dataset.clrt, null); tlEditRow = -1; updateCard(currentIndex); renderTracklist(); return; }
   const tg = e.target.closest('[data-tagrow]');
   if (tg){ openTagModal(parseInt(tg.dataset.tagrow,10)); return; }
   const er = e.target.closest('[data-editrow]');
