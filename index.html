@@ -288,6 +288,7 @@
   .cbadges{display:flex;gap:8px;margin-top:6px;font-size:11px;color:var(--dim);
     font-variant-numeric:tabular-nums}
   .cbadges span:empty{display:none}
+  .cbadges .cb-unk{color:var(--dim);opacity:.75;margin-left:2px}
 
   /* iframe del widget, oculto pero presente (display:none suspende el audio en iOS) */
   .pl-frame{position:absolute;bottom:0;left:0;width:1px;height:1px;overflow:hidden;
@@ -528,7 +529,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.37';
+const APP_VERSION = '1.38';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -718,14 +719,25 @@ function taggedTracksCount(url, tl){
   });
   return tagged.size;
 }
+// 1.38: identificados vs sin identificar (bloques vacíos o "ID" sin nombre; una nota ✎ con nombre lo cuenta como identificado)
+function identCounts(url, tl){
+  let id = 0, unk = 0;
+  if (tl && tl.tracks) tl.tracks.forEach((tr, i) => {
+    const ov = getTrackNote(url, trackKey(tr, i));
+    const named = (ov && (ov.artist || ov.title)) || (!tr.empty && (tr.artist || tr.title));
+    if (named) id++; else unk++;
+  });
+  return { id: id, unk: unk };
+}
 function cardBadges(s){
   const tl = getTracklist(s.url);
   const nt = tl ? tl.tracks.length : 0;
+  const ic = identCounts(s.url, tl);
   const ng = taggedTracksCount(s.url, tl);
   const nm = nt ? 0 : getMarks(s.url).length;   // sin tracklist: mostrar las 📍 sueltas
   if (!nt && !nm) return '';
   return '<span class="cbadges">' +
-    (nt ? '<span>🎵 ' + nt + '</span>' : '') +
+    (nt ? '<span>🎵 ' + ic.id + (ic.unk ? ' <span class="cb-unk">+ ' + ic.unk + ' sin ID</span>' : '') + '</span>' : '') +
     (ng ? '<span>🏷 ' + ng + '</span>' : '') +
     (nm ? '<span>📍 ' + nm + '</span>' : '') +
   '</span>';
@@ -1299,7 +1311,8 @@ function renderTracklist(){
   const nT = hasTL ? tl.tracks.length : 0;
 
   const nHeard = hasTL ? tl.tracks.filter((tr, i) => isHeard(s.url, trackKey(tr, i))).length : 0;
-  count.textContent = (nT ? nT + ' tracks' + (nHeard ? ' · ' + nHeard + ' ✓' : '') : '') +
+  const icT = identCounts(s.url, hasTL ? tl : null);
+  count.textContent = (nT ? icT.id + ' tracks' + (icT.unk ? ' + ' + icT.unk + ' sin ID' : '') + (nHeard ? ' · ' + nHeard + ' ✓' : '') : '') +
     (nT && marksArr.length ? ' · ' : '') +
     (marksArr.length ? marksArr.length + (marksArr.length === 1 ? ' marca' : ' marcas') : '');
 
