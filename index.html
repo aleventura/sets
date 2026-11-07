@@ -477,6 +477,11 @@
   .seek-rows .seek-row .seek{flex:0 0 auto;width:72px;max-width:none;height:72px}
   .seek-rows .seek-row .seek b{font-size:21px}
   .seek-rows .seek-row .seek i{font-size:12px;margin-top:3px}
+  /* 1.49: grilla de 4 columnas; fila 2 = +20 bajo −1 (izquierda), +1 bajo +8, +3 bajo +16 */
+  .seek-rows .seek-row{display:grid;grid-template-columns:repeat(4,72px);justify-content:center;gap:14px}
+  .seek-rows .seek-row.r2 .seek:nth-child(1){grid-column:1}
+  .seek-rows .seek-row.r2 .seek:nth-child(2){grid-column:3}
+  .seek-rows .seek-row.r2 .seek:nth-child(3){grid-column:4}
   .pl-ctrl .pl-times{margin-bottom:0}
 </style>
 </head>
@@ -539,9 +544,9 @@
         <button class="seek" data-seek="16"><b>+16</b><i>s</i></button>
       </div>
       <div class="seek-row r2">
+        <button class="seek" data-seek="1200"><b>+20</b><i>min</i></button>
         <button class="seek" data-seek="60"><b>+1</b><i>min</i></button>
         <button class="seek" data-seek="180"><b>+3</b><i>min</i></button>
-        <button class="seek" data-seek="1200"><b>+20</b><i>min</i></button>
       </div>
       </div>
       <div class="sect-head tl-head">
@@ -575,7 +580,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.48';
+const APP_VERSION = '1.49';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
