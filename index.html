@@ -388,6 +388,11 @@
   .tk-sp{color:inherit;text-decoration:none}
   /* 1.42: ✔ verde = el track ya está en Spotify all o no */
   .tk-lib{color:var(--ok);font-weight:700;margin-left:5px}
+  /* 1.43: tracks del set en all y por estrella (tarjeta de set) */
+  .clib{display:flex;gap:10px;margin-top:4px;font-size:12px;color:var(--fg);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden}
+  .clib .cl-all{color:var(--ok);font-weight:600}
+  .clib .cl-st{color:#f5c518}
+  .clib .zero{opacity:.4}
   .tk-sp:active{opacity:.6}
   .tk,.gapline{position:relative;overflow:hidden}
   .tk-prog{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--acc);pointer-events:none;transition:width .4s linear}
@@ -539,7 +544,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.42';
+const APP_VERSION = '1.43';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -607,6 +612,8 @@ const TRACKLISTS_URL_FALLBACK = 'https://aleventura.github.io/sets/tracklists.js
 const LIB_URL = 'spotify_lib.json?t=' + Date.now();
 const LIB_URL_FALLBACK = 'https://aleventura.github.io/sets/spotify_lib.json?t=' + Date.now();
 let SPLIB = {}; // libKey -> 'all' | 'no'
+let SPSTAR = {}; // 1.43: libKey -> 3 | 4 | 5 (la estrella más alta)
+let SPLIB_READY = false;
 function libNorm(x){ return (x || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); }
 function libBadge(artist, title){
   if (!title) return '';
@@ -617,7 +624,11 @@ function loadSpLib(){
   const apply = (d) => {
     if (!d || !Array.isArray(d.all)) return;
     const m = {}; (d.no || []).forEach(k => m[k] = 'no'); d.all.forEach(k => m[k] = 'all');
-    SPLIB = m; if (currentIndex >= 0) renderTracklist();
+    SPLIB = m;
+    const st = {}; [3, 4, 5].forEach(n => (d['s' + n] || []).forEach(k => st[k] = n)); SPSTAR = st;
+    SPLIB_READY = true;
+    SETS.forEach((x, i) => updateCard(i));
+    if (currentIndex >= 0) renderTracklist();
   };
   fetch(LIB_URL).then(r => { if (!r.ok) throw new Error('no local'); return r.json(); }).then(apply)
     .catch(() => fetch(LIB_URL_FALLBACK).then(r => r.json()).then(apply).catch(() => {}));
@@ -768,6 +779,26 @@ function identCounts(url, tl){
   });
   return { id: id, unk: unk };
 }
+// 1.43: cuántos tracks del set están en all y en cada estrella (por ocurrencia en el set)
+function cardLib(s){
+  const tl = getTracklist(s.url);
+  if (!SPLIB_READY || !tl || !tl.tracks.length) return '';
+  const c = { all: 0, 3: 0, 4: 0, 5: 0 };
+  tl.tracks.forEach((tr, i) => {
+    const ov = getTrackNote(s.url, trackKey(tr, i));
+    const a = (ov && (ov.artist || ov.title)) ? ov.artist : (tr.empty ? null : tr.artist);
+    const t = (ov && (ov.artist || ov.title)) ? ov.title : (tr.empty ? null : tr.title);
+    if (!t) return;
+    const k = libNorm(a) + '|' + libNorm(t);
+    if (SPLIB[k] === 'all') c.all++;
+    if (SPSTAR[k]) c[SPSTAR[k]]++;
+  });
+  const z = n => n ? '' : ' zero';
+  return '<div class="clib">' +
+    '<span class="cl-all' + z(c.all) + '">all ' + c.all + '</span>' +
+    [3, 4, 5].map(n => '<span class="cl-st' + z(c[n]) + '">' + n + '★ ' + c[n] + '</span>').join('') +
+  '</div>';
+}
 function cardBadges(s){
   const tl = getTracklist(s.url);
   const nt = tl ? tl.tracks.length : 0;
@@ -803,6 +834,7 @@ function cardHTML(s, i){
         <div class="cprog">
           <div class="cbar"><div class="cfill" style="width:${pct}%"></div></div>
           <div class="ctime"><span class="ct-l"><span class="ct-time">${timeLabel}</span>${cardBadges(s)}</span><span>${rightLabel}</span></div>
+          ${cardLib(s)}
         </div>
       </div>
       <div class="cside">
@@ -843,6 +875,12 @@ function updateCard(i){
     if (bwrap) bwrap.outerHTML = html;
     else { const l = card.querySelector('.ct-l'); if (l) l.insertAdjacentHTML('beforeend', html); }
   } else if (bwrap){ bwrap.remove(); }
+  // 1.43: contadores all / estrellas
+  const lwrap = card.querySelector('.clib'), lhtml = cardLib(s);
+  if (lhtml){
+    if (lwrap) lwrap.outerHTML = lhtml;
+    else { const pr = card.querySelector('.cprog'); if (pr) pr.insertAdjacentHTML('beforeend', lhtml); }
+  } else if (lwrap){ lwrap.remove(); }
 }
 
 function updateSub(){
