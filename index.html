@@ -544,7 +544,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.43';
+const APP_VERSION = '1.44';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -1254,10 +1254,30 @@ function saveLocalTL(){ localStorage.setItem(LS_LOCAL_TL, JSON.stringify(LOCAL_T
 // ---- Notas manuales de track (nombre/artista para huecos o correcciones) ----
 function saveTLNotes(){ localStorage.setItem(LS_TLNOTES, JSON.stringify(TLNOTES)); syncDirty('notes'); }
 function saveHeard(){ try { localStorage.setItem(LS_HEARD, JSON.stringify(HEARD)); } catch(e){} syncDirty('heard'); }
-function isHeard(url, key){ return !!(HEARD[url] && HEARD[url][key]); }
+// 1.44: un track que ya está en Spotify all o no cuenta como escuchado (✓ verde automático).
+// HEARD[url][key] > 0 = marcado a mano; < 0 = desmarcado a mano (anula el automático); sin valor = automático.
+function libHeard(url, key){
+  if (!SPLIB_READY || key === 'intro') return false;
+  const tl = getTracklist(url); if (!tl || !tl.tracks) return false;
+  for (let i = 0; i < tl.tracks.length; i++){
+    const tr = tl.tracks[i]; if (trackKey(tr, i) !== key) continue;
+    const ov = getTrackNote(url, key), named = ov && (ov.artist || ov.title);
+    const a = named ? ov.artist : (tr.empty ? null : tr.artist), t = named ? ov.title : (tr.empty ? null : tr.title);
+    return !!(t && SPLIB[libNorm(a) + '|' + libNorm(t)]);
+  }
+  return false;
+}
+function isHeard(url, key){
+  const v = HEARD[url] && HEARD[url][key];
+  if (v > 0) return true;
+  if (v < 0) return false;
+  return libHeard(url, key);
+}
 function toggleHeard(url, key){
   const m = HEARD[url] || (HEARD[url] = {});
-  if (m[key]) delete m[key]; else m[key] = Date.now();
+  const auto = libHeard(url, key);
+  if (isHeard(url, key)){ if (auto) m[key] = -Date.now(); else delete m[key]; }
+  else { if (auto) delete m[key]; else m[key] = Date.now(); }
   if (!Object.keys(m).length) delete HEARD[url];
   saveHeard();
 }
@@ -1473,7 +1493,7 @@ function renderTracklist(){
       '<i class="tk-prog"></i>' +
       heardBtn(s.url, key) +
       '<span class="tk-t' + (it.manual ? ' manual' : '') + '">' + rangeLabel(T, endL) + '</span>' +
-      '<span class="tk-name">' + label + libBadge(tr.artist, tr.title) + dl + playsHTML(tr) + flagsHTML(tr) + '</span>' +
+      '<span class="tk-name">' + label + dl + playsHTML(tr) + flagsHTML(tr) + '</span>' +
       '<div class="tk-act">' + tagBtn(i, s.url, key) +
       '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nota">✎</button>' +
       ((ordered || it.manual) ? setTBtn(key) : '') +
@@ -1513,7 +1533,7 @@ function renderTracklist(){
     return '<div class="' + cls + '">' +
       heardBtn(s.url, key) +
       '<span class="tk-t">—</span>' +
-      '<span class="tk-name">' + label + (tr.empty ? '' : libBadge(tr.artist, tr.title)) + playsHTML(tr) + flagsHTML(tr) + '</span>' +
+      '<span class="tk-name">' + label + playsHTML(tr) + flagsHTML(tr) + '</span>' +
       '<div class="tk-act">' + tagBtn(i, s.url, key) +
       '<button class="tk-edit" data-editrow="' + i + '" aria-label="Nota">✎</button>' + setTBtn(key) + '</div>' +
       attrHTML(s.url, key) +
