@@ -471,6 +471,13 @@
     display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;min-width:0}
   .seek-row .seek b{font-size:15px;font-weight:700}
   .seek-row .seek i{font-style:normal;font-size:10px;font-weight:600;opacity:.8;margin-top:2px}
+  /* 1.48: saltos en 2 filas (−1 min, −16 s, +8 s, +16 s | +1, +3, +20 min), botones más grandes y pegados a la barra/Play */
+  .seek-rows{display:flex;flex-direction:column;gap:8px;margin-top:-10px}
+  .seek-rows .seek-row{margin-top:0;justify-content:center;gap:14px}
+  .seek-rows .seek-row .seek{flex:0 0 auto;width:72px;max-width:none;height:72px}
+  .seek-rows .seek-row .seek b{font-size:21px}
+  .seek-rows .seek-row .seek i{font-size:12px;margin-top:3px}
+  .pl-ctrl .pl-times{margin-bottom:0}
 </style>
 </head>
 <body>
@@ -524,14 +531,18 @@
           <div class="pl-times"><span id="curTime">0:00</span><span id="durTime">0:00</span></div>
         </div>
       </div>
-      <div class="seek-row">
+      <div class="seek-rows">
+      <div class="seek-row r1">
         <button class="seek back" data-seek="-60"><b>−1</b><i>min</i></button>
         <button class="seek back" data-seek="-16"><b>−16</b><i>s</i></button>
         <button class="seek" data-seek="8"><b>+8</b><i>s</i></button>
         <button class="seek" data-seek="16"><b>+16</b><i>s</i></button>
+      </div>
+      <div class="seek-row r2">
         <button class="seek" data-seek="60"><b>+1</b><i>min</i></button>
         <button class="seek" data-seek="180"><b>+3</b><i>min</i></button>
         <button class="seek" data-seek="1200"><b>+20</b><i>min</i></button>
+      </div>
       </div>
       <div class="sect-head tl-head">
         <span>Tracklist <span id="tlCount"></span></span>
@@ -564,7 +575,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.47';
+const APP_VERSION = '1.48';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
