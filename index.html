@@ -457,6 +457,14 @@
   .tm-opt.on .tm-radio::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--acc2)}
   .tm-lbl{flex:1 1 auto;font-size:15px}
   .tm-div{height:1px;background:var(--border);margin:3px 16px}
+  /* 1.47: tres columnas paralelas (intensidad | género | atributo) */
+  .tm-cols{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:0 6px;padding:0 6px}
+  .tm-col{min-width:0}
+  .tm-cols .tm-sect{padding:12px 6px 4px}
+  .tm-cols .tm-opt{gap:7px;padding:9px 6px}
+  .tm-cols .tm-radio{width:16px;height:16px}
+  .tm-cols .tm-lbl{font-size:13.5px;line-height:1.2;overflow-wrap:anywhere}
+  .tm-cols .tm-div{margin:5px 6px;height:2px}
   /* 1.45: saltos circulares (7 botones: −1 min, −16 s, +8 s, +16 s, +1, +3, +20 min) */
   .seek-row{display:flex;gap:6px;justify-content:space-between;margin-top:12px}
   .seek-row .seek{flex:1 1 0;max-width:58px;aspect-ratio:1/1;height:auto;padding:0;border-radius:50%;
@@ -556,7 +564,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.46';
+const APP_VERSION = '1.47';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -659,11 +667,7 @@ let LOCAL_TL = JSON.parse(localStorage.getItem(LS_LOCAL_TL) || '{}'); // trackli
 let HEARD = {}; try { HEARD = JSON.parse(localStorage.getItem(LS_HEARD) || '{}') || {}; } catch(e){ HEARD = {}; }
 let TLNOTES  = JSON.parse(localStorage.getItem(LS_TLNOTES) || '{}');  // notas manuales de track por set
 let TRACKATTRS = JSON.parse(localStorage.getItem(LS_TRACKATTRS) || '{}'); // atributos por track (estrellas + tags), por ocurrencia set+track
-let TAGVOCAB = { categories: [
-  {id:'gen',label:'Genero',values:['22*Pist','23*Pist','33*Pist','34*Pist','44*Pist','45*Pist','53*Pist','52*Pist','22*Viaj','33*Viaj','44*Viaj','45*Viaj','53*Viaj','52*Viaj','51*Viaj','44*Sail','53*Sail','52*Sail','51*Sail']},
-  {id:'niv',label:'Nivel',values:['Afro','Bailable','Dance','Deep','Down','Funky','Hap','Indie','Melod','Music','Org','Peak','Tech']},
-  {id:'atr',label:'Atributo',values:['pop','voc','sub','peak','after-peak']}
-]}; // fallback embebido; tags.json (si existe) lo sobreescribe
+let TAGVOCAB = { categories: [{"id": "gen", "label": "Intensidad", "values": ["Pist*23", "Pist*34", "Pist*44", "Pist*45", "Pist*53", "Pist*52", "---", "Viaj*44", "Viaj*53", "((( Viaj*33 )))", "Viaj*52", "---", "Sail*44", "Sail*53", "((( Sail*33 )))", "((( Pist*33 ))) (Sail*33)", "Sail*52"]}, {"id": "niv", "label": "Género", "values": ["Afro", "Bailable", "Dance", "Deep", "Down", "Funky", "Hap", "Indie", "Melod", "Music", "Org", "Peak", "Tech"]}, {"id": "atr", "label": "Atributo", "values": ["pop", "voc", "sub", "peak", "after-peak"]}]}; // fallback embebido; tags.json (si existe) lo sobreescribe
 let tagModalCtx = null;              // {url,key,tr,i} del track abierto en el modal de tags
 let tlEditRow = -1;                  // índice de fila del tracklist en edición (o -1)
 let TRACKLISTS = {};                 // tracklists incrustados (de tracklists.json)
@@ -1784,6 +1788,14 @@ function setMediaSession(s){
 // ============================================================
 function saveTrackAttrs(){ localStorage.setItem(LS_TRACKATTRS, JSON.stringify(TRACKATTRS)); syncDirty('attrs'); }
 function getAttrRec(url, key){ const m = TRACKATTRS[url]; return (m && m[key]) ? m[key] : null; }
+// 1.47: nomenclatura nueva de intensidad ("Pist*23"); los valores viejos ("23*Pist") se muestran convertidos
+const GEN_OLD = {'33*Pist':'((( Pist*33 ))) (Sail*33)','33*Viaj':'((( Viaj*33 )))','33*Sail':'((( Sail*33 )))'};
+function normGen(v){
+  if (!v) return v;
+  if (GEN_OLD[v]) return GEN_OLD[v];
+  const m = /^(\d+)\*(Pist|Viaj|Sail)$/.exec(v);
+  return m ? (m[2] + '*' + m[1]) : v;
+}
 function attrHasAny(r){ return !!(r && (r.stars || r.gen || r.niv || r.atr)); }
 function setAttrField(url, key, field, value, meta){
   if (!TRACKATTRS[url]) TRACKATTRS[url] = {};
@@ -1804,7 +1816,7 @@ function attrHTML(url, key){
   if (!attrHasAny(r)) return '';
   let h = '<div class="tk-tags">';
   if (r.stars) h += '<span class="tk-stars">' + starsHTML(r.stars) + '</span>';
-  if (r.gen) h += '<span class="tk-chip">' + esc(r.gen) + '</span>';
+  if (r.gen) h += '<span class="tk-chip">' + esc(normGen(r.gen)) + '</span>';
   if (r.niv) h += '<span class="tk-chip">' + esc(r.niv) + '</span>';
   if (r.atr) h += '<span class="tk-chip atr">' + esc(r.atr) + '</span>';
   return h + '</div>';
@@ -1861,19 +1873,20 @@ function renderTagModal(){
   h += '<div class="tm-sect">Estrellas</div><div class="tm-stars">';
   for (let k = 1; k <= 5; k++) h += '<span class="tm-star' + ((rec.stars || 0) >= k ? ' on' : '') + '" data-star="' + k + '">' + ((rec.stars || 0) >= k ? '★' : '☆') + '</span>';
   h += '</div>';
+  h += '<div class="tm-cols">';   // 1.47: intensidad, género y atributo en columnas paralelas
   (TAGVOCAB.categories || []).forEach(cat => {
-    h += '<div class="tm-sect">' + esc(cat.label) + '</div>';
-    let lastSuffix = null;
+    h += '<div class="tm-col"><div class="tm-sect">' + esc(cat.label) + '</div>';
+    const cur = cat.id === 'gen' ? normGen(rec.gen) : rec[cat.id];
     (cat.values || []).forEach(v => {
-      const suf = (cat.id === 'gen' && v.indexOf('*') > 0) ? v.split('*')[1] : null;
-      if (suf && lastSuffix !== null && suf !== lastSuffix) h += '<div class="tm-div"></div>';
-      lastSuffix = suf;
-      const on = rec[cat.id] === v;
+      if (/^-+$/.test(v)){ h += '<div class="tm-div"></div>'; return; }
+      const on = cur === v;
       h += '<div class="tm-opt' + (on ? ' on' : '') + '" data-cat="' + esc(cat.id) + '" data-val="' + esc(v) + '">' +
         '<span class="tm-radio"></span><span class="tm-lbl">' + esc(v) + '</span>' +
       '</div>';
     });
+    h += '</div>';
   });
+  h += '</div>';
   body.innerHTML = h;
 }
 function loadTags(){
@@ -1978,7 +1991,8 @@ document.getElementById('tagModalBody').addEventListener('click', e => {
   const op = e.target.closest('[data-cat]');
   if (op){
     const cat = op.dataset.cat, val = op.dataset.val;
-    const cur = (getAttrRec(tagModalCtx.url, tagModalCtx.key) || {})[cat];
+    let cur = (getAttrRec(tagModalCtx.url, tagModalCtx.key) || {})[cat];
+    if (cat === 'gen') cur = normGen(cur);
     setAttrField(tagModalCtx.url, tagModalCtx.key, cat, (cur === val ? '' : val), tagModalMeta());
     renderTagModal(); return;
   }
