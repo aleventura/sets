@@ -453,6 +453,12 @@
   .tm-opt.on .tm-radio::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--acc2)}
   .tm-lbl{flex:1 1 auto;font-size:15px}
   .tm-div{height:1px;background:var(--border);margin:3px 16px}
+  /* 1.45: saltos circulares (7 botones: −1 min, −16 s, +8 s, +16 s, +1, +3, +20 min) */
+  .seek-row{display:flex;gap:6px;justify-content:space-between;margin-top:12px}
+  .seek-row .seek{flex:1 1 0;max-width:58px;aspect-ratio:1/1;height:auto;padding:0;border-radius:50%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;min-width:0}
+  .seek-row .seek b{font-size:15px;font-weight:700}
+  .seek-row .seek i{font-style:normal;font-size:10px;font-weight:600;opacity:.8;margin-top:2px}
 </style>
 </head>
 <body>
@@ -507,11 +513,13 @@
         </div>
       </div>
       <div class="seek-row">
-        <button class="seek back" data-seek="-60">−1 min</button>
-        <button class="seek back" data-seek="-15">−15 s</button>
-        <button class="seek" data-seek="60">+1 min</button>
-        <button class="seek" data-seek="180">+3 min</button>
-        <button class="seek" data-seek="1200">+20 min</button>
+        <button class="seek back" data-seek="-60"><b>−1</b><i>min</i></button>
+        <button class="seek back" data-seek="-16"><b>−16</b><i>s</i></button>
+        <button class="seek" data-seek="8"><b>+8</b><i>s</i></button>
+        <button class="seek" data-seek="16"><b>+16</b><i>s</i></button>
+        <button class="seek" data-seek="60"><b>+1</b><i>min</i></button>
+        <button class="seek" data-seek="180"><b>+3</b><i>min</i></button>
+        <button class="seek" data-seek="1200"><b>+20</b><i>min</i></button>
       </div>
       <div class="sect-head tl-head">
         <span>Tracklist <span id="tlCount"></span></span>
@@ -544,7 +552,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.44';
+const APP_VERSION = '1.45';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
