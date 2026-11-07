@@ -337,6 +337,13 @@
   .tk-chip{background:var(--btn);border:1px solid var(--border);border-radius:6px;padding:1px 7px;
     font-size:11px;color:var(--fg);white-space:nowrap}
   .tk-chip.atr{border-color:var(--acc);color:var(--acc)}
+  /* 1.50: tags que vienen de Rekordbox (rekordbox_tags.json): borde punteado y sello RB */
+  .tk-rb{font-size:9px;font-weight:700;letter-spacing:.5px;color:#8fb3ff;border:1px solid #3d5687;border-radius:4px;padding:0 4px;line-height:14px}
+  .tk-chip.rb,.tk-stars.rb{border-style:dashed}
+  .tk-chip.rb{border-color:#3d5687}
+  .tk-stars.rb{opacity:.8}
+  .tm-rb{padding:6px 16px 8px;color:#8fb3ff;font-size:12px;border-bottom:1px solid var(--border)}
+  .tm-opt.rbv .tm-lbl::after{content:" RB";font-size:9px;font-weight:700;color:#8fb3ff}
   .tk-tag{flex:0 0 auto;background:none;border:0;color:#55555e;cursor:pointer;font-size:15px;
     padding:2px 4px;line-height:1;filter:grayscale(1);opacity:.6}
   .tk-tag.on{filter:none;opacity:1}
@@ -580,7 +587,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.49';
+const APP_VERSION = '1.50';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -655,6 +662,31 @@ function libBadge(artist, title){
   if (!title) return '';
   const v = SPLIB[libNorm(artist) + '|' + libNorm(title)];
   return v ? '<span class="tk-lib" title="Ya está en ' + v + '">✔</span>' : '';
+}
+// 1.50: tags de Rekordbox por track (rekordbox_tags.json, lo regenera Claude desde rek.xml con scripts/rekordbox_tags.py)
+// tracks: libKey -> {s: estrellas, g: [intensidad], n: [género], a: [atributo]}
+const RB_URL = 'rekordbox_tags.json?t=' + Date.now();
+const RB_URL_FALLBACK = 'https://aleventura.github.io/sets/rekordbox_tags.json?t=' + Date.now();
+let RBTAGS = {};
+function loadRbTags(){
+  const apply = (d) => {
+    if (!d || !d.tracks) return;
+    RBTAGS = d.tracks;
+    if (currentIndex >= 0) renderTracklist();
+  };
+  fetch(RB_URL).then(r => { if (!r.ok) throw new Error('no local'); return r.json(); }).then(apply)
+    .catch(() => fetch(RB_URL_FALLBACK).then(r => r.json()).then(apply).catch(() => {}));
+}
+function rbRec(url, key){
+  if (key === 'intro') return null;
+  const tl = getTracklist(url); if (!tl || !tl.tracks) return null;
+  for (let i = 0; i < tl.tracks.length; i++){
+    const tr = tl.tracks[i]; if (trackKey(tr, i) !== key) continue;
+    const ov = getTrackNote(url, key), named = ov && (ov.artist || ov.title);
+    const a = named ? ov.artist : (tr.empty ? null : tr.artist), t = named ? ov.title : (tr.empty ? null : tr.title);
+    return t ? (RBTAGS[libNorm(a) + '|' + libNorm(t)] || null) : null;
+  }
+  return null;
 }
 function loadSpLib(){
   const apply = (d) => {
@@ -1828,17 +1860,25 @@ function setAttrField(url, key, field, value, meta){
 }
 function starsHTML(n){ n = n || 0; let s = ''; for (let k = 1; k <= 5; k++) s += (k <= n ? '★' : '☆'); return s; }
 function attrHTML(url, key){
-  const r = getAttrRec(url, key);
-  if (!attrHasAny(r)) return '';
-  let h = '<div class="tk-tags">';
+  const r = getAttrRec(url, key) || {};
+  const rb = rbRec(url, key) || {};   // 1.50: lo marcado a mano manda; Rekordbox llena las categorías vacías
+  if (!attrHasAny(r) && !(rb.s || rb.g || rb.n || rb.a)) return '';
+  let h = '<div class="tk-tags">', usedRb = false;
   if (r.stars) h += '<span class="tk-stars">' + starsHTML(r.stars) + '</span>';
-  if (r.gen) h += '<span class="tk-chip">' + esc(normGen(r.gen)) + '</span>';
-  if (r.niv) h += '<span class="tk-chip">' + esc(r.niv) + '</span>';
-  if (r.atr) h += '<span class="tk-chip atr">' + esc(r.atr) + '</span>';
+  else if (rb.s){ h += '<span class="tk-stars rb">' + starsHTML(rb.s) + '</span>'; usedRb = true; }
+  const chips = (manual, rbv, cls, f) => {
+    if (manual){ h += '<span class="tk-chip' + cls + '">' + esc(f ? f(manual) : manual) + '</span>'; return; }
+    (rbv || []).forEach(v => { h += '<span class="tk-chip rb' + cls + '">' + esc(v) + '</span>'; usedRb = true; });
+  };
+  chips(r.gen, rb.g, '', normGen);
+  chips(r.niv, rb.n, '');
+  chips(r.atr, rb.a, ' atr');
+  if (usedRb) h += '<span class="tk-rb" title="Tags de Rekordbox">RB</span>';
   return h + '</div>';
 }
 function tagBtn(i, url, key){
-  const on = attrHasAny(getAttrRec(url, key));
+  const rb = rbRec(url, key);
+  const on = attrHasAny(getAttrRec(url, key)) || !!(rb && (rb.s || rb.g || rb.n || rb.a));
   return '<button class="tk-tag' + (on ? ' on' : '') + '" data-tagrow="' + i + '" aria-label="Tags del track">🏷</button>';
 }
 function exportTrackAttrs(){
@@ -1886,6 +1926,10 @@ function renderTagModal(){
   if (!body || !tagModalCtx) return;
   const rec = getAttrRec(tagModalCtx.url, tagModalCtx.key) || {};
   let h = '<div class="tm-track">' + esc(tagTrackLabel()) + '</div>';
+  const rb = rbRec(tagModalCtx.url, tagModalCtx.key) || {};
+  const rbList = [].concat(rb.s ? [starsHTML(rb.s)] : [], rb.g || [], rb.n || [], rb.a || []);
+  if (rbList.length) h += '<div class="tm-rb">Rekordbox: ' + esc(rbList.join(' · ')) + '</div>';
+  const rbCat = { gen: rb.g || [], niv: rb.n || [], atr: rb.a || [] };
   h += '<div class="tm-sect">Estrellas</div><div class="tm-stars">';
   for (let k = 1; k <= 5; k++) h += '<span class="tm-star' + ((rec.stars || 0) >= k ? ' on' : '') + '" data-star="' + k + '">' + ((rec.stars || 0) >= k ? '★' : '☆') + '</span>';
   h += '</div>';
@@ -1896,7 +1940,8 @@ function renderTagModal(){
     (cat.values || []).forEach(v => {
       if (/^-+$/.test(v)){ h += '<div class="tm-div"></div>'; return; }
       const on = cur === v;
-      h += '<div class="tm-opt' + (on ? ' on' : '') + '" data-cat="' + esc(cat.id) + '" data-val="' + esc(v) + '">' +
+      const rbv = !cur && rbCat[cat.id] && rbCat[cat.id].includes(v);
+      h += '<div class="tm-opt' + (on ? ' on' : '') + (rbv ? ' rbv' : '') + '" data-cat="' + esc(cat.id) + '" data-val="' + esc(v) + '">' +
         '<span class="tm-radio"></span><span class="tm-lbl">' + esc(v) + '</span>' +
       '</div>';
     });
@@ -2093,7 +2138,7 @@ function loadPlaylist(){
         render();
         syncHeaderHeight();
         restoreLast();
-        loadTracklists(); loadSpLib();
+        loadTracklists(); loadSpLib(); loadRbTags();
         loadTags();
       };
       const missing = [];
