@@ -390,9 +390,13 @@
   .tk-lib{color:var(--ok);font-weight:700;margin-left:5px}
   /* 1.43: tracks del set en all y por estrella (tarjeta de set) */
   .clib{display:flex;gap:10px;margin-top:4px;font-size:12px;color:var(--fg);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden}
-  .clib .cl-all{color:var(--ok);font-weight:600}
-  .clib .cl-st{color:#f5c518}
-  .clib .zero{opacity:.4}
+  .cl-all{color:var(--ok);font-weight:600}
+  .cl-st{color:#f5c518}
+  .cl-h{color:var(--ok)}
+  .cbadges .zero{opacity:.4}
+  /* 1.46: todo en la línea de la duración; si no cabe, baja en vez de cortarse */
+  .card .ct-l{flex-wrap:wrap;white-space:normal;row-gap:2px}
+  .card .cbadges{flex-wrap:wrap;row-gap:2px}
   .tk-sp:active{opacity:.6}
   .tk,.gapline{position:relative;overflow:hidden}
   .tk-prog{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--acc);pointer-events:none;transition:width .4s linear}
@@ -552,7 +556,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.45';
+const APP_VERSION = '1.46';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -788,7 +792,7 @@ function identCounts(url, tl){
   return { id: id, unk: unk };
 }
 // 1.43: cuántos tracks del set están en all y en cada estrella (por ocurrencia en el set)
-function cardLib(s){
+function libSpans(s){
   const tl = getTracklist(s.url);
   if (!SPLIB_READY || !tl || !tl.tracks.length) return '';
   const c = { all: 0, 3: 0, 4: 0, 5: 0 };
@@ -802,20 +806,24 @@ function cardLib(s){
     if (SPSTAR[k]) c[SPSTAR[k]]++;
   });
   const z = n => n ? '' : ' zero';
-  return '<div class="clib">' +
-    '<span class="cl-all' + z(c.all) + '">all ' + c.all + '</span>' +
-    [3, 4, 5].map(n => '<span class="cl-st' + z(c[n]) + '">' + n + '★ ' + c[n] + '</span>').join('') +
-  '</div>';
+  return '<span class="cl-all' + z(c.all) + '">all ' + c.all + '</span>' +
+    [3, 4, 5].map(n => '<span class="cl-st' + z(c[n]) + '">' + n + '★' + c[n] + '</span>').join('');
 }
+// 1.46: la línea de all/estrellas pasó a la misma línea de la duración (cardBadges); ya no hay .clib aparte
+function cardLib(s){ return ''; }
 function cardBadges(s){
   const tl = getTracklist(s.url);
   const nt = tl ? tl.tracks.length : 0;
   const ic = identCounts(s.url, tl);
   const ng = taggedTracksCount(s.url, tl);
   const nm = nt ? 0 : getMarks(s.url).length;   // sin tracklist: mostrar las 📍 sueltas
+  // 1.46: tracks escuchados (✓ verde, a mano o automático por estar en all/no)
+  const nh = nt ? tl.tracks.filter((tr, i) => isHeard(s.url, trackKey(tr, i))).length : 0;
   if (!nt && !nm) return '';
   return '<span class="cbadges">' +
     (nt ? '<span>🎵 ' + ic.id + (ic.unk ? ' <span class="cb-unk">+ ' + ic.unk + ' sin ID</span>' : '') + '</span>' : '') +
+    (nt ? '<span class="cl-h' + (nh ? '' : ' zero') + '">✓ ' + nh + '</span>' : '') +
+    (nt ? libSpans(s) : '') +
     (ng ? '<span>🏷 ' + ng + '</span>' : '') +
     (nm ? '<span>📍 ' + nm + '</span>' : '') +
   '</span>';
@@ -1902,7 +1910,7 @@ document.querySelectorAll('.seek[data-seek]').forEach(el => {
 // Tracklist: saltar a un track o guardar el link de trackid
 document.getElementById('tlBody').addEventListener('click', e => {
   const hb = e.target.closest('[data-heard]');
-  if (hb){ e.stopPropagation(); toggleHeard(SETS[currentIndex].url, hb.dataset.heard); renderTracklist(); return; }
+  if (hb){ e.stopPropagation(); toggleHeard(SETS[currentIndex].url, hb.dataset.heard); renderTracklist(); updateCard(currentIndex); return; }
   // 1.36: ⏱ fija el inicio del track en el minuto que suena (solo si este set es el que está cargado)
   const stb = e.target.closest('[data-sett]');
   if (stb){
