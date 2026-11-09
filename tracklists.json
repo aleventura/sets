@@ -23188,28 +23188,100 @@
    {
     "name": "1001tracklists",
     "url": "https://www.1001tracklists.com/tracklist/2fwmd18k/goldcap-funkenschleuderenriq-the-goldcast-164-2026-03-20.html"
+   },
+   {
+    "name": "trackid.net",
+    "url": "https://trackid.net/audiostreams/the-goldcast-164-mar-20-2026-with-guestmix-by-funkenschleuder-enriq"
    }
   ],
   "tracks": [
    {
-    "artist": "funkenschleuder & Énriq",
-    "title": "Die Eulen (unreleased)"
+    "t": 48725,
+    "artist": "Nato (FR)",
+    "title": "Joya"
+   },
+   {
+    "t": 240725,
+    "artist": "Akuba",
+    "title": "Misal"
+   },
+   {
+    "t": 533725,
+    "artist": "Funka",
+    "title": "Saicotímido"
+   },
+   {
+    "t": 842725,
+    "artist": "De Las Esferas",
+    "title": "Volver a Elegir"
+   },
+   {
+    "t": 1059725,
+    "artist": "Magupi",
+    "title": "Breath feat. Ekoa"
+   },
+   {
+    "t": 1374725,
+    "empty": true
+   },
+   {
+    "t": 1563725,
+    "artist": "Musical Religion",
+    "title": "Catching Neutrino"
+   },
+   {
+    "t": 1982725,
+    "artist": "Dad Of The Year",
+    "title": "Boomshot!"
+   },
+   {
+    "t": 2325725,
+    "artist": "Kapchiz, Amselcom",
+    "title": "Bridance"
+   },
+   {
+    "t": 2646725,
+    "artist": "BVILA",
+    "title": "Cumbia Arabe"
+   },
+   {
+    "t": 2908725,
+    "artist": "Puma & The Dolphin",
+    "title": "Nuances"
+   },
+   {
+    "t": 3120725,
+    "empty": true
+   },
+   {
+    "t": 3375725,
+    "artist": "Bliss",
+    "title": "Long Life (Bonobo Remix)"
    },
    {
     "artist": "funkenschleuder & Énriq",
-    "title": "Die Nacht (Soble Remix) (unreleased)"
+    "title": "Die Eulen (unreleased)",
+    "t": 3666725
    },
    {
     "artist": "funkenschleuder & Énriq",
-    "title": "Die Nacht (unreleased)"
+    "title": "Die Nacht (Soble Remix) (unreleased)",
+    "t": 4040725
    },
    {
     "artist": "funkenschleuder & Énriq",
-    "title": "Indian Poppy (leveldva)"
+    "title": "Die Nacht (unreleased)",
+    "t": 4306725
    },
    {
     "artist": "funkenschleuder & Énriq",
-    "title": "Forests (Geju Remix) (leveldva)"
+    "title": "Indian Poppy (leveldva)",
+    "t": 4684725
+   },
+   {
+    "artist": "funkenschleuder & Énriq",
+    "title": "Forests (Geju Remix) (leveldva)",
+    "t": 5013725
    },
    {
     "artist": "funkenschleuder & Énriq",
@@ -23225,7 +23297,8 @@
    },
    {
     "artist": "funkenschleuder & Énriq",
-    "title": "Warten (unreleased)"
+    "title": "Warten (unreleased)",
+    "t": 6349725
    },
    {
     "artist": "Juliette Magnevasoa",
@@ -23233,11 +23306,13 @@
    },
    {
     "artist": "funkenschleuder & Énriq",
-    "title": "Im Morgentau  (Geju Remix)"
+    "title": "Im Morgentau  (Geju Remix)",
+    "t": 6763725
    },
    {
     "artist": "funkenschleuder & Énriq",
-    "title": "Im Morgentau (unreleased)"
+    "title": "Im Morgentau (unreleased)",
+    "t": 7066725
    }
   ]
  },
@@ -29126,6 +29201,778 @@
     "artist": "Redshape",
     "t": 5408775,
     "title": "It's In Rain (Original Mix)"
+   }
+  ]
+ },
+ "https://soundcloud.com/lenilow/bawab-isabeau-fort-leni-g-camp": {
+  "source": "https://trackid.net/audiostreams/bawab-isabeau-fort-leni-12h-g-camp-burning-man-2026",
+  "title": "bawab, Isabeau Fort & LENI | 12h @ G Camp | Burning Man 2026",
+  "tracks": [
+   {
+    "t": 0,
+    "artist": "Robag Wruhme",
+    "title": "Pnom Gobal"
+   },
+   {
+    "t": 310000,
+    "artist": "okuma",
+    "title": "Urmel"
+   },
+   {
+    "t": 606000,
+    "artist": "Planet Funk",
+    "title": "Chase the Sun (Makebo Remix - Extended Mix) (Makebo Remix - Extended Mix)"
+   },
+   {
+    "t": 943000,
+    "artist": "Namito",
+    "title": "Janin (Sangeet's Laidback Remix)"
+   },
+   {
+    "t": 1206000,
+    "empty": true
+   },
+   {
+    "t": 1437000,
+    "artist": "Whitesquare",
+    "title": "Stina"
+   },
+   {
+    "t": 1716000,
+    "artist": "Chaim",
+    "title": "Stars Of Noam (Tez Break It Remix) (Tez Break It Remix)"
+   },
+   {
+    "t": 1914000,
+    "empty": true
+   },
+   {
+    "t": 2461000,
+    "artist": "Carlo Ruetz",
+    "title": "We Are Riders"
+   },
+   {
+    "t": 2657000,
+    "artist": "Landikhan, Caravaca:",
+    "title": "Traversata (Xique-Xique Remix)"
+   },
+   {
+    "t": 2917000,
+    "empty": true
+   },
+   {
+    "t": 3121000,
+    "artist": "Sabb",
+    "title": "Jeopardized"
+   },
+   {
+    "t": 3296000,
+    "artist": "Alex Niggemann",
+    "title": "Street Therapy"
+   },
+   {
+    "t": 3579000,
+    "artist": "Pulli & Chomba",
+    "title": "Acid Vogel (Laurent Flaoh Remix)"
+   },
+   {
+    "t": 4017000,
+    "artist": "Mihai Popoviciu",
+    "title": "Triumph"
+   },
+   {
+    "t": 4232000,
+    "artist": "Kasper Koman",
+    "title": "Like Clockwork (Extended Mix)"
+   },
+   {
+    "t": 4503000,
+    "artist": "Sydka",
+    "title": "Passions"
+   },
+   {
+    "t": 4787000,
+    "artist": "coss",
+    "title": "The Final Shot"
+   },
+   {
+    "t": 5124000,
+    "artist": "Allies For Everyone",
+    "title": "Cards (Roze Remix)"
+   },
+   {
+    "t": 5501000,
+    "empty": true
+   },
+   {
+    "t": 5766000,
+    "artist": "Khen",
+    "title": "Lyup"
+   },
+   {
+    "t": 6163000,
+    "artist": "Iorie",
+    "title": "Down to the Beat"
+   },
+   {
+    "t": 6443000,
+    "empty": true
+   },
+   {
+    "t": 6572000,
+    "artist": "Tourkey & Selim",
+    "title": "Another Way Out"
+   },
+   {
+    "t": 6718000,
+    "artist": "DSF",
+    "title": "Not Like You (Extended Mix)"
+   },
+   {
+    "t": 6975000,
+    "artist": "Roze (FR)",
+    "title": "Rusty Bones (Kon Faber Remix)"
+   },
+   {
+    "t": 7258000,
+    "artist": "Lèrr",
+    "title": "Zmajevo Voce"
+   },
+   {
+    "t": 7468000,
+    "artist": "Djolee",
+    "title": "Tangler Twisted Twirler (Kotelett Remix)"
+   },
+   {
+    "t": 7749000,
+    "artist": "Dandara",
+    "title": "Danza"
+   },
+   {
+    "t": 7909000,
+    "artist": "Ajna (BE), Nuzu Deep",
+    "title": "Follow"
+   },
+   {
+    "t": 8131000,
+    "empty": true
+   },
+   {
+    "t": 8370000,
+    "artist": "STEREO MUNK, Eichenbaum",
+    "title": "Komorebi"
+   },
+   {
+    "t": 8534000,
+    "empty": true
+   },
+   {
+    "t": 8751000,
+    "artist": "AIKON",
+    "title": "Raw"
+   },
+   {
+    "t": 9036000,
+    "artist": "Jan Mir, Paul Sandberg, Tomas Svensson",
+    "title": "Wu Wei (Roderic Remix)"
+   },
+   {
+    "t": 9413000,
+    "artist": "Aera",
+    "title": "Golden Times"
+   },
+   {
+    "t": 9600000,
+    "empty": true
+   },
+   {
+    "t": 9690000,
+    "artist": "Raw Main",
+    "title": "Theory Of Love (Extended Mix)"
+   },
+   {
+    "t": 9942000,
+    "artist": "Vite",
+    "title": "Love Me Too"
+   },
+   {
+    "t": 10184000,
+    "artist": "Mosoo, Deco (BE)",
+    "title": "Walls"
+   },
+   {
+    "t": 10476000,
+    "artist": "Ivory (IT)",
+    "title": "It’s A New Day"
+   },
+   {
+    "t": 10659000,
+    "empty": true
+   },
+   {
+    "t": 10890000,
+    "artist": "Alex Niggemann",
+    "title": "Exos"
+   },
+   {
+    "t": 11206000,
+    "artist": "Cioz",
+    "title": "Harakat"
+   },
+   {
+    "t": 11400000,
+    "empty": true
+   },
+   {
+    "t": 11511000,
+    "artist": "bawab",
+    "title": "Red Ink"
+   },
+   {
+    "t": 11970000,
+    "artist": "Darco",
+    "title": "Saying Hey! (Extended Mix)"
+   },
+   {
+    "t": 12200000,
+    "artist": "Adisyn, Get Physical Radio",
+    "title": "Departure (Tara Brooks Remix - Mixed - May 2025)"
+   },
+   {
+    "t": 12395000,
+    "artist": "bawab",
+    "title": "Scoria"
+   },
+   {
+    "t": 12686000,
+    "artist": "Ivory (IT), Auggië",
+    "title": "Basic Rhythm"
+   },
+   {
+    "t": 12968000,
+    "artist": "Fejká",
+    "title": "Solana (CIOZ Remix)"
+   },
+   {
+    "t": 13276000,
+    "empty": true
+   },
+   {
+    "t": 13770000,
+    "artist": "Claudio Ricci",
+    "title": "The Love We Share"
+   },
+   {
+    "t": 13942000,
+    "artist": "Major Spirit",
+    "title": "Closing Doors (Extended Mix)"
+   },
+   {
+    "t": 14213000,
+    "empty": true
+   },
+   {
+    "t": 14476000,
+    "artist": "Gespona",
+    "title": "Jumbo"
+   },
+   {
+    "t": 14657000,
+    "empty": true
+   },
+   {
+    "t": 14907000,
+    "artist": "Jimi Jules",
+    "title": "Whisper To Me"
+   },
+   {
+    "t": 14958000,
+    "empty": true
+   },
+   {
+    "t": 15086000,
+    "artist": "&lez",
+    "title": "The Rhythm Of Dancing"
+   },
+   {
+    "t": 15260000,
+    "empty": true
+   },
+   {
+    "t": 15516000,
+    "artist": "NTO",
+    "title": "Vivre beaucoup"
+   },
+   {
+    "t": 15826000,
+    "artist": "AIKON",
+    "title": "Welcome To The Future"
+   },
+   {
+    "t": 16081000,
+    "empty": true
+   },
+   {
+    "t": 16377000,
+    "artist": "Predex",
+    "title": "Life is Simple"
+   },
+   {
+    "t": 16690000,
+    "artist": "Jimi Jules",
+    "title": "Dreamin'"
+   },
+   {
+    "t": 16952000,
+    "empty": true
+   },
+   {
+    "t": 17239000,
+    "artist": "Agustin Giri",
+    "title": "Let's Talk"
+   },
+   {
+    "t": 17485000,
+    "artist": "Radeckt",
+    "title": "Fame"
+   },
+   {
+    "t": 17740000,
+    "artist": "Arutani",
+    "title": "Ordinary Thoughts"
+   },
+   {
+    "t": 18008000,
+    "artist": "Odd Parents",
+    "title": "Learn To Fly (Maceo's Flight Home Mix)"
+   },
+   {
+    "t": 18340000,
+    "artist": "Alex Breitling",
+    "title": "Makasi (Angelov's Jungle Vision)"
+   },
+   {
+    "t": 18671000,
+    "empty": true
+   },
+   {
+    "t": 19470000,
+    "artist": "To Ricciardi",
+    "title": "Catch the Colors (Iorie Remix)"
+   },
+   {
+    "t": 19692000,
+    "artist": "Guy Mantzur, Khen",
+    "title": "Where Is Home (Matthias Meyer remix)"
+   },
+   {
+    "t": 19974000,
+    "empty": true
+   },
+   {
+    "t": 20219000,
+    "artist": "bawab",
+    "title": "Divine"
+   },
+   {
+    "t": 20400000,
+    "artist": "Gespona",
+    "title": "The Story Of My Life"
+   },
+   {
+    "t": 20665000,
+    "empty": true
+   },
+   {
+    "t": 20756000,
+    "artist": "Ed Ed",
+    "title": "I Walk"
+   },
+   {
+    "t": 21000000,
+    "empty": true
+   },
+   {
+    "t": 21181000,
+    "artist": "Eric Sneo",
+    "title": "Cosmic Dance"
+   },
+   {
+    "t": 21558000,
+    "artist": "Haffenfold",
+    "title": "Enuf"
+   },
+   {
+    "t": 21738000,
+    "artist": "Haffenfold",
+    "title": "Enuf"
+   },
+   {
+    "t": 21849000,
+    "empty": true
+   },
+   {
+    "t": 22092000,
+    "artist": "Musson",
+    "title": "Life Forms (Original Mix)"
+   },
+   {
+    "t": 22361000,
+    "artist": "Tripolism, Nandu, Radeckt",
+    "title": "Dope Dance (Extended Mix)"
+   },
+   {
+    "t": 22625000,
+    "artist": "Husa & Zeyada",
+    "title": "Make It Hot (Mustafa Ismaeel Remix)"
+   },
+   {
+    "t": 22908000,
+    "artist": "HearThuG",
+    "title": "Crossroads (Bebetta remix)"
+   },
+   {
+    "t": 23158000,
+    "artist": "Darlow",
+    "title": "Girona"
+   },
+   {
+    "t": 23412000,
+    "empty": true
+   },
+   {
+    "t": 23935000,
+    "artist": "Madmotormiquel",
+    "title": "Take It And Leave It"
+   },
+   {
+    "t": 24209000,
+    "empty": true
+   },
+   {
+    "t": 24400000,
+    "artist": "Maxi Meraki, Samm (BE), Ajna (BE)",
+    "title": "Look Around, It's Gonna Be Fine"
+   },
+   {
+    "t": 24717000,
+    "empty": true
+   },
+   {
+    "t": 24983000,
+    "artist": "Kon Faber",
+    "title": "Percolate"
+   },
+   {
+    "t": 25254000,
+    "artist": "Pastaboys, Osunlade",
+    "title": "Deep Musique (Rampa Remix)"
+   },
+   {
+    "t": 25588000,
+    "empty": true
+   },
+   {
+    "t": 25764000,
+    "artist": "bawab",
+    "title": "Stairwell"
+   },
+   {
+    "t": 26073000,
+    "artist": "Mass Digital",
+    "title": "Sitting On Clouds (Original Mix)"
+   },
+   {
+    "t": 26371000,
+    "artist": "Alex Niggemann",
+    "title": "Angular"
+   },
+   {
+    "t": 26708000,
+    "empty": true
+   },
+   {
+    "t": 27108000,
+    "artist": "Golden Hour",
+    "title": "Magenta"
+   },
+   {
+    "t": 27332000,
+    "artist": "RADON",
+    "title": "Crystal Dub"
+   },
+   {
+    "t": 27634000,
+    "empty": true
+   },
+   {
+    "t": 28017000,
+    "artist": "Abuk",
+    "title": "Magna"
+   },
+   {
+    "t": 28251000,
+    "artist": "Time Before Eyes",
+    "title": "Perspective"
+   },
+   {
+    "t": 28596000,
+    "artist": "bawab",
+    "title": "Step Out"
+   },
+   {
+    "t": 28841000,
+    "artist": "Kon Faber",
+    "title": "The Louder One"
+   },
+   {
+    "t": 29106000,
+    "artist": "Yet More",
+    "title": "Hafla"
+   },
+   {
+    "t": 29352000,
+    "artist": "bawab",
+    "title": "Times Gone"
+   },
+   {
+    "t": 29660000,
+    "artist": "Re.You",
+    "title": "Touch"
+   },
+   {
+    "t": 29950000,
+    "artist": "Ilias Katelanos, Plecta, Alej Ch",
+    "title": "Bubble Gum"
+   },
+   {
+    "t": 30282000,
+    "empty": true
+   },
+   {
+    "t": 30565000,
+    "artist": "Mathias Kaden",
+    "title": "Inner Signal"
+   },
+   {
+    "t": 30794000,
+    "empty": true
+   },
+   {
+    "t": 30932000,
+    "artist": "Soul II Soul",
+    "title": "Back To Life"
+   },
+   {
+    "t": 30953000,
+    "empty": true
+   },
+   {
+    "t": 31634000,
+    "artist": "Jan Mir, Paul Sandberg, Tomas Svensson",
+    "title": "Wu Wei (Roderic Remix)"
+   },
+   {
+    "t": 31902000,
+    "artist": "Depart",
+    "title": "Help Me Refuse (Moon's Voyager Remix)"
+   },
+   {
+    "t": 32189000,
+    "artist": "Audiojack",
+    "title": "Opposite Forces"
+   },
+   {
+    "t": 32490000,
+    "empty": true
+   },
+   {
+    "t": 32865000,
+    "artist": "briqs",
+    "title": "One (Edit) (Edit)"
+   },
+   {
+    "t": 32932000,
+    "empty": true
+   },
+   {
+    "t": 33108000,
+    "artist": "Oliver Schories",
+    "title": "Time Lapse (Pete Oak Remix)"
+   },
+   {
+    "t": 33320000,
+    "artist": "Takiru, Omri Guetta",
+    "title": "Never Enough"
+   },
+   {
+    "t": 33585000,
+    "empty": true
+   },
+   {
+    "t": 33848000,
+    "artist": "Radeckt",
+    "title": "Never Leave You"
+   },
+   {
+    "t": 34122000,
+    "artist": "Agustin Giri",
+    "title": "Wokowo"
+   },
+   {
+    "t": 34319000,
+    "artist": "Antaares",
+    "title": "Surfing In The Haze (Bawab Remix)"
+   },
+   {
+    "t": 34595000,
+    "artist": "Sedef Adasi",
+    "title": "Mermaids On Acid"
+   },
+   {
+    "t": 34840000,
+    "artist": "Luch",
+    "title": "Shepard's Tone"
+   },
+   {
+    "t": 35129000,
+    "empty": true
+   },
+   {
+    "t": 35402000,
+    "artist": "Xandl",
+    "title": "Talk"
+   },
+   {
+    "t": 35616000,
+    "artist": "AFFKT",
+    "title": "Bodypa (Audio Junkies Remix)"
+   },
+   {
+    "t": 35934000,
+    "artist": "Iorie",
+    "title": "Constant Red"
+   },
+   {
+    "t": 36116000,
+    "artist": "Damian Lazarus & The Ancient Moons",
+    "title": "Vermillion (&ME Remix)"
+   },
+   {
+    "t": 36412000,
+    "empty": true
+   },
+   {
+    "t": 37027000,
+    "artist": "Notre Dame",
+    "title": "Nobody Told Me"
+   },
+   {
+    "t": 37308000,
+    "artist": "Moby",
+    "title": "The Last Day (feat. Skylar Grey) [David Mayer Remix] (David Mayer Remix)"
+   },
+   {
+    "t": 37649000,
+    "artist": "Laroz",
+    "title": "Samueka (Yuvèe Remix)"
+   },
+   {
+    "t": 37973000,
+    "artist": "AIKON",
+    "title": "Aiii"
+   },
+   {
+    "t": 38218000,
+    "artist": "Sascha Braemer, Underher",
+    "title": "Hear Out"
+   },
+   {
+    "t": 38508000,
+    "artist": "Patrice Bäumel",
+    "title": "Surge"
+   },
+   {
+    "t": 38794000,
+    "artist": "Gone Deville",
+    "title": "Dirty For The Funk (CIOZ remix)"
+   },
+   {
+    "t": 39108000,
+    "artist": "David Douglas, Milio",
+    "title": "We Can't Hear You (Milio Remix)"
+   },
+   {
+    "t": 39308000,
+    "empty": true
+   },
+   {
+    "t": 39534000,
+    "artist": "Tal Fussman",
+    "title": "Truth"
+   },
+   {
+    "t": 39890000,
+    "artist": "Vhyce",
+    "title": "Insieme"
+   },
+   {
+    "t": 40114000,
+    "artist": "Pional",
+    "title": "Tempest"
+   },
+   {
+    "t": 40311000,
+    "artist": "Newman (I Love)",
+    "title": "The Moon and the Stars"
+   },
+   {
+    "t": 40621000,
+    "artist": "Ian Ludvig",
+    "title": "Everyday"
+   },
+   {
+    "t": 40938000,
+    "empty": true
+   },
+   {
+    "t": 41310000,
+    "artist": "Dino Lenny and Doorly",
+    "title": "The Magic Room"
+   },
+   {
+    "t": 41657000,
+    "artist": "Come Closer",
+    "title": "Maluski Roubiny"
+   },
+   {
+    "t": 41863000,
+    "artist": "Recondite",
+    "title": "Levo (Club Edit)"
+   },
+   {
+    "t": 42133000,
+    "artist": "Makebo, Amonita",
+    "title": "Back To The Roots (Extended Mix)"
+   },
+   {
+    "t": 42541000,
+    "empty": true
+   },
+   {
+    "t": 42703000,
+    "artist": "Felipe Van Lagerback",
+    "title": "Like You Do"
+   },
+   {
+    "t": 42840000,
+    "artist": "Mees Dierdorp",
+    "title": "Las Parañas"
+   },
+   {
+    "t": 43106000,
+    "artist": "Moby",
+    "title": "This Wild Darkness"
    }
   ]
  }
