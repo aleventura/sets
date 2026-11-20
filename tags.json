@@ -13,33 +13,34 @@
         "---",
         "Viaj*44",
         "Viaj*53",
-        "((( Viaj*33 )))",
+        "( Viaj*33 )",
         "Viaj*52",
         "---",
         "Sail*44",
         "Sail*53",
-        "((( Sail*33 )))",
-        "((( Pist*33 ))) (Sail*33)",
-        "Sail*52"
+        "( Sail*33 )",
+        "Sail*52",
+        "( Sail*22 )"
       ]
     },
     {
       "id": "niv",
       "label": "Género",
       "values": [
-        "Afro",
-        "Bailable",
-        "Dance",
-        "Deep",
-        "Down",
-        "Funky",
-        "Hap",
-        "Indie",
-        "Melod",
-        "Music",
-        "Org",
-        "Peak",
-        "Tech"
+        "(1)",
+        "Hap (1)",
+        "Funky (1)",
+        "Dance (1)",
+        "---",
+        "(2)",
+        "Afro (2)",
+        "Org (2)",
+        "Melod (2)",
+        "---",
+        "(3)",
+        "Deep (3)",
+        "Indie (3)",
+        "Tech (3)"
       ]
     },
     {
