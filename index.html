@@ -29,6 +29,9 @@
   .head-row .ver{font-size:10px;color:var(--dim);opacity:.6;white-space:nowrap;
     font-variant-numeric:tabular-nums;letter-spacing:.3px}
   .pl-row{padding:0 0 10px}
+  .pl-row-sel{display:flex;gap:8px;align-items:center}
+  .pl-row-sel .pl-select{flex:1 1 auto;min-width:0}
+  .sort-year{flex:0 0 auto;white-space:nowrap}
   .pl-select{width:100%;padding:8px 10px;background:var(--btn);color:var(--fg);
     border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;
     -webkit-appearance:none;appearance:none}
@@ -338,11 +341,10 @@
     font-size:11px;color:var(--fg);white-space:nowrap}
   .tk-chip.atr{border-color:var(--acc);color:var(--acc)}
   /* 1.50: tags que vienen de Rekordbox (rekordbox_tags.json): borde punteado y sello RB */
-  .tk-rb{font-size:9px;font-weight:700;letter-spacing:.5px;color:#8fb3ff;border:1px solid #3d5687;border-radius:4px;padding:0 4px;line-height:14px}
-  .tk-chip.rb,.tk-stars.rb{border-style:dashed}
+  .tk-rb{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#2b4a8a;color:#fff;font-size:10px;font-weight:800;line-height:1}
+  .tk-chip.rb{border-style:dashed}
   .tk-chip.rb{border-color:#3d5687}
-  .tk-stars.rb{opacity:.8}
-  .tm-rb{padding:6px 16px 8px;color:#8fb3ff;font-size:12px;border-bottom:1px solid var(--border)}
+    .tm-rb{padding:6px 16px 8px;color:#8fb3ff;font-size:12px;border-bottom:1px solid var(--border)}
   .tm-opt.rbv .tm-lbl::after{content:" RB";font-size:9px;font-weight:700;color:#8fb3ff}
   .tk-tag{flex:0 0 auto;background:none;border:0;color:#55555e;cursor:pointer;font-size:15px;
     padding:2px 4px;line-height:1;filter:grayscale(1);opacity:.6}
@@ -460,8 +462,8 @@
   .tm-star.on{color:var(--mark)}
   .tm-opt{display:flex;align-items:center;gap:12px;padding:12px 16px;cursor:pointer;border-bottom:1px solid #1e1e24}
   .tm-opt:active{background:var(--btn)}
-  .tm-radio{flex:0 0 auto;width:20px;height:20px;border-radius:50%;border:2px solid var(--acc2);position:relative}
-  .tm-opt.on .tm-radio::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--acc2)}
+  .tm-radio{flex:0 0 auto;width:20px;height:20px;border-radius:5px;border:2px solid var(--acc2);position:relative}
+  .tm-opt.on .tm-radio::after{content:"";position:absolute;inset:3px;border-radius:2px;background:var(--acc2)}
   .tm-lbl{flex:1 1 auto;font-size:15px}
   .tm-div{height:1px;background:var(--border);margin:3px 16px}
   /* 1.47: tres columnas paralelas (intensidad | género | atributo) */
@@ -502,7 +504,7 @@
   </div>
   <a href="beta.html" style="display:block;padding:6px 10px;margin:0 0 8px;background:#2a1a0e;border:1px solid var(--acc);border-radius:8px;color:var(--acc);font-size:12px;font-weight:600;text-decoration:none;text-align:center">🧪 Probar versión beta — arregla la interferencia de audio en el auto</a>
   <div class="filters pl-cats" id="plCats"></div>
-  <div class="pl-row"><select id="selPlaylist" class="pl-select" aria-label="Playlist"></select></div>
+  <div class="pl-row pl-row-sel"><select id="selPlaylist" class="pl-select" aria-label="Playlist"></select><button class="chip sort-year" id="sortYear" aria-label="Ordenar por año">Año ↓</button></div>
   <div class="filters" id="filters">
     <button class="chip active" data-filter="all">Todos<span class="n" data-n="all"></span></button>
     <button class="chip" data-filter="new">Nuevos<span class="n" data-n="new"></span></button>
@@ -587,7 +589,7 @@
 // ============================================================
 // CONFIG
 // ============================================================
-const APP_VERSION = '1.50';
+const APP_VERSION = '1.51';
 // Íconos SVG (se ven igual en Chrome y en iOS; los glifos unicode se renderizaban como emoji)
 const IC_PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 const IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -715,7 +717,7 @@ let LOCAL_TL = JSON.parse(localStorage.getItem(LS_LOCAL_TL) || '{}'); // trackli
 let HEARD = {}; try { HEARD = JSON.parse(localStorage.getItem(LS_HEARD) || '{}') || {}; } catch(e){ HEARD = {}; }
 let TLNOTES  = JSON.parse(localStorage.getItem(LS_TLNOTES) || '{}');  // notas manuales de track por set
 let TRACKATTRS = JSON.parse(localStorage.getItem(LS_TRACKATTRS) || '{}'); // atributos por track (estrellas + tags), por ocurrencia set+track
-let TAGVOCAB = { categories: [{"id": "gen", "label": "Intensidad", "values": ["Pist*23", "Pist*34", "Pist*44", "Pist*45", "Pist*53", "Pist*52", "---", "Viaj*44", "Viaj*53", "((( Viaj*33 )))", "Viaj*52", "---", "Sail*44", "Sail*53", "((( Sail*33 )))", "((( Pist*33 ))) (Sail*33)", "Sail*52"]}, {"id": "niv", "label": "Género", "values": ["Afro", "Bailable", "Dance", "Deep", "Down", "Funky", "Hap", "Indie", "Melod", "Music", "Org", "Peak", "Tech"]}, {"id": "atr", "label": "Atributo", "values": ["pop", "voc", "sub", "peak", "after-peak"]}]}; // fallback embebido; tags.json (si existe) lo sobreescribe
+let TAGVOCAB = { categories: [{"id": "gen", "label": "Intensidad", "values": ["Pist*23", "Pist*34", "Pist*44", "Pist*45", "Pist*53", "Pist*52", "---", "Viaj*44", "Viaj*53", "( Viaj*33 )", "Viaj*52", "---", "Sail*44", "Sail*53", "( Sail*33 )", "Sail*52", "( Sail*22 )"]}, {"id": "niv", "label": "Género", "values": ["(1)", "Hap (1)", "Funky (1)", "Dance (1)", "---", "(2)", "Afro (2)", "Org (2)", "Melod (2)", "---", "(3)", "Deep (3)", "Indie (3)", "Tech (3)"]}, {"id": "atr", "label": "Atributo", "values": ["pop", "voc", "sub", "peak", "after-peak"]}]}; // fallback embebido; tags.json (si existe) lo sobreescribe
 let tagModalCtx = null;              // {url,key,tr,i} del track abierto en el modal de tags
 let tlEditRow = -1;                  // índice de fila del tracklist en edición (o -1)
 let TRACKLISTS = {};                 // tracklists incrustados (de tracklists.json)
@@ -791,6 +793,18 @@ function passesFilter(s){
   return filter === 'all' || setStatus(s.url) === filter;
 }
 
+// 1.51: año del set al inicio del nombre (año en el título; si no trae, año de subida a SoundCloud)
+function setYear(s){
+  const m = /(?:^|[^0-9])((?:19|20)\d\d)(?![0-9])/.exec(s.title || '');
+  if (m) return parseInt(m[1], 10);
+  const d = s.display_date || s.release_date || s.created_at || '';
+  const y = parseInt(String(d).slice(0, 4), 10);
+  return y > 1900 ? y : 0;
+}
+function withYear(s){ const y = setYear(s), t = s.title || 'Set sin título'; return y ? y + ' · ' + t : t; }
+const LS_SORTYEAR = 'sc_sets_sortyear_v1';
+let sortYear = localStorage.getItem(LS_SORTYEAR) === '1';
+function syncSortBtn(){ const b = document.getElementById('sortYear'); if (b) b.classList.toggle('active', sortYear); }
 function render(){
   const list = document.getElementById('list');
   if (!SETS.length){
@@ -799,7 +813,9 @@ function render(){
     return;
   }
   // Filtrar preservando el índice global (playSet/updateCard usan el índice de SETS)
-  const html = SETS.map((s, i) => passesFilter(s) ? cardHTML(s, i) : '').join('');
+  const order = SETS.map((s, i) => i);
+  if (sortYear) order.sort((a, b) => (SETS[b].year || 0) - (SETS[a].year || 0) || a - b);   // 1.51: año descendente
+  const html = order.map(i => passesFilter(SETS[i]) ? cardHTML(SETS[i], i) : '').join('');
   if (!html){
     const label = {new:'nuevos', progress:'en proceso', done:'escuchados'}[filter] || '';
     list.innerHTML = '<div class="empty">No hay sets ' + label + '.</div>';
@@ -1836,13 +1852,32 @@ function setMediaSession(s){
 // ============================================================
 function saveTrackAttrs(){ localStorage.setItem(LS_TRACKATTRS, JSON.stringify(TRACKATTRS)); syncDirty('attrs'); }
 function getAttrRec(url, key){ const m = TRACKATTRS[url]; return (m && m[key]) ? m[key] : null; }
-// 1.47: nomenclatura nueva de intensidad ("Pist*23"); los valores viejos ("23*Pist") se muestran convertidos
-const GEN_OLD = {'33*Pist':'((( Pist*33 ))) (Sail*33)','33*Viaj':'((( Viaj*33 )))','33*Sail':'((( Sail*33 )))'};
+// 1.47/1.51: nomenclatura de intensidad ("Pist*23", "( Sail*33 )"); los valores viejos se muestran convertidos
+const GEN_OLD = {'Pist*33':'( Sail*33 )','Viaj*33':'( Viaj*33 )','Sail*33':'( Sail*33 )','Sail*22':'( Sail*22 )',
+  '((( Viaj*33 )))':'( Viaj*33 )','((( Sail*33 )))':'( Sail*33 )','((( Pist*33 ))) (Sail*33)':'( Sail*33 )'};
 function normGen(v){
   if (!v) return v;
-  if (GEN_OLD[v]) return GEN_OLD[v];
   const m = /^(\d+)\*(Pist|Viaj|Sail)$/.exec(v);
-  return m ? (m[2] + '*' + m[1]) : v;
+  if (m) v = m[2] + '*' + m[1];
+  return GEN_OLD[v] || v;
+}
+// 1.51: género con su grupo, como en Rekordbox ("Hap (1)")
+const NIV_GRP = {Hap:1, Funky:1, Dance:1, Afro:2, Org:2, Melod:2, Deep:3, Indie:3, Tech:3};
+function normNiv(v){ return (v && NIV_GRP[v]) ? v + ' (' + NIV_GRP[v] + ')' : v; }
+function normAttr(cat, v){ return cat === 'gen' ? normGen(v) : (cat === 'niv' ? normNiv(v) : v); }
+// 1.51: selección múltiple; el campo guarda los valores unidos por ", " (la hoja lo guarda como texto, sin cambios)
+function attrList(cat, v){
+  if (!v) return [];
+  const out = [];
+  String(v).split(', ').forEach(x => { x = normAttr(cat, x.trim()); if (x && !out.includes(x)) out.push(x); });
+  return out;
+}
+function attrToggle(cat, v, val){
+  const l = attrList(cat, v), k = l.indexOf(val);
+  if (k >= 0) l.splice(k, 1); else l.push(val);
+  const cv = ((TAGVOCAB.categories || []).find(c => c.id === cat) || {}).values || [];
+  l.sort((x, y) => { const ix = cv.indexOf(x), iy = cv.indexOf(y); return (ix < 0 ? 999 : ix) - (iy < 0 ? 999 : iy); });
+  return l.join(', ');
 }
 function attrHasAny(r){ return !!(r && (r.stars || r.gen || r.niv || r.atr)); }
 function setAttrField(url, key, field, value, meta){
@@ -1862,18 +1897,20 @@ function starsHTML(n){ n = n || 0; let s = ''; for (let k = 1; k <= 5; k++) s +=
 function attrHTML(url, key){
   const r = getAttrRec(url, key) || {};
   const rb = rbRec(url, key) || {};   // 1.50: lo marcado a mano manda; Rekordbox llena las categorías vacías
-  if (!attrHasAny(r) && !(rb.s || rb.g || rb.n || rb.a)) return '';
-  let h = '<div class="tk-tags">', usedRb = false;
-  if (r.stars) h += '<span class="tk-stars">' + starsHTML(r.stars) + '</span>';
-  else if (rb.s){ h += '<span class="tk-stars rb">' + starsHTML(rb.s) + '</span>'; usedRb = true; }
-  const chips = (manual, rbv, cls, f) => {
-    if (manual){ h += '<span class="tk-chip' + cls + '">' + esc(f ? f(manual) : manual) + '</span>'; return; }
-    (rbv || []).forEach(v => { h += '<span class="tk-chip rb' + cls + '">' + esc(v) + '</span>'; usedRb = true; });
+  const inRb = !!(rb.s || rb.g || rb.n || rb.a);
+  if (!attrHasAny(r) && !inRb) return '';
+  let h = '<div class="tk-tags">';
+  if (inRb) h += '<span class="tk-rb" title="Está en Rekordbox">R</span>';   // 1.51: solo una R como ícono
+  const st = r.stars || rb.s;
+  if (st) h += '<span class="tk-stars">' + starsHTML(st) + '</span>';     // 1.51: mismas estrellas, sin marco
+  const chips = (cat, manual, rbv, cls) => {
+    const l = manual ? attrList(cat, manual) : [];
+    if (l.length){ l.forEach(v => { h += '<span class="tk-chip' + cls + '">' + esc(v) + '</span>'; }); return; }
+    (rbv || []).forEach(v => { h += '<span class="tk-chip rb' + cls + '">' + esc(normAttr(cat, v)) + '</span>'; });
   };
-  chips(r.gen, rb.g, '', normGen);
-  chips(r.niv, rb.n, '');
-  chips(r.atr, rb.a, ' atr');
-  if (usedRb) h += '<span class="tk-rb" title="Tags de Rekordbox">RB</span>';
+  chips('gen', r.gen, rb.g, '');
+  chips('niv', r.niv, rb.n, '');
+  chips('atr', r.atr, rb.a, ' atr');
   return h + '</div>';
 }
 function tagBtn(i, url, key){
@@ -1927,20 +1964,20 @@ function renderTagModal(){
   const rec = getAttrRec(tagModalCtx.url, tagModalCtx.key) || {};
   let h = '<div class="tm-track">' + esc(tagTrackLabel()) + '</div>';
   const rb = rbRec(tagModalCtx.url, tagModalCtx.key) || {};
-  const rbList = [].concat(rb.s ? [starsHTML(rb.s)] : [], rb.g || [], rb.n || [], rb.a || []);
+  const rbList = [].concat(rb.s ? [starsHTML(rb.s)] : [], (rb.g || []).map(normGen), (rb.n || []).map(normNiv), rb.a || []);
   if (rbList.length) h += '<div class="tm-rb">Rekordbox: ' + esc(rbList.join(' · ')) + '</div>';
-  const rbCat = { gen: rb.g || [], niv: rb.n || [], atr: rb.a || [] };
+  const rbCat = { gen: (rb.g || []).map(normGen), niv: (rb.n || []).map(normNiv), atr: rb.a || [] };
   h += '<div class="tm-sect">Estrellas</div><div class="tm-stars">';
   for (let k = 1; k <= 5; k++) h += '<span class="tm-star' + ((rec.stars || 0) >= k ? ' on' : '') + '" data-star="' + k + '">' + ((rec.stars || 0) >= k ? '★' : '☆') + '</span>';
   h += '</div>';
   h += '<div class="tm-cols">';   // 1.47: intensidad, género y atributo en columnas paralelas
   (TAGVOCAB.categories || []).forEach(cat => {
     h += '<div class="tm-col"><div class="tm-sect">' + esc(cat.label) + '</div>';
-    const cur = cat.id === 'gen' ? normGen(rec.gen) : rec[cat.id];
+    const cur = attrList(cat.id, rec[cat.id]);   // 1.51: varios por categoría
     (cat.values || []).forEach(v => {
       if (/^-+$/.test(v)){ h += '<div class="tm-div"></div>'; return; }
-      const on = cur === v;
-      const rbv = !cur && rbCat[cat.id] && rbCat[cat.id].includes(v);
+      const on = cur.includes(v);
+      const rbv = !cur.length && rbCat[cat.id] && rbCat[cat.id].includes(v);
       h += '<div class="tm-opt' + (on ? ' on' : '') + (rbv ? ' rbv' : '') + '" data-cat="' + esc(cat.id) + '" data-val="' + esc(v) + '">' +
         '<span class="tm-radio"></span><span class="tm-lbl">' + esc(v) + '</span>' +
       '</div>';
@@ -2052,14 +2089,19 @@ document.getElementById('tagModalBody').addEventListener('click', e => {
   const op = e.target.closest('[data-cat]');
   if (op){
     const cat = op.dataset.cat, val = op.dataset.val;
-    let cur = (getAttrRec(tagModalCtx.url, tagModalCtx.key) || {})[cat];
-    if (cat === 'gen') cur = normGen(cur);
-    setAttrField(tagModalCtx.url, tagModalCtx.key, cat, (cur === val ? '' : val), tagModalMeta());
+    const cur = (getAttrRec(tagModalCtx.url, tagModalCtx.key) || {})[cat];
+    setAttrField(tagModalCtx.url, tagModalCtx.key, cat, attrToggle(cat, cur, val), tagModalMeta());
     renderTagModal(); return;
   }
 });
 
 // Filtro por estado de escucha
+// 1.51: ordenar por año descendente (toggle; se recuerda en este dispositivo)
+document.getElementById('sortYear').addEventListener('click', () => {
+  sortYear = !sortYear; localStorage.setItem(LS_SORTYEAR, sortYear ? '1' : '0');
+  syncSortBtn(); render(); highlightCards();
+});
+syncSortBtn();
 document.getElementById('filters').addEventListener('click', e => {
   const chip = e.target.closest('.chip');
   if (!chip) return;
@@ -2123,7 +2165,8 @@ function loadPlaylist(){
       const buildSets = function(list){
         SETS = (list || []).map(s => ({
           url: s.permalink_url,
-          title: s.title || 'Set sin título',
+          title: withYear(s),
+          year: setYear(s),
           artist: (s.user && s.user.username) || '',
           dur: s.duration || 0,
           art: s.artwork_url || (s.user && s.user.avatar_url) || null
